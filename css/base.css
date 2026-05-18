@@ -73,25 +73,16 @@ img, svg { max-width: 100%; height: auto; }
   gap: 24px;
 }
 
-.wordmark {
-  font-weight: 600;
-  font-size: 17px;
-  letter-spacing: -0.01em;
-  text-decoration: none;
-  color: var(--text);
+.site-logo {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  text-decoration: none;
 }
 
-.wordmark__glyph {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  background: var(--accent);
-  transform: rotate(45deg);
-  border-radius: 1px;
-  flex-shrink: 0;
+.site-logo img {
+  display: block;
+  height: 56px;
+  width: auto;
 }
 
 .site-nav {
@@ -529,6 +520,7 @@ img, svg { max-width: 100%; height: auto; }
   body { font-size: 16px; }
   .page { padding: 24px 20px 48px; }
   .site-header { padding-bottom: 40px; }
+  .site-logo img { height: 36px; }
   .site-nav { gap: 16px; font-size: 14px; }
   .hero { padding-bottom: 40px; }
   .hero h1 { font-size: 28px; }
