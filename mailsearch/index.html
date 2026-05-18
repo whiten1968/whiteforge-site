@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MailSearch — Whiteforge Technologies</title>
+  <meta name="description" content="MailSearch: fast, private, on-device full-text search across your Gmail, Outlook, iCloud, and IMAP mailboxes. For iPhone and iPad.">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+  <div class="page">
+
+    <header class="site-header">
+      <a href="/" class="wordmark" aria-label="Whiteforge Technologies home">
+        <span class="wordmark__glyph" aria-hidden="true"></span>
+        <span class="wordmark__name">Whiteforge Technologies</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/#products">Products</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </header>
+
+    <main>
+
+      <section class="hero hero--product">
+        <p class="section__eyebrow">iPhone &middot; iPad</p>
+        <h1>MailSearch</h1>
+        <p class="lede">Fast, private full-text search across your Gmail, Outlook, iCloud, and IMAP mailboxes &mdash; indexed and searched entirely on your device.</p>
+        <p class="cta-row">
+          <!-- TODO: replace href with App Store URL once live; swap text for official Apple App Store badge SVG -->
+          <a class="appstore-button" href="#" aria-label="Download MailSearch on the App Store">
+            <span class="appstore-button__small">Download on the</span>
+            <span class="appstore-button__large">App Store</span>
+          </a>
+          <span class="appstore-button__note">Coming soon to the App Store.</span>
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>What MailSearch does</h2>
+        <p>Built-in mail search on iPhone and iPad has always been frustrating: slow, limited to recent messages, and unable to look inside older mail. MailSearch fixes that by building a proper full-text index of your mailbox on your device, so every word of every message is searchable in milliseconds &mdash; including messages from years ago.</p>
+        <p>Connect any combination of Gmail, Outlook, iCloud, and standard IMAP accounts. MailSearch fetches your mail, indexes it locally, and lets you search instantly. Your mail never leaves your device.</p>
+      </section>
+
+      <section class="section">
+        <h2>Features</h2>
+        <ul class="feature-list">
+          <li>
+            <h3>On-device search</h3>
+            <p>The full-text index lives on your device. Whiteforge servers never see your mail, addresses, attachments, or contacts.</p>
+          </li>
+          <li>
+            <h3>Multiple accounts</h3>
+            <p>Connect several mail accounts at once and search across all of them &mdash; or filter by account.</p>
+          </li>
+          <li>
+            <h3>Search the whole archive</h3>
+            <p>Find that thing from years ago. MailSearch indexes the full content of every message, not just the recent ones.</p>
+          </li>
+          <li>
+            <h3>Standards-based</h3>
+            <p>OAuth 2.0 for Gmail and Microsoft; standard IMAP for everything else. No proxy servers, no middlemen.</p>
+          </li>
+          <li>
+            <h3>Disconnect any time</h3>
+            <p>Remove an account and MailSearch revokes its tokens and deletes the local index. Uninstall the app and it all goes with it.</p>
+          </li>
+          <li>
+            <h3>No tracking</h3>
+            <p>No analytics, no advertising SDKs, no third-party telemetry. The app does not phone home.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Supported providers</h2>
+        <ul class="provider-list">
+          <li>
+            <strong>Gmail</strong>
+            <span>Google accounts via OAuth 2.0. MailSearch requests <code>gmail.readonly</code> &mdash; read-only access to your messages, used only to fetch and index them on your device.</span>
+          </li>
+          <li>
+            <strong>Outlook / Microsoft 365</strong>
+            <span>Personal, work, and school Microsoft accounts via OAuth 2.0. MailSearch requests <code>Mail.Read</code>, <code>User.Read</code>, and <code>offline_access</code>.</span>
+          </li>
+          <li>
+            <strong>iCloud Mail</strong>
+            <span>Apple ID accounts using an app-specific password generated at <a href="https://appleid.apple.com">appleid.apple.com</a>.</span>
+          </li>
+          <li>
+            <strong>Other IMAP</strong>
+            <span>Any standards-compliant IMAP provider with TLS.</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Privacy</h2>
+        <p>MailSearch is designed so that we &mdash; the developers &mdash; never see your mail. Indexing and search happen on your device. We have no servers that hold mail content, addresses, attachments, or contacts.</p>
+        <p><a href="/mailsearch/privacy/">Read the full MailSearch privacy policy &rarr;</a></p>
+      </section>
+
+      <section class="section">
+        <h2>Screenshots</h2>
+        <div class="screenshots">
+          <div class="screenshot-placeholder">Screenshot coming at launch</div>
+          <div class="screenshot-placeholder">Screenshot coming at launch</div>
+          <div class="screenshot-placeholder">Screenshot coming at launch</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Support</h2>
+        <p>For frequently asked questions, troubleshooting, and account-connection help, see the <a href="/mailsearch/support/">MailSearch support page</a>. For anything else, email <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>.</p>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__block">
+        <strong>Whiteforge Technologies Ltd</strong>
+        Registered in England and Wales<br>
+        Company No. <span class="footer__placeholder">[to be added]</span>
+      </div>
+      <div class="footer__block">
+        <strong>Contact</strong>
+        <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>
+      </div>
+      <div class="footer__block footer__links">
+        <strong>MailSearch</strong>
+        <a href="/mailsearch/">Overview</a>
+        <a href="/mailsearch/privacy/">Privacy policy</a>
+        <a href="/mailsearch/terms/">Terms of service</a>
+        <a href="/mailsearch/support/">Support</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>

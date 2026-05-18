@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MailSearch privacy policy — Whiteforge Technologies</title>
+  <meta name="description" content="Privacy policy for the MailSearch iOS app. MailSearch indexes and searches your mail entirely on your device.">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+  <div class="page">
+
+    <header class="site-header">
+      <a href="/" class="wordmark" aria-label="Whiteforge Technologies home">
+        <span class="wordmark__glyph" aria-hidden="true"></span>
+        <span class="wordmark__name">Whiteforge Technologies</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/#products">Products</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </header>
+
+    <main class="prose">
+
+      <h1>MailSearch privacy policy</h1>
+      <p class="doc-meta">For the MailSearch iOS / iPadOS app &middot; Last updated 18 May 2026</p>
+
+      <div class="callout">
+        <p><strong>Summary.</strong> MailSearch indexes and searches your mail entirely on your device. Whiteforge Technologies has no servers that receive your email content, attachments, addresses, contacts, OAuth tokens, IMAP credentials, search queries, or telemetry. The rest of this policy describes that arrangement in detail.</p>
+      </div>
+
+      <nav class="doc-toc" aria-label="Table of contents">
+        <strong>Contents</strong>
+        <ol>
+          <li><a href="#intro">Introduction</a></li>
+          <li><a href="#on-device">Data MailSearch accesses on your device</a></li>
+          <li><a href="#what-we-receive">Data Whiteforge receives</a></li>
+          <li><a href="#gmail">Gmail (Google accounts)</a></li>
+          <li><a href="#microsoft">Outlook / Microsoft 365</a></li>
+          <li><a href="#imap">iCloud Mail and other IMAP accounts</a></li>
+          <li><a href="#storage">Where data is stored</a></li>
+          <li><a href="#deletion">Deletion</a></li>
+          <li><a href="#children">Children</a></li>
+          <li><a href="#rights">Your rights</a></li>
+          <li><a href="#changes">Changes to this policy</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="intro">1. Introduction</h2>
+      <p>This policy explains how MailSearch handles your data. MailSearch is an app for iPhone and iPad published by Whiteforge Technologies Ltd (&ldquo;Whiteforge&rdquo;, &ldquo;we&rdquo;), a company registered in England and Wales (company number <span class="footer__placeholder">[to be added]</span>). It indexes and searches the email messages in the accounts you connect.</p>
+      <p>This policy is for the MailSearch app. The <a href="/">whiteforgetech.co.uk</a> website has its own <a href="/privacy/">privacy policy</a>.</p>
+
+      <h2 id="on-device">2. Data MailSearch accesses on your device</h2>
+      <p>To index and search your mail, MailSearch needs access to the mail in the accounts you connect. On your device, it accesses:</p>
+      <ul>
+        <li><strong>Email messages</strong> &mdash; subject, body, sender, recipients, and date for the accounts you connect. Used to build a full-text search index on your device.</li>
+        <li><strong>Attachment metadata</strong> &mdash; filename, size, and MIME type. Attachment bodies are not indexed.</li>
+        <li><strong>OAuth tokens</strong> &mdash; for Gmail and Microsoft accounts, MailSearch holds the access and refresh tokens issued to it by the provider. Tokens are stored in the iOS Keychain.</li>
+        <li><strong>IMAP credentials</strong> &mdash; for iCloud and other IMAP accounts, MailSearch stores the password (or app-specific password) you supply. It is stored in the iOS Keychain.</li>
+      </ul>
+      <p>All of this stays on your device.</p>
+
+      <h2 id="what-we-receive">3. Data Whiteforge receives</h2>
+      <p>None. MailSearch does not send your mail, attachments, contacts, OAuth tokens, IMAP credentials, search queries, search results, or telemetry to Whiteforge. There are no Whiteforge servers in the data path. The app does not contain analytics SDKs, advertising SDKs, or third-party tracking libraries.</p>
+
+      <h2 id="gmail">4. Gmail (Google accounts)</h2>
+      <p>If you connect a Gmail account, MailSearch uses Google&rsquo;s OAuth 2.0 to obtain permission to read your mail.</p>
+
+      <h3>4.1 OAuth scopes requested</h3>
+      <ul>
+        <li><code>https://www.googleapis.com/auth/gmail.readonly</code> &mdash; read-only access to your Gmail messages and metadata. Used to fetch your messages so MailSearch can index them on your device.</li>
+      </ul>
+      <p>This is the only Google scope MailSearch requests. MailSearch does not request <code>mail.google.com</code> or any other Google scope.</p>
+
+      <h3>4.2 Google API Services User Data Policy</h3>
+      <p>MailSearch&rsquo;s use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+
+      <p>Specifically:</p>
+      <ul>
+        <li>MailSearch uses Gmail data only to provide and improve the user-facing search feature that the <code>gmail.readonly</code> scope is requested for.</li>
+        <li>MailSearch does not transfer Gmail data to others, except as necessary to provide that user-facing feature (for example, displaying your messages within the app&rsquo;s user interface on your device), to comply with applicable law, or as part of a merger, acquisition, or sale of assets with your explicit prior consent.</li>
+        <li>MailSearch does not use or transfer Gmail data for serving advertising, including personalised advertising.</li>
+        <li>MailSearch does not allow any human &mdash; including Whiteforge employees and contractors &mdash; to read your Gmail data, except where you have given explicit consent for specific messages (for example, when you forward a message to us as part of a support request), where it is necessary for security purposes (such as investigating abuse), where required by applicable law, or where the data has been aggregated and is used for internal operations in compliance with applicable privacy and confidentiality requirements.</li>
+      </ul>
+
+      <h3>4.3 Revoking access</h3>
+      <p>You can disconnect a connected Gmail account from inside MailSearch at any time (Settings &rarr; the account &rarr; Disconnect). When you do, MailSearch revokes the OAuth token with Google and deletes the local index for that account.</p>
+      <p>You can also revoke MailSearch&rsquo;s access at any time from your Google Account at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
+
+      <h2 id="microsoft">5. Outlook / Microsoft 365 (Microsoft accounts)</h2>
+      <p>If you connect a Microsoft account (personal, work, or school), MailSearch uses Microsoft&rsquo;s OAuth 2.0 (Microsoft Graph) to obtain permission to read your mail.</p>
+
+      <h3>5.1 OAuth scopes requested</h3>
+      <ul>
+        <li><code>Mail.Read</code> &mdash; read-only access to messages in your mailbox. Used to fetch your messages so MailSearch can index them on your device.</li>
+        <li><code>User.Read</code> &mdash; used at connection time to look up your display name and primary email address, so MailSearch can label the account in its user interface.</li>
+        <li><code>offline_access</code> &mdash; provides a refresh token so MailSearch can re-sync your mail without prompting you to sign in again.</li>
+      </ul>
+
+      <h3>5.2 Use of Microsoft data</h3>
+      <p>The same on-device-only arrangement applies as for Gmail: your mail stays on your device. Whiteforge does not receive Microsoft mail content, attachments, addresses, contacts, or tokens. MailSearch does not use Microsoft data for advertising and does not allow humans to read it, subject to the same narrow exceptions described in section 4.2.</p>
+
+      <h3>5.3 Revoking access</h3>
+      <p>Disconnect the account from inside MailSearch to delete the local index and discard the tokens. You can also revoke MailSearch&rsquo;s access from your Microsoft account dashboard at <a href="https://account.microsoft.com">account.microsoft.com</a>.</p>
+
+      <h2 id="imap">6. iCloud Mail and other IMAP accounts</h2>
+      <p>If you connect an iCloud Mail or other IMAP account, MailSearch connects directly from your device to the provider&rsquo;s IMAP server over TLS using the credentials you supply. For iCloud, this is an app-specific password generated at <a href="https://appleid.apple.com">appleid.apple.com</a>.</p>
+      <p>Mail is fetched and indexed on your device. No Whiteforge server is involved. The credentials are stored in the iOS Keychain on your device. Removing the account from MailSearch deletes the credentials and the local index.</p>
+
+      <h2 id="storage">7. Where data is stored</h2>
+      <ul>
+        <li><strong>Mail content and the search index</strong> &mdash; on your device, inside the app&rsquo;s sandboxed container. Subject to standard iOS device backups (e.g., iCloud Backup or encrypted iTunes/Finder backups) if you have those enabled for the device.</li>
+        <li><strong>OAuth tokens and IMAP credentials</strong> &mdash; in the iOS Keychain on your device.</li>
+        <li><strong>Diagnostic logs</strong> &mdash; brief logs may be kept on your device to help with troubleshooting. They do not include message bodies. They are not sent to Whiteforge.</li>
+      </ul>
+      <p>Whiteforge does not receive any of the above.</p>
+
+      <h2 id="deletion">8. Deletion</h2>
+      <ul>
+        <li><strong>Disconnecting an account</strong> &mdash; removes the OAuth token (and revokes it with Google or Microsoft, where applicable) or IMAP credentials, and deletes the local index for that account.</li>
+        <li><strong>Uninstalling MailSearch</strong> &mdash; removes the app&rsquo;s container and Keychain entries. Everything held by the app goes with it.</li>
+      </ul>
+      <p>You can do either at any time, without contacting us.</p>
+
+      <h2 id="children">9. Children</h2>
+      <p>MailSearch is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+
+      <h2 id="rights">10. Your rights</h2>
+      <p>If you are in the UK or the EU, you have rights under the UK GDPR and the EU GDPR &mdash; including the rights of access, rectification, erasure, restriction, objection, and the right to lodge a complaint. Because MailSearch does not transmit your data to us, most of these rights are effectively under your direct control through the app, the iOS settings on your device, and your account with the mail provider. If you have a question about your data in MailSearch, email us at the address below.</p>
+      <p>You can complain to the UK Information Commissioner&rsquo;s Office at <a href="https://ico.org.uk">ico.org.uk</a>.</p>
+
+      <h2 id="changes">11. Changes to this policy</h2>
+      <p>If we change this policy, we will update the &ldquo;Last updated&rdquo; date at the top. Material changes will be summarised at the top of the policy for a reasonable period.</p>
+
+      <h2 id="contact">12. Contact</h2>
+      <p>For privacy questions about MailSearch:</p>
+      <p>Whiteforge Technologies Ltd<br>
+      <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a></p>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__block">
+        <strong>Whiteforge Technologies Ltd</strong>
+        Registered in England and Wales<br>
+        Company No. <span class="footer__placeholder">[to be added]</span>
+      </div>
+      <div class="footer__block">
+        <strong>Contact</strong>
+        <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>
+      </div>
+      <div class="footer__block footer__links">
+        <strong>MailSearch</strong>
+        <a href="/mailsearch/">Overview</a>
+        <a href="/mailsearch/privacy/">Privacy policy</a>
+        <a href="/mailsearch/terms/">Terms of service</a>
+        <a href="/mailsearch/support/">Support</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>

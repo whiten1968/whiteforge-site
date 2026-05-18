@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MailSearch support — Whiteforge Technologies</title>
+  <meta name="description" content="Help, frequently asked questions, and contact information for the MailSearch iOS app.">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+  <div class="page">
+
+    <header class="site-header">
+      <a href="/" class="wordmark" aria-label="Whiteforge Technologies home">
+        <span class="wordmark__glyph" aria-hidden="true"></span>
+        <span class="wordmark__name">Whiteforge Technologies</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/#products">Products</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </header>
+
+    <main class="prose">
+
+      <h1>MailSearch support</h1>
+      <p class="doc-meta">Help and frequently asked questions &middot; Last updated 18 May 2026</p>
+
+      <div class="callout">
+        <p><strong>Need help?</strong> Email <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a> with a description of what you&rsquo;re seeing, your iOS version, and (if relevant) which mail provider the issue involves. We read every message and reply personally.</p>
+      </div>
+
+      <nav class="doc-toc" aria-label="Table of contents">
+        <strong>Contents</strong>
+        <ol>
+          <li><a href="#what-is">What is MailSearch?</a></li>
+          <li><a href="#providers">Which mail providers does it support?</a></li>
+          <li><a href="#privacy">Is my mail sent to your servers?</a></li>
+          <li><a href="#permissions">Why does it ask for read access to my mail?</a></li>
+          <li><a href="#connect-gmail">How do I connect a Gmail account?</a></li>
+          <li><a href="#connect-microsoft">How do I connect an Outlook or Microsoft 365 account?</a></li>
+          <li><a href="#connect-icloud">How do I connect an iCloud Mail account?</a></li>
+          <li><a href="#connect-imap">How do I connect another IMAP account?</a></li>
+          <li><a href="#disconnect">How do I disconnect an account?</a></li>
+          <li><a href="#delete-data">How do I delete the data MailSearch has indexed?</a></li>
+          <li><a href="#indexing-time">Why is indexing taking a long time?</a></li>
+          <li><a href="#missing-messages">A message I expected to find isn&rsquo;t showing up</a></li>
+          <li><a href="#sign-in-issues">I&rsquo;m having trouble signing in to my account</a></li>
+          <li><a href="#bug">How do I report a bug?</a></li>
+          <li><a href="#feature">How do I request a feature?</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="what-is">What is MailSearch?</h2>
+      <p>MailSearch is an iPhone and iPad app that builds a full-text search index of the mail in the accounts you connect &mdash; entirely on your device &mdash; and lets you search across that index in milliseconds, including messages from years ago.</p>
+
+      <h2 id="providers">Which mail providers does MailSearch support?</h2>
+      <ul>
+        <li>Gmail (Google accounts)</li>
+        <li>Outlook and Microsoft 365 (personal, work, and school Microsoft accounts)</li>
+        <li>iCloud Mail (Apple ID accounts, using an app-specific password)</li>
+        <li>Any standards-compliant IMAP provider with TLS</li>
+      </ul>
+      <p>You can connect more than one account at the same time, and search across all of them at once.</p>
+
+      <h2 id="privacy">Is my mail sent to your servers?</h2>
+      <p>No. MailSearch fetches your mail directly from your provider, indexes it on your device, and searches it on your device. Whiteforge Technologies has no servers that store your mail, attachments, addresses, contacts, search queries, or telemetry. See the <a href="/mailsearch/privacy/">privacy policy</a> for details.</p>
+
+      <h2 id="permissions">Why does MailSearch ask for read access to my mail?</h2>
+      <p>To build a full-text search index of every message, MailSearch needs to read every message. For Gmail, this is the <code>gmail.readonly</code> OAuth scope. For Microsoft accounts, it is <code>Mail.Read</code>. For IMAP, it is the credentials you supply. The app never writes to or modifies your mailbox.</p>
+
+      <h2 id="connect-gmail">How do I connect a Gmail account?</h2>
+      <ol>
+        <li>In MailSearch, tap <strong>Add account</strong> and choose <strong>Gmail</strong>.</li>
+        <li>You will be taken to Google&rsquo;s sign-in page in a system web view. Sign in and approve the read-only access request.</li>
+        <li>MailSearch will start indexing your mail. The first index can take a while for large mailboxes; subsequent syncs are incremental and fast.</li>
+      </ol>
+
+      <h2 id="connect-microsoft">How do I connect an Outlook or Microsoft 365 account?</h2>
+      <ol>
+        <li>In MailSearch, tap <strong>Add account</strong> and choose <strong>Outlook / Microsoft 365</strong>.</li>
+        <li>Sign in with your Microsoft account and approve the requested permissions.</li>
+        <li>If you are signing in with a work or school account, your organisation&rsquo;s administrator may require additional approval. If you see an error mentioning &ldquo;administrator consent&rdquo;, ask your IT administrator to allow the app.</li>
+      </ol>
+
+      <h2 id="connect-icloud">How do I connect an iCloud Mail account?</h2>
+      <p>iCloud Mail uses IMAP and requires an <strong>app-specific password</strong>, not your normal Apple ID password.</p>
+      <ol>
+        <li>Sign in at <a href="https://appleid.apple.com">appleid.apple.com</a>.</li>
+        <li>Under <strong>Sign-In and Security</strong>, choose <strong>App-Specific Passwords</strong> and generate a new password labelled &ldquo;MailSearch&rdquo;.</li>
+        <li>In MailSearch, tap <strong>Add account</strong> and choose <strong>iCloud Mail</strong>.</li>
+        <li>Enter your iCloud email address and paste the app-specific password.</li>
+      </ol>
+
+      <h2 id="connect-imap">How do I connect another IMAP account?</h2>
+      <p>In MailSearch, tap <strong>Add account</strong> and choose <strong>Other (IMAP)</strong>. Enter your email address, password, and your provider&rsquo;s IMAP host and port if it is not automatically detected. MailSearch supports TLS-encrypted IMAP only.</p>
+
+      <h2 id="disconnect">How do I disconnect an account?</h2>
+      <p>Open MailSearch, go to <strong>Settings</strong>, tap the account, and tap <strong>Disconnect</strong>. MailSearch revokes the OAuth token (for Gmail and Microsoft accounts) or discards the IMAP credentials, and deletes the local search index for that account.</p>
+
+      <h2 id="delete-data">How do I delete the data MailSearch has indexed?</h2>
+      <p>Disconnecting an account deletes the local index for that account. To remove everything &mdash; all accounts, indexes, tokens, and credentials &mdash; uninstall the app. iOS removes the app&rsquo;s container and Keychain entries when you uninstall it.</p>
+
+      <h2 id="indexing-time">Why is indexing taking a long time?</h2>
+      <p>The first index of a large mailbox can take a while: MailSearch has to fetch every message. The time depends on the size of the mailbox, the speed of your network connection, and the rate limits applied by your provider. Subsequent syncs are incremental and only fetch new messages.</p>
+      <p>Indexing continues while the app is open in the foreground. iOS limits background work, so leave the app open during the initial index of a large mailbox if possible.</p>
+
+      <h2 id="missing-messages">A message I expected to find isn&rsquo;t showing up</h2>
+      <p>A few things to check:</p>
+      <ul>
+        <li>Has the first index finished? On a large mailbox the initial index can take a while.</li>
+        <li>Is the account you expect to find the message in actually connected and indexed?</li>
+        <li>If you have account filters active, make sure they include the right account.</li>
+        <li>For IMAP, MailSearch indexes the folders the server returns. If a message lives in a folder the server doesn&rsquo;t expose, it won&rsquo;t be indexed.</li>
+      </ul>
+      <p>If the message should be there and isn&rsquo;t, email us at <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a> with the date and sender of the message you expected and we&rsquo;ll help track it down.</p>
+
+      <h2 id="sign-in-issues">I&rsquo;m having trouble signing in to my account</h2>
+      <p>The most common causes:</p>
+      <ul>
+        <li><strong>Gmail.</strong> If your Google Workspace administrator has restricted third-party apps, MailSearch will be blocked at the consent screen. Ask your administrator to allow the app, or use a personal Google account.</li>
+        <li><strong>Microsoft.</strong> Work and school accounts may require &ldquo;administrator consent&rdquo;. Ask your IT administrator to allow MailSearch.</li>
+        <li><strong>iCloud.</strong> iCloud Mail requires an app-specific password (see above). Your normal Apple ID password will not work.</li>
+        <li><strong>Two-factor authentication.</strong> If you have two-factor authentication enabled for an IMAP account, you may need to generate an app-specific password with that provider too.</li>
+      </ul>
+
+      <h2 id="bug">How do I report a bug?</h2>
+      <p>Email <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a> with:</p>
+      <ul>
+        <li>What you were doing when the problem happened;</li>
+        <li>What you expected and what actually happened;</li>
+        <li>Your device model and iOS version (<em>Settings &rarr; General &rarr; About</em>);</li>
+        <li>The MailSearch version (<em>Settings within MailSearch &rarr; About</em>).</li>
+      </ul>
+      <p>Please do not include actual message contents in bug reports unless we ask you to.</p>
+
+      <h2 id="feature">How do I request a feature?</h2>
+      <p>Send it to <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>. We read every request.</p>
+
+      <h2 id="contact">Contact</h2>
+      <p>Whiteforge Technologies Ltd<br>
+      <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a></p>
+
+      <p><a href="/mailsearch/">Back to MailSearch overview &rarr;</a></p>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__block">
+        <strong>Whiteforge Technologies Ltd</strong>
+        Registered in England and Wales<br>
+        Company No. <span class="footer__placeholder">[to be added]</span>
+      </div>
+      <div class="footer__block">
+        <strong>Contact</strong>
+        <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>
+      </div>
+      <div class="footer__block footer__links">
+        <strong>MailSearch</strong>
+        <a href="/mailsearch/">Overview</a>
+        <a href="/mailsearch/privacy/">Privacy policy</a>
+        <a href="/mailsearch/terms/">Terms of service</a>
+        <a href="/mailsearch/support/">Support</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
