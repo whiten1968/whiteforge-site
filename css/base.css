@@ -461,17 +461,12 @@ img, svg { max-width: 100%; height: auto; }
   gap: 16px;
 }
 
-.screenshot-placeholder {
-  aspect-ratio: 9 / 19;
-  background: var(--surface);
-  border: 1px dashed var(--border-strong);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-dim);
-  font-size: 12.5px;
-  text-align: center;
-  padding: 12px;
+.screenshot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  background: #000;
 }
 
 /* Document table of contents */
@@ -540,8 +535,12 @@ img, svg { max-width: 100%; height: auto; }
   .hero--product .lede { font-size: 16.5px; }
   .feature-list { grid-template-columns: 1fr; gap: 22px; }
   .provider-list li { grid-template-columns: 1fr; gap: 2px; }
-  .screenshots { grid-template-columns: 1fr; }
-  .screenshot-placeholder { aspect-ratio: 16 / 10; }
+  .screenshots {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
   .appstore-button__note { display: block; margin-left: 0; margin-top: 10px; }
   .doc-toc ol { columns: 1; }
 }
