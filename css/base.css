@@ -154,10 +154,35 @@ img, svg { max-width: 100%; height: auto; }
   margin: 0 0 28px;
 }
 
+/* ---------- App icon (MailSearch — and the favicon source) ---------- */
+
+.app-icon {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.app-icon--small  { width: 56px;  }
+.app-icon--medium { width: 96px;  }
+.app-icon--large  { width: 176px; }
+
+/* ---------- Page title with icon (prose pages) ---------- */
+
+.page-title {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 0 0 8px;
+}
+
+.page-title h1 { margin: 0; }
+
 /* ---------- Product card ---------- */
 
 .product-card {
-  display: block;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
   background: var(--surface);
   border: 1px solid var(--border);
   padding: 22px 26px 24px;
@@ -165,6 +190,9 @@ img, svg { max-width: 100%; height: auto; }
   color: inherit;
   transition: border-color 0.15s ease;
 }
+
+.product-card__icon { flex-shrink: 0; }
+.product-card__body { flex: 1; min-width: 0; }
 
 .product-card:hover { border-color: var(--text); }
 
@@ -331,6 +359,8 @@ img, svg { max-width: 100%; height: auto; }
 /* ---------- Product page ---------- */
 
 .hero--product { padding: 8px 0 32px; }
+
+.hero--product .app-icon { margin: 0 0 22px; }
 
 .hero--product h1 {
   font-size: 40px;
@@ -505,8 +535,12 @@ img, svg { max-width: 100%; height: auto; }
   .hero p { font-size: 16.5px; }
   .section { padding: 36px 0; }
   .section h2 { font-size: 20px; margin-bottom: 22px; }
-  .product-card { padding: 18px 20px 20px; }
+  .product-card { padding: 18px 20px 20px; gap: 16px; }
   .product-card__header { flex-direction: column; gap: 4px; }
+  .product-card .app-icon--medium { width: 76px; }
+  .hero--product .app-icon--large { width: 132px; margin-bottom: 18px; }
+  .page-title { gap: 14px; }
+  .page-title .app-icon--small { width: 48px; }
   .site-footer { grid-template-columns: 1fr; gap: 24px; margin-top: 56px; }
   .prose h1 { font-size: 26px; }
   .prose h2 { font-size: 18px; margin-top: 36px; }
