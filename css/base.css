@@ -244,11 +244,6 @@ img, svg { max-width: 100%; height: auto; }
   gap: 4px;
 }
 
-.footer__placeholder {
-  font-style: italic;
-  color: var(--text-dim);
-}
-
 /* ---------- Long-form prose (privacy / terms / support) ---------- */
 
 .prose { max-width: 640px; }
