@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PDF Redaction support &mdash; Whiteforge Technologies</title>
+  <meta name="description" content="Help, frequently asked questions, and contact information for the PDF Redaction macOS app.">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
+</head>
+<body>
+  <div class="page">
+
+    <header class="site-header">
+      <a href="/" class="site-logo">
+        <img class="site-logo__mark" src="/assets/whiteforge-mark.png" width="274" height="274" alt="">
+        <span class="site-logo__text">Whiteforge Technologies</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/#products">Products</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </header>
+
+    <main class="prose">
+
+      <header class="page-title">
+        <img class="app-icon app-icon--small"
+             src="/assets/pdfredaction-icon.png" width="1024" height="1024"
+             alt="PDF Redaction app icon">
+        <h1>PDF Redaction support</h1>
+      </header>
+      <p class="doc-meta">Help and frequently asked questions &middot; Last updated 20 May 2026</p>
+
+      <div class="callout">
+        <p><strong>Need help?</strong> Email <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a> with a description of what you&rsquo;re seeing, your macOS version, and the PDF Redaction version (visible in the menu bar &rarr; <em>PDF Redaction &rarr; About</em>). We read every message and reply personally.</p>
+      </div>
+
+      <nav class="doc-toc" aria-label="Table of contents">
+        <strong>Contents</strong>
+        <ol>
+          <li><a href="#what-is">What is PDF Redaction?</a></li>
+          <li><a href="#beta">Is PDF Redaction stable? What does the beta status mean?</a></li>
+          <li><a href="#how-works">How does redaction actually work?</a></li>
+          <li><a href="#privacy">Where is my data stored?</a></li>
+          <li><a href="#requirements">System requirements</a></li>
+          <li><a href="#download">How do I get the beta?</a></li>
+          <li><a href="#install">How do I install it?</a></li>
+          <li><a href="#unidentified">macOS says the app is from an unidentified developer</a></li>
+          <li><a href="#manual">How do I draw a redaction by hand?</a></li>
+          <li><a href="#find">How do I redact every occurrence of a string?</a></li>
+          <li><a href="#regex">Can I redact using a regular expression?</a></li>
+          <li><a href="#verify">How do I check that a redaction actually worked?</a></li>
+          <li><a href="#verify-failed">Verification failed when I saved &mdash; what does that mean?</a></li>
+          <li><a href="#full-blackout">An image was fully blacked out instead of just the rectangle &mdash; why?</a></li>
+          <li><a href="#bug">How do I report a bug?</a></li>
+          <li><a href="#feature">How do I request a feature?</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="what-is">What is PDF Redaction?</h2>
+      <p>PDF Redaction is a macOS application that removes text and image content from PDF files. Unlike tools that draw opaque rectangles over content, PDF Redaction modifies the PDF&rsquo;s content stream and image data directly, so the redacted content is no longer present in the output file &mdash; it cannot be recovered by switching viewers, selecting text, or extracting the raw stream.</p>
+
+      <h2 id="beta">Is PDF Redaction stable? What does the beta status mean?</h2>
+      <p>PDF Redaction is currently in beta. The core redaction engine is feature-complete and every save is verified before completing, but the app has not yet had wide real-world exercise across every kind of PDF in the wild. Treat beta builds accordingly:</p>
+      <ul>
+        <li>Keep a copy of the original document.</li>
+        <li>Review every redacted output in a separate PDF viewer before sharing it.</li>
+        <li>Report anything that looks wrong &mdash; especially any case where verification fails, or where a redaction appears to remove the right region but text is still recoverable elsewhere.</li>
+      </ul>
+
+      <h2 id="how-works">How does redaction actually work?</h2>
+      <p>Three layers of removal happen at save time:</p>
+      <ul>
+        <li><strong>Text.</strong> Text-showing operators (<code>Tj</code>, <code>TJ</code>, <code>'</code>, <code>"</code>) whose glyphs intersect a redaction rectangle are deleted from the content stream. The text never re-renders and is not present in the raw stream.</li>
+        <li><strong>Images.</strong> For JPEG and Flate-compressed image XObjects, the affected pixels are blacked out at the bitmap level. For images in formats we don&rsquo;t support partial-pixel redaction in (CMYK, 1-bit, Indexed), the whole image is replaced with a solid black rectangle as a safe fallback &mdash; see &ldquo;<a href="#full-blackout">An image was fully blacked out</a>&rdquo; below.</li>
+        <li><strong>Form XObjects.</strong> Redactions recurse into nested form XObjects with current-transformation-matrix tracking. Redactions placed on a page that references a shared template (letterheads, recurring footers) apply to the template too.</li>
+      </ul>
+      <p>After the redacted file is written, PDF Redaction re-opens it and re-extracts text from the redacted regions. If anything remains, the save fails. See the <a href="/pdfredaction/">overview page</a> for more detail.</p>
+
+      <h2 id="privacy">Where is my data stored?</h2>
+      <p>The PDFs you open stay where you opened them from &mdash; PDF Redaction does not copy your input files anywhere. The redactions you draw and any search state are held in memory while the document is open, and discarded when you close the document or quit the app. Output PDFs are written only where you ask the &ldquo;Save&rdquo; dialog to put them.</p>
+      <p>PDF Redaction does not make network connections. There are no servers. See the <a href="/pdfredaction/privacy/">privacy policy</a> for the full detail.</p>
+
+      <h2 id="requirements">System requirements</h2>
+      <ul>
+        <li>macOS 11 (Big Sur) or later.</li>
+        <li>Apple Silicon (M1 or later). PDF Redaction does not currently ship an Intel build.</li>
+        <li>Around 200 MB of free disk space.</li>
+      </ul>
+
+      <h2 id="download">How do I get the beta?</h2>
+      <p>PDF Redaction is in closed beta at the moment. To request access, email <a href="mailto:support@whiteforgetech.co.uk?subject=PDF%20Redaction%20beta%20access">support@whiteforgetech.co.uk</a> with a sentence about what you&rsquo;d use it for, and we&rsquo;ll send you a download link for the signed disk image.</p>
+      <p>Once the beta opens up, this page will be updated with a direct download link.</p>
+
+      <h2 id="install">How do I install it?</h2>
+      <ol>
+        <li>Double-click the <em>PDF Redaction_&lt;version&gt;_aarch64.dmg</em> file to open it.</li>
+        <li>Drag the <em>PDF Redaction</em> app into your <em>Applications</em> folder.</li>
+        <li>Eject the disk image (drag it to the Trash, or use the eject button in Finder).</li>
+        <li>Open the app from <em>Applications</em>. On first launch macOS may take a few seconds to verify the notarization; this is normal.</li>
+      </ol>
+
+      <h2 id="unidentified">macOS says the app is from an unidentified developer</h2>
+      <p>This should not happen with the disk image you receive from us &mdash; the app and the disk image are both signed with our Developer ID Application certificate and notarized by Apple. If you see &ldquo;unidentified developer&rdquo;, &ldquo;malicious software&rdquo;, or any similar warning, please <strong>stop and email us</strong> before bypassing the warning. It probably means you have an unofficial copy of the app, or that something happened to the download in transit. We&rsquo;d rather investigate than have you click through a security warning unnecessarily.</p>
+
+      <h2 id="manual">How do I draw a redaction by hand?</h2>
+      <p>Open a PDF, click and drag on the page to draw a rectangle. The rectangle&rsquo;s contents are not redacted yet &mdash; nothing changes in the file until you click <strong>Save redacted&hellip;</strong>. You can:</p>
+      <ul>
+        <li>click a rectangle to select it (it gets a coloured outline);</li>
+        <li>drag a selected rectangle&rsquo;s edges to resize it;</li>
+        <li>press <kbd>Delete</kbd> or <kbd>Backspace</kbd> to remove the selected rectangle;</li>
+        <li>press <kbd>Escape</kbd> to deselect;</li>
+        <li>use <strong>Clear page</strong> to remove every rectangle on the current page, or <strong>Clear all</strong> across the document.</li>
+      </ul>
+
+      <h2 id="find">How do I redact every occurrence of a string?</h2>
+      <ol>
+        <li>Open the document and click <strong>Find&hellip;</strong> in the toolbar (top right).</li>
+        <li>Type the string you want to redact.</li>
+        <li>The Find panel shows the match count and lets you click any match to jump to that page.</li>
+        <li>Click <strong>Redact all</strong> to convert every match into a redaction rectangle in one step. The rectangles will appear on each page; you can then add manual ones too, or remove specific ones, before saving.</li>
+      </ol>
+
+      <h2 id="regex">Can I redact using a regular expression?</h2>
+      <p>Yes. Toggle the <strong>Regex</strong> switch in the Find panel and your search text is treated as a regular expression (PCRE-compatible). This is useful for redacting things like email addresses, phone numbers, or reference numbers in bulk.</p>
+
+      <h2 id="verify">How do I check that a redaction actually worked?</h2>
+      <p>Open the redacted output in a different PDF viewer (Preview.app, a web browser, or another editor). Try to select text in the redacted regions; try copy-paste. If nothing comes out, the redaction has succeeded at the content-stream level.</p>
+      <p>For peace of mind, you can also use <code>pdftotext</code> from the Poppler tools (available via Homebrew with <code>brew install poppler</code>) and grep the output for the strings you redacted:</p>
+      <pre><code>pdftotext redacted.pdf - | grep "the-string-you-redacted"</code></pre>
+      <p>An empty result means the text is not present in the file.</p>
+
+      <h2 id="verify-failed">Verification failed when I saved &mdash; what does that mean?</h2>
+      <p>The save was aborted. PDF Redaction re-opened the file it was about to write, re-extracted text from the regions you redacted, and found characters still present. Rather than silently producing a file that looks redacted but isn&rsquo;t, the app refused to write it.</p>
+      <p>This usually points to one of:</p>
+      <ul>
+        <li>An unusual font encoding that the text-bounds calculation didn&rsquo;t handle correctly.</li>
+        <li>Text inside a complex Form XObject that the recursion missed.</li>
+        <li>Text inside an annotation rather than the page&rsquo;s content stream.</li>
+      </ul>
+      <p>If verification fails repeatedly on a specific document, please report it &mdash; we want every verification-failure case so we can fix the underlying bug. Don&rsquo;t share the document; send us a small reproducer that exhibits the same shape (font, encoding, structure) if you can.</p>
+
+      <h2 id="full-blackout">An image was fully blacked out instead of just the rectangle &mdash; why?</h2>
+      <p>PDF Redaction performs partial-pixel image redaction for JPEG and Flate-compressed image XObjects in DeviceRGB, DeviceGray, and ICCBased colour spaces. For images in CMYK, 1-bit (DeviceGray with BitsPerComponent 1), or Indexed (palette-based) colour spaces, partial-pixel redaction is not implemented, so the whole image XObject is replaced with a solid black rectangle of the same dimensions. This is intentional and is a safe-by-default fallback &mdash; we&rsquo;d rather over-redact than under-redact.</p>
+      <p>If you hit this for a workflow where you really need partial-pixel redaction in one of the unsupported colour spaces, let us know which one. Adding support is feasible; it just hasn&rsquo;t been a priority yet.</p>
+
+      <h2 id="bug">How do I report a bug?</h2>
+      <p>Email <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a> with:</p>
+      <ul>
+        <li>What you were doing when the problem happened;</li>
+        <li>What you expected and what actually happened;</li>
+        <li>Your macOS version (<em>Apple menu &rarr; About This Mac</em>);</li>
+        <li>The PDF Redaction version (menu bar <em>PDF Redaction &rarr; About</em>).</li>
+      </ul>
+      <p>Please do not attach the actual document unless we ask for it. If the bug only reproduces with a specific document, try to construct a small synthetic document with the same structural shape and send us that instead.</p>
+
+      <h2 id="feature">How do I request a feature?</h2>
+      <p>Send it to <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>. We read every request.</p>
+
+      <h2 id="contact">Contact</h2>
+      <p>Whiteforge Technologies Ltd<br>
+      <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a></p>
+
+      <p><a href="/pdfredaction/">Back to PDF Redaction overview &rarr;</a></p>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__block">
+        <strong>WHITEFORGE TECHNOLOGIES LTD</strong>
+        Registered in England and Wales<br>
+        Company No. 17224707
+      </div>
+      <div class="footer__block">
+        <strong>Contact</strong>
+        <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>
+      </div>
+      <div class="footer__block footer__links">
+        <strong>PDF Redaction</strong>
+        <a href="/pdfredaction/">Overview</a>
+        <a href="/pdfredaction/privacy/">Privacy policy</a>
+        <a href="/pdfredaction/terms/">Terms of service</a>
+        <a href="/pdfredaction/support/">Support</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>

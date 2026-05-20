@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PDF Redaction privacy policy &mdash; Whiteforge Technologies</title>
+  <meta name="description" content="Privacy policy for the PDF Redaction macOS app. PDF Redaction processes PDFs entirely on your device and makes no network connections.">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
+</head>
+<body>
+  <div class="page">
+
+    <header class="site-header">
+      <a href="/" class="site-logo">
+        <img class="site-logo__mark" src="/assets/whiteforge-mark.png" width="274" height="274" alt="">
+        <span class="site-logo__text">Whiteforge Technologies</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/#products">Products</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </header>
+
+    <main class="prose">
+
+      <header class="page-title">
+        <img class="app-icon app-icon--small"
+             src="/assets/pdfredaction-icon.png" width="1024" height="1024"
+             alt="PDF Redaction app icon">
+        <h1>PDF Redaction privacy policy</h1>
+      </header>
+      <p class="doc-meta">For the PDF Redaction macOS app &middot; Last updated 20 May 2026</p>
+
+      <div class="callout">
+        <p><strong>Summary.</strong> PDF Redaction processes the PDFs you open entirely on your device. It makes no network connections and has no servers. Whiteforge Technologies does not receive your documents, redactions, search terms, telemetry, or any other data from the app.</p>
+      </div>
+
+      <nav class="doc-toc" aria-label="Table of contents">
+        <strong>Contents</strong>
+        <ol>
+          <li><a href="#intro">Introduction</a></li>
+          <li><a href="#local">Data the app processes locally</a></li>
+          <li><a href="#received">Data Whiteforge receives</a></li>
+          <li><a href="#network">Network activity</a></li>
+          <li><a href="#storage">Where data is stored</a></li>
+          <li><a href="#temp">Temporary files</a></li>
+          <li><a href="#crash">Crash reports and diagnostics</a></li>
+          <li><a href="#deletion">Deletion</a></li>
+          <li><a href="#children">Children</a></li>
+          <li><a href="#rights">Your rights</a></li>
+          <li><a href="#changes">Changes to this policy</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="intro">1. Introduction</h2>
+      <p>This policy explains how PDF Redaction handles your data. PDF Redaction is a macOS application published by Whiteforge Technologies Ltd (&ldquo;Whiteforge&rdquo;, &ldquo;we&rdquo;), a company registered in England and Wales (company number 17224707). It opens, redacts, and saves PDF files.</p>
+      <p>This policy is for the PDF Redaction app. The <a href="/">whiteforgetech.co.uk</a> website has its own <a href="/privacy/">privacy policy</a>.</p>
+
+      <h2 id="local">2. Data the app processes locally</h2>
+      <p>PDF Redaction processes the documents you open with it. While a document is open, the app holds in memory:</p>
+      <ul>
+        <li>The contents of the PDF file you opened, including all text, images, fonts, and metadata that the file contains.</li>
+        <li>Rendered preview images of each page, used to display the document and its thumbnails.</li>
+        <li>The redaction rectangles you have drawn, including their coordinates and the page they apply to.</li>
+        <li>Search terms you type into the &ldquo;Find&rdquo; panel, and the locations of matches in the document, while the search panel is open.</li>
+      </ul>
+      <p>All of the above stays on your device. None of it is transmitted off the device.</p>
+
+      <h2 id="received">3. Data Whiteforge receives</h2>
+      <p>None. PDF Redaction does not send your documents, redactions, search terms, or telemetry to Whiteforge. There are no Whiteforge servers in the data path. The app does not contain analytics SDKs, advertising SDKs, third-party tracking libraries, or auto-update infrastructure.</p>
+
+      <h2 id="network">4. Network activity</h2>
+      <p>PDF Redaction does not make outbound network connections. The app&rsquo;s sandbox is configured to disallow network access. If you ever observe the app making a network connection, it is a bug &mdash; please report it.</p>
+
+      <h2 id="storage">5. Where data is stored</h2>
+      <ul>
+        <li><strong>The PDF file you open</strong> &mdash; remains where you opened it from. PDF Redaction does not copy your input files into its own storage.</li>
+        <li><strong>Redactions you draw and search state</strong> &mdash; held in memory while the document is open. When you close the document or quit the app, this state is discarded. PDF Redaction does not auto-save your in-progress redactions to disk.</li>
+        <li><strong>The output PDF</strong> &mdash; only created when you choose &ldquo;Save&rdquo; or &ldquo;Save copy&rdquo; and pick a destination. PDF Redaction writes to the location you specify and nowhere else.</li>
+      </ul>
+
+      <h2 id="temp">6. Temporary files</h2>
+      <p>To apply redactions, PDF Redaction&rsquo;s engine writes the input document and a JSON description of the redactions to short-lived temporary files in your user account&rsquo;s temporary directory (typically <code>/var/folders/.../T/</code>). These files are created at save time, read once by the engine, and deleted before the save call returns. They are not written to iCloud Drive, are not synced anywhere, and are not retained.</p>
+
+      <h2 id="crash">7. Crash reports and diagnostics</h2>
+      <p>PDF Redaction does not collect or transmit crash reports, performance metrics, or diagnostic data. macOS itself may collect crash logs at the operating-system level and offer to share them with developers; that behaviour is controlled by your macOS privacy settings (<em>System Settings &rarr; Privacy &amp; Security &rarr; Analytics &amp; Improvements</em>), not by PDF Redaction.</p>
+
+      <h2 id="deletion">8. Deletion</h2>
+      <ul>
+        <li><strong>Closing a document</strong> &mdash; drops the in-memory state for that document, including any redactions you had not yet saved.</li>
+        <li><strong>Quitting the app</strong> &mdash; drops all in-memory state.</li>
+        <li><strong>Uninstalling PDF Redaction</strong> &mdash; remove the <em>PDF Redaction.app</em> bundle from Applications. The app does not install components elsewhere on the system. Move the app to the Trash and empty it, and everything PDF Redaction touched is gone.</li>
+      </ul>
+      <p>The documents you opened, and the output PDFs you saved, are unaffected by uninstalling the app &mdash; they live where you put them.</p>
+
+      <h2 id="children">9. Children</h2>
+      <p>PDF Redaction is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+
+      <h2 id="rights">10. Your rights</h2>
+      <p>If you are in the UK or the EU, you have rights under the UK GDPR and the EU GDPR &mdash; including the rights of access, rectification, erasure, restriction, objection, and the right to lodge a complaint. Because PDF Redaction does not transmit your data to us, these rights are effectively under your direct control through the app and the file system on your device. If you have a question about your data in PDF Redaction, email us at the address below.</p>
+      <p>You can complain to the UK Information Commissioner&rsquo;s Office at <a href="https://ico.org.uk">ico.org.uk</a>.</p>
+
+      <h2 id="changes">11. Changes to this policy</h2>
+      <p>If we change this policy, we will update the &ldquo;Last updated&rdquo; date at the top. Material changes will be summarised at the top of the policy for a reasonable period.</p>
+
+      <h2 id="contact">12. Contact</h2>
+      <p>For privacy questions about PDF Redaction:</p>
+      <p>Whiteforge Technologies Ltd<br>
+      <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a></p>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__block">
+        <strong>WHITEFORGE TECHNOLOGIES LTD</strong>
+        Registered in England and Wales<br>
+        Company No. 17224707
+      </div>
+      <div class="footer__block">
+        <strong>Contact</strong>
+        <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>
+      </div>
+      <div class="footer__block footer__links">
+        <strong>PDF Redaction</strong>
+        <a href="/pdfredaction/">Overview</a>
+        <a href="/pdfredaction/privacy/">Privacy policy</a>
+        <a href="/pdfredaction/terms/">Terms of service</a>
+        <a href="/pdfredaction/support/">Support</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
