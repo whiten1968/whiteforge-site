@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PDF Sanitizer &mdash; Whiteforge Technologies</title>
+  <meta name="description" content="PDF Sanitizer: local-first macOS app that inspects and cleans hidden data from PDFs &mdash; metadata, scripts, attachments, form values, comments &mdash; with verification on every save.">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
+</head>
+<body>
+  <div class="page">
+
+    <header class="site-header">
+      <a href="/" class="site-logo">
+        <img class="site-logo__mark" src="/assets/whiteforge-mark.png" width="274" height="274" alt="">
+        <span class="site-logo__text">Whiteforge Technologies</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/#products">Products</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </header>
+
+    <main>
+
+      <section class="hero hero--product">
+        <img class="app-icon app-icon--large"
+             src="/assets/pdfsanitizer-icon.png" width="1024" height="1024"
+             alt="PDF Sanitizer app icon">
+        <p class="section__eyebrow">macOS</p>
+        <h1>PDF Sanitizer</h1>
+        <p class="lede">Inspect and clean the hidden data in a PDF &mdash; metadata, embedded files, scripts, form values, comments, navigation aids &mdash; before you share it. Every save is verified. Companion to <a href="/pdfredaction/">PDF Redaction</a>.</p>
+        <p class="cta-row">
+          <a class="appstore-button" href="https://github.com/whiten1968/PDFSanitizer-downloads/releases/latest/download/PDFSanitizer-aarch64.dmg" aria-label="Download PDF Sanitizer for Apple Silicon Macs">
+            <span class="appstore-button__small">Download for</span>
+            <span class="appstore-button__large">macOS</span>
+          </a>
+          <span class="appstore-button__note">
+            Free public beta &middot;
+            <a href="https://github.com/whiten1968/PDFSanitizer-downloads/releases/latest/download/PDFSanitizer-aarch64.dmg">Apple Silicon</a> or
+            <a href="https://github.com/whiten1968/PDFSanitizer-downloads/releases/latest/download/PDFSanitizer-x86_64.dmg">Intel</a>
+            &middot; macOS 11 or later
+          </span>
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Why this exists</h2>
+        <p>A PDF that looks clean on screen can still contain a lot of data you didn&rsquo;t intend to share: the original author&rsquo;s name, the file&rsquo;s editing history, embedded attachments, JavaScript actions, form field values that the user can&rsquo;t see, accessibility tags that mirror visible text, navigation outlines describing redacted content, and so on. Every one of these has caused a real-world leak when PDFs were thought to be safe.</p>
+        <p>PDF Sanitizer surfaces these structures, lets you pick a sanitization profile that matches how sensitive your share is, removes the structures, and re-opens the output to verify they&rsquo;re actually gone before reporting success.</p>
+      </section>
+
+      <section class="section">
+        <h2>How it works</h2>
+        <ul class="feature-list">
+          <li>
+            <h3>Inspect first</h3>
+            <p>Open any PDF and PDF Sanitizer lists every hidden structure it can detect: Info dict + XMP metadata, annotations (with link breakdown), file attachments, embedded files, JavaScript / Launch / Open actions, form fields and their values, outlines, named destinations, page labels, viewer preferences, optional content (layers), encryption, signatures.</p>
+          </li>
+          <li>
+            <h3>Pick a profile, never overwrite</h3>
+            <p>Four built-in sanitization profiles &mdash; <strong>Metadata Only</strong> (quick scrub), <strong>Standard Clean</strong> (recommended for ordinary sharing), <strong>Strict Privacy</strong> (full sweep), and <strong>Inspector Only</strong> (review and report, produce no output). The original PDF is never overwritten; a sanitized copy is written alongside.</p>
+          </li>
+          <li>
+            <h3>Verification on every save</h3>
+            <p>After every sanitization, PDF Sanitizer re-opens the output and confirms the requested structures are gone. If anything leaked through, the tainted output is deleted and a clear failure with leak counts is surfaced &mdash; you don&rsquo;t accidentally ship a file you think is clean.</p>
+          </li>
+          <li>
+            <h3>Report for the record</h3>
+            <p>Every run can export a JSON or Markdown report describing what was detected, what was removed, and what verified. Useful for SAR/FOI workflows where you need to document the chain of custody.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Features</h2>
+        <ul class="feature-list">
+          <li>
+            <h3>Single file or batch</h3>
+            <p>Sanitize one PDF at a time or queue a folder. Per-file profile selection; per-file verification report.</p>
+          </li>
+          <li>
+            <h3>Encrypted PDFs</h3>
+            <p>PDF Sanitizer can sanitize encrypted PDFs if you provide the open password. Output is written without encryption by default (preserving the password requires a different workflow &mdash; ask).</p>
+          </li>
+          <li>
+            <h3>Quick Action support</h3>
+            <p>Right-click a PDF in Finder &rarr; <em>Quick Actions &rarr; Sanitize with PDF Sanitizer</em> applies the Standard Clean profile inline. Configurable in macOS System Settings.</p>
+          </li>
+          <li>
+            <h3>Honest about its limits</h3>
+            <p>PDF Sanitizer does not remove the visible content of <em>Optional Content Groups</em> (PDF layers). It detects hidden layers and warns clearly, because stripping the layer wrapper would make hidden content <em>visible</em>, not gone. For layer-level cleanup, use <a href="/pdfredaction/">PDF Redaction</a> or Acrobat.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>What PDF Sanitizer is not</h2>
+        <p>PDF Sanitizer does <strong>not</strong> redact visible page content. If you need to hide specific text or image regions on the page (drawing a redaction over a name, an address, an image), that&rsquo;s <a href="/pdfredaction/">PDF Redaction</a>&rsquo;s job.</p>
+        <p>PDF Sanitizer does <strong>not</strong> certify legal or regulatory compliance. It helps you remove common categories of hidden data; it doesn&rsquo;t certify your workflow against any specific standard.</p>
+      </section>
+
+      <section class="section">
+        <h2>Privacy</h2>
+        <p>PDF Sanitizer makes no network connections by default. PDFs are processed entirely on your device. There are no analytics, no telemetry, no servers.</p>
+        <p>An optional auto-update check can be turned on in Settings &rarr; Updates, which makes one HTTPS request per launch to GitHub to look for a new version. No PDF content, no telemetry, no user data is sent &mdash; see the <a href="/pdfsanitizer/privacy/">privacy policy</a> for the full detail.</p>
+      </section>
+
+      <section class="section">
+        <h2>Requirements</h2>
+        <p>macOS 11 (Big Sur) or later. Apple Silicon and Intel both supported &mdash; separate disk images for each. Distributed as a Developer ID signed and Apple-notarized disk image &mdash; not via the Mac App Store.</p>
+      </section>
+
+      <section class="section">
+        <h2>Support</h2>
+        <p>For bug reports and feature requests, see the <a href="/pdfsanitizer/support/">support page</a>. For anything else, email <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>.</p>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__block">
+        <strong>WHITEFORGE TECHNOLOGIES LTD</strong>
+        Registered in England and Wales<br>
+        Company No. 17224707
+      </div>
+      <div class="footer__block">
+        <strong>Contact</strong>
+        <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>
+      </div>
+      <div class="footer__block footer__links">
+        <strong>PDF Sanitizer</strong>
+        <a href="/pdfsanitizer/">Overview</a>
+        <a href="/pdfsanitizer/privacy/">Privacy policy</a>
+        <a href="/pdfsanitizer/terms/">Terms of service</a>
+        <a href="/pdfsanitizer/support/">Support</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
