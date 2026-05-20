@@ -45,8 +45,9 @@
           <li><a href="#how-works">How does redaction actually work?</a></li>
           <li><a href="#privacy">Where is my data stored?</a></li>
           <li><a href="#requirements">System requirements</a></li>
-          <li><a href="#download">How do I get the beta?</a></li>
+          <li><a href="#download">How do I download the beta?</a></li>
           <li><a href="#install">How do I install it?</a></li>
+          <li><a href="#first-launch">What happens on first launch?</a></li>
           <li><a href="#unidentified">macOS says the app is from an unidentified developer</a></li>
           <li><a href="#manual">How do I draw a redaction by hand?</a></li>
           <li><a href="#find">How do I redact every occurrence of a string?</a></li>
@@ -108,8 +109,24 @@
         <li>Open the app from <em>Applications</em>. On first launch macOS may take a few seconds to verify the notarization; this is normal.</li>
       </ol>
 
+      <h2 id="first-launch">What happens on first launch?</h2>
+      <p>The first time you open PDF Redaction after downloading it, macOS will show a confirmation dialog that looks like:</p>
+      <blockquote>
+        <p>&ldquo;PDF Redaction&rdquo; is an app downloaded from the internet. Are you sure you want to open it?</p>
+        <p>[Your browser] downloaded this file today at [time]. Apple checked it for malicious software and none was detected.</p>
+        <p>[Cancel] [<strong>Open</strong>]</p>
+      </blockquote>
+      <p>This dialog is <strong>normal and expected</strong> &mdash; every app downloaded through a web browser triggers it on first launch, regardless of how cleanly it is signed. The reassuring line is <em>&ldquo;Apple checked it for malicious software and none was detected&rdquo;</em>: this is macOS confirming that the app&rsquo;s notarization and signature both check out. Click <strong>Open</strong> and PDF Redaction will launch. macOS remembers your choice and will not show this dialog again on subsequent launches.</p>
+
       <h2 id="unidentified">macOS says the app is from an unidentified developer</h2>
-      <p>This should not happen with the disk image you receive from us &mdash; the app and the disk image are both signed with our Developer ID Application certificate and notarized by Apple. If you see &ldquo;unidentified developer&rdquo;, &ldquo;malicious software&rdquo;, or any similar warning, please <strong>stop and email us</strong> before bypassing the warning. It probably means you have an unofficial copy of the app, or that something happened to the download in transit. We&rsquo;d rather investigate than have you click through a security warning unnecessarily.</p>
+      <p>This is a <strong>different and rare</strong> warning. The wording you are looking for is one of:</p>
+      <ul>
+        <li>&ldquo;<em>&hellip; cannot be opened because it is from an unidentified developer</em>&rdquo;</li>
+        <li>&ldquo;<em>&hellip; cannot be opened because Apple cannot check it for malicious software</em>&rdquo;</li>
+        <li>&ldquo;<em>&hellip; will damage your computer</em>&rdquo;</li>
+      </ul>
+      <p>None of these should happen with the disk image you download from our official link &mdash; the app and the disk image are both signed with our Developer ID Application certificate and notarized by Apple. If you do see one of them, please <strong>stop and email us</strong> at <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a> before bypassing the warning. It probably means you have an unofficial copy of the app, or that something happened to the download in transit. We&rsquo;d rather investigate than have you click through a real security warning unnecessarily.</p>
+      <p>The friendly &ldquo;downloaded from the internet, are you sure?&rdquo; dialog described in the previous section is <em>not</em> one of these warnings &mdash; that one is fine to confirm.</p>
 
       <h2 id="manual">How do I draw a redaction by hand?</h2>
       <p>Open a PDF, click and drag on the page to draw a rectangle. The rectangle&rsquo;s contents are not redacted yet &mdash; nothing changes in the file until you click <strong>Save redacted&hellip;</strong>. You can:</p>
