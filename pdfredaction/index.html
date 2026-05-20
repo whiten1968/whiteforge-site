@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PDF Redaction &mdash; Whiteforge Technologies</title>
+  <meta name="description" content="PDF Redaction: local-first PDF redaction for macOS. Text and images are surgically removed from the underlying file and verified before save &mdash; not just covered by black rectangles.">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
+</head>
+<body>
+  <div class="page">
+
+    <header class="site-header">
+      <a href="/" class="site-logo">
+        <img class="site-logo__mark" src="/assets/whiteforge-mark.png" width="274" height="274" alt="">
+        <span class="site-logo__text">Whiteforge Technologies</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/#products">Products</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </header>
+
+    <main>
+
+      <section class="hero hero--product">
+        <img class="app-icon app-icon--large"
+             src="/assets/pdfredaction-icon.png" width="1024" height="1024"
+             alt="PDF Redaction app icon">
+        <p class="section__eyebrow">macOS</p>
+        <h1>PDF Redaction</h1>
+        <p class="lede">Properly redact PDFs on your Mac. Text and images marked for redaction are surgically removed from the underlying file and the result is verified before save &mdash; not just covered by black rectangles.</p>
+        <p class="cta-row">
+          <!-- TODO: replace href with the DMG download URL once hosted -->
+          <a class="appstore-button" href="#" aria-label="Download PDF Redaction for macOS">
+            <span class="appstore-button__small">Download for</span>
+            <span class="appstore-button__large">macOS</span>
+          </a>
+          <span class="appstore-button__note">Coming soon.</span>
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Why this exists</h2>
+        <p>Most "redaction" tools, including the redact feature in popular PDF editors, work by drawing an opaque rectangle on top of the offending text. The underlying text is still in the file. A few seconds in any PDF viewer with a "select text" tool, or a text-extraction utility, recovers the "redacted" content.</p>
+        <p>This has caused real-world leaks &mdash; court filings, medical records, and government documents &mdash; over and over again. PDF Redaction does not draw rectangles. It modifies the content stream itself.</p>
+      </section>
+
+      <section class="section">
+        <h2>How redaction works</h2>
+        <ul class="feature-list">
+          <li>
+            <h3>Text removal</h3>
+            <p>Text-showing operators whose glyphs intersect a redaction rectangle are deleted from the content stream. The deleted text never re-renders in any viewer and is not present in the raw stream.</p>
+          </li>
+          <li>
+            <h3>Image redaction at the bitmap level</h3>
+            <p>For JPEG and Flate-compressed image XObjects, the affected pixels are blacked out at the bitmap level. Cropping or re-decoding the image cannot recover redacted regions. For image formats we don't support partial-pixel redaction in (CMYK, 1-bit, Indexed), the whole image XObject is replaced with a solid black rectangle as a safe fallback.</p>
+          </li>
+          <li>
+            <h3>Form XObject recursion</h3>
+            <p>Redactions recurse into nested form XObjects with current-transformation-matrix tracking &mdash; so redactions placed on a page that references a shared letterhead or footer template apply to the template's content, not just the page.</p>
+          </li>
+          <li>
+            <h3>Verification on every save</h3>
+            <p>Every save re-opens the output, re-extracts text from the regions that were redacted, and confirms no characters remain. If verification fails, the save fails loudly rather than silently producing a leaky file.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Features</h2>
+        <ul class="feature-list">
+          <li>
+            <h3>Find and redact</h3>
+            <p>Search the whole document for a literal string or a regular expression and bulk-redact every match in one click.</p>
+          </li>
+          <li>
+            <h3>Manual redaction</h3>
+            <p>Draw redaction rectangles directly on any page. Move, resize, or delete individual redactions. Per-page and document-wide clear before save.</p>
+          </li>
+          <li>
+            <h3>Thumbnail navigation</h3>
+            <p>Sidebar of page thumbnails with redaction-count badges. Lazy-rendered so large documents stay fast.</p>
+          </li>
+          <li>
+            <h3>Keyboard-driven</h3>
+            <p>Arrow keys, Home/End, <code>+</code>/<code>-</code> for zoom, <code>0</code> to reset, <code>F</code> for fit-to-width, Delete to remove a selected redaction, Escape to deselect.</p>
+          </li>
+          <li>
+            <h3>Metadata-stripped saves</h3>
+            <p>Even with no redactions drawn, "Save copy" produces a sanitised version of the document with the metadata stripped &mdash; useful as a sanitization pass on its own.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Privacy</h2>
+        <p>PDF Redaction never makes a network connection. PDFs are processed entirely in memory and on the local disk. There are no analytics, no telemetry, no auto-update calls, no servers.</p>
+        <p>When you close a document or quit the app, the in-memory state is dropped; nothing is persisted to disk without your explicit "Save" action.</p>
+      </section>
+
+      <section class="section">
+        <h2>Requirements</h2>
+        <p>macOS 11 (Big Sur) or later, Apple Silicon. Distributed as a Developer ID signed and Apple-notarized disk image &mdash; not via the Mac App Store.</p>
+      </section>
+
+      <section class="section">
+        <h2>Support</h2>
+        <p>For questions, bug reports, or feature requests, email <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>.</p>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__block">
+        <strong>WHITEFORGE TECHNOLOGIES LTD</strong>
+        Registered in England and Wales<br>
+        Company No. 17224707
+      </div>
+      <div class="footer__block">
+        <strong>Contact</strong>
+        <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>
+      </div>
+      <div class="footer__block footer__links">
+        <strong>PDF Redaction</strong>
+        <a href="/pdfredaction/">Overview</a>
+        <a href="mailto:support@whiteforgetech.co.uk">Support</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
