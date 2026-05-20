@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PDF Redaction privacy policy &mdash; Whiteforge Technologies</title>
-  <meta name="description" content="Privacy policy for the PDF Redaction macOS app. PDF Redaction processes PDFs entirely on your device and makes no network connections.">
+  <meta name="description" content="Privacy policy for the PDF Redaction macOS app. PDF Redaction processes PDFs entirely on your device and makes no network connections by default.">
   <link rel="stylesheet" href="/css/base.css">
   <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
 </head>
@@ -34,7 +34,7 @@
       <p class="doc-meta">For the PDF Redaction macOS app &middot; Last updated 20 May 2026</p>
 
       <div class="callout">
-        <p><strong>Summary.</strong> PDF Redaction processes the PDFs you open entirely on your device. It makes no network connections and has no servers. Whiteforge Technologies does not receive your documents, redactions, search terms, telemetry, or any other data from the app.</p>
+        <p><strong>Summary.</strong> PDF Redaction processes the PDFs you open entirely on your device. It makes no network connections by default, has no servers, and Whiteforge Technologies never receives your documents, redactions, search terms, telemetry, or any other data from the app. An optional auto-update check (off by default) makes a single HTTPS request to GitHub if you enable it &mdash; see <a href="#network">Network activity</a> for the full detail.</p>
       </div>
 
       <nav class="doc-toc" aria-label="Table of contents">
@@ -70,10 +70,17 @@
       <p>All of the above stays on your device. None of it is transmitted off the device.</p>
 
       <h2 id="received">3. Data Whiteforge receives</h2>
-      <p>None. PDF Redaction does not send your documents, redactions, search terms, or telemetry to Whiteforge. There are no Whiteforge servers in the data path. The app does not contain analytics SDKs, advertising SDKs, third-party tracking libraries, or auto-update infrastructure.</p>
+      <p>None. PDF Redaction does not send your documents, redactions, search terms, or telemetry to Whiteforge. There are no Whiteforge servers in the data path. The app does not contain analytics SDKs, advertising SDKs, or third-party tracking libraries. The optional auto-update check (described below) goes directly to GitHub &mdash; Whiteforge does not see those requests.</p>
 
       <h2 id="network">4. Network activity</h2>
-      <p>PDF Redaction does not make outbound network connections. The app&rsquo;s sandbox is configured to disallow network access. If you ever observe the app making a network connection, it is a bug &mdash; please report it.</p>
+      <p><strong>By default, PDF Redaction makes no outbound network connections.</strong> The auto-updater is off out of the box. If you never visit Settings, the app never touches the network.</p>
+      <p>In Settings &rarr; Updates, you can enable two things:</p>
+      <ul>
+        <li><strong>&ldquo;Check for updates automatically on launch&rdquo;</strong> &mdash; off by default. If you turn it on, PDF Redaction makes a single HTTPS request per app launch to <code>https://github.com/whiten1968/PDFRedaction-downloads/releases/latest/download/latest.json</code>. This is a static text file describing the current latest release. If a newer version is available, the app offers to download and install it; the download itself is also an HTTPS request to GitHub.</li>
+        <li><strong>&ldquo;Check for updates now&rdquo;</strong> &mdash; a manual button. Makes the same request, once, only when you click it.</li>
+      </ul>
+      <p>The requests contain no PDF content, no document filenames, no redaction data, no search terms, no usage statistics, no user identifier, and no telemetry of any kind. They are ordinary HTTPS GETs identical to any user requesting that URL in a browser. The only data GitHub receives is your IP address (visible to any server you connect to) and the fact that something is requesting the PDF Redaction update manifest.</p>
+      <p>You can revoke consent at any time by turning &ldquo;Check for updates automatically&rdquo; off. Settings preferences are stored locally on your device only.</p>
 
       <h2 id="storage">5. Where data is stored</h2>
       <ul>

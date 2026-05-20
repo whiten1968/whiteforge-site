@@ -82,22 +82,27 @@
 
       <h2 id="privacy">Where is my data stored?</h2>
       <p>The PDFs you open stay where you opened them from &mdash; PDF Redaction does not copy your input files anywhere. The redactions you draw and any search state are held in memory while the document is open, and discarded when you close the document or quit the app. Output PDFs are written only where you ask the &ldquo;Save&rdquo; dialog to put them.</p>
-      <p>PDF Redaction does not make network connections. There are no servers. See the <a href="/pdfredaction/privacy/">privacy policy</a> for the full detail.</p>
+      <p>PDF Redaction makes no network connections by default. An optional auto-update check can be enabled in Settings &rarr; Updates; if turned on, it makes one HTTPS request per launch to GitHub to look for a new version, and sends no PDF content, no telemetry, no user data. See the <a href="/pdfredaction/privacy/">privacy policy</a> for the full detail.</p>
 
       <h2 id="requirements">System requirements</h2>
       <ul>
         <li>macOS 11 (Big Sur) or later.</li>
-        <li>Apple Silicon (M1 or later). PDF Redaction does not currently ship an Intel build.</li>
+        <li>Apple Silicon (M1 or later) or Intel. PDF Redaction ships separate disk images for each &mdash; pick the one matching your Mac.</li>
         <li>Around 200 MB of free disk space.</li>
       </ul>
 
-      <h2 id="download">How do I get the beta?</h2>
-      <p>PDF Redaction is in closed beta at the moment. To request access, email <a href="mailto:support@whiteforgetech.co.uk?subject=PDF%20Redaction%20beta%20access">support@whiteforgetech.co.uk</a> with a sentence about what you&rsquo;d use it for, and we&rsquo;ll send you a download link for the signed disk image.</p>
-      <p>Once the beta opens up, this page will be updated with a direct download link.</p>
+      <h2 id="download">How do I download the beta?</h2>
+      <p>PDF Redaction is in public beta. Download the disk image matching your Mac&rsquo;s processor:</p>
+      <ul>
+        <li><a href="https://github.com/whiten1968/PDFRedaction-downloads/releases/latest/download/PDFRedaction-aarch64.dmg">PDFRedaction-aarch64.dmg</a> &mdash; Apple Silicon (M1, M2, M3, M4).</li>
+        <li><a href="https://github.com/whiten1968/PDFRedaction-downloads/releases/latest/download/PDFRedaction-x86_64.dmg">PDFRedaction-x86_64.dmg</a> &mdash; Intel Macs.</li>
+      </ul>
+      <p>Not sure which one? Click the Apple menu &rarr; <em>About This Mac</em>. If the &ldquo;Chip&rdquo; or &ldquo;Processor&rdquo; line starts with &ldquo;Apple&rdquo;, choose Apple Silicon. If it mentions Intel, choose Intel.</p>
+      <p>Both disk images are signed with our Developer ID Application certificate and notarized by Apple.</p>
 
       <h2 id="install">How do I install it?</h2>
       <ol>
-        <li>Double-click the <em>PDF Redaction_&lt;version&gt;_aarch64.dmg</em> file to open it.</li>
+        <li>Double-click the <em>PDFRedaction-aarch64.dmg</em> (or <em>PDFRedaction-x86_64.dmg</em>) file to open it.</li>
         <li>Drag the <em>PDF Redaction</em> app into your <em>Applications</em> folder.</li>
         <li>Eject the disk image (drag it to the Trash, or use the eject button in Finder).</li>
         <li>Open the app from <em>Applications</em>. On first launch macOS may take a few seconds to verify the notarization; this is normal.</li>
