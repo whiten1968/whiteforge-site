@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Image Sanitizer support &mdash; Whiteforge Technologies</title>
+  <meta name="description" content="Support and FAQ for the Image Sanitizer macOS app.">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
+</head>
+<body>
+  <div class="page">
+
+    <header class="site-header">
+      <a href="/" class="site-logo">
+        <img class="site-logo__mark" src="/assets/whiteforge-mark.png" width="274" height="274" alt="">
+        <span class="site-logo__text">Whiteforge Technologies</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/#products">Products</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </header>
+
+    <main class="prose">
+
+      <header class="page-title">
+        <img class="app-icon app-icon--small"
+             src="/assets/imagesanitizer-icon.png" width="1024" height="1024"
+             alt="Image Sanitizer app icon">
+        <h1>Image Sanitizer support</h1>
+      </header>
+      <p class="doc-meta">Help and frequently asked questions &middot; Last updated 21 May 2026</p>
+
+      <nav class="doc-toc" aria-label="Table of contents">
+        <strong>Contents</strong>
+        <ol>
+          <li><a href="#what-is">What is Image Sanitizer?</a></li>
+          <li><a href="#beta">Is Image Sanitizer stable? What does the beta status mean?</a></li>
+          <li><a href="#how-works">How does sanitisation work?</a></li>
+          <li><a href="#vs-others">How is this different from PDF Sanitizer / PDF Redaction?</a></li>
+          <li><a href="#privacy">Where is my data stored?</a></li>
+          <li><a href="#requirements">System requirements</a></li>
+          <li><a href="#download">How do I download the beta?</a></li>
+          <li><a href="#install">How do I install it?</a></li>
+          <li><a href="#first-launch">What happens on first launch?</a></li>
+          <li><a href="#unidentified">macOS says the app is from an unidentified developer</a></li>
+          <li><a href="#formats">Which image formats are supported?</a></li>
+          <li><a href="#heic">What about HEIC photos from my iPhone?</a></li>
+          <li><a href="#verify-failed">Verification failed when I saved &mdash; what does that mean?</a></li>
+          <li><a href="#bug">How do I report a bug?</a></li>
+          <li><a href="#feature">How do I request a feature?</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="what-is">What is Image Sanitizer?</h2>
+      <p>Image Sanitizer is a local-first macOS app that strips EXIF, GPS coordinates, IPTC, XMP and other hidden metadata from JPEG images. Every save is re-opened and verified before the app reports success.</p>
+      <p>It is a companion to <a href="/pdfsanitizer/">PDF Sanitizer</a> (hidden data in PDFs) and <a href="/pdfredaction/">PDF Redaction</a> (visible content in PDFs). Use Image Sanitizer when you need to share a photo without revealing the camera you took it on, where you were when you took it, or any of the other invisible data the photo carries.</p>
+
+      <h2 id="beta">Is Image Sanitizer stable? What does the beta status mean?</h2>
+      <p>Image Sanitizer is currently in beta. The core sanitisation engine is feature-complete and every save is verified before completing, but the app has not yet had wide real-world exercise across every kind of JPEG in the wild. Treat beta builds accordingly:</p>
+      <ul>
+        <li>Always keep the original image. Image Sanitizer never overwrites it by default, but you should keep your own backups regardless.</li>
+        <li>If the sanitised output is going somewhere sensitive (publication, court filing, news outlet), open it in a different image viewer and re-check the metadata using a separate tool such as <code>exiftool</code>.</li>
+        <li>Report anything unexpected &mdash; that&rsquo;s what beta is for.</li>
+      </ul>
+
+      <h2 id="how-works">How does sanitisation work?</h2>
+      <p>A JPEG file is a sequence of <em>markers</em> &mdash; small structured segments that hold either image data or metadata. Image Sanitizer walks every marker and skips the metadata-bearing ones when writing the output:</p>
+      <ul>
+        <li><code>APP0</code> &mdash; JFIF container metadata (producer name, density units).</li>
+        <li><code>APP1</code> &mdash; EXIF (camera, capture time, often GPS) and XMP (Adobe edit history).</li>
+        <li><code>APP13</code> &mdash; IPTC / Photoshop annotations (caption, byline, copyright, location).</li>
+        <li><code>APP14</code> &mdash; Adobe transform metadata.</li>
+        <li>Other <code>APPn</code> markers (APP2 through APP15) &mdash; application-specific metadata from various tools.</li>
+        <li><code>COM</code> &mdash; freeform JPEG comments.</li>
+      </ul>
+      <p>Everything else (the <code>SOI</code>, <code>EOI</code>, quantisation tables, Huffman tables, frame headers, scan data) is preserved exactly. The pixel data is unchanged.</p>
+      <p>This is the same approach used by <code>jpegtran -copy none</code> and <code>exiftool -all=</code>. It doesn&rsquo;t try to parse the EXIF structure &mdash; it just removes the whole metadata-carrying section. No risk of partial-edit leaks.</p>
+      <p>After writing, Image Sanitizer re-opens the output and confirms zero APPn and COM markers remain. If anything slipped through, the tainted file is deleted and a clear failure is surfaced.</p>
+
+      <h2 id="vs-others">How is this different from PDF Sanitizer / PDF Redaction?</h2>
+      <p>Image Sanitizer is the JPEG counterpart to the PDF tools. The three apps form a workflow for sharing files without leaking hidden data:</p>
+      <ul>
+        <li><a href="/pdfredaction/"><strong>PDF Redaction</strong></a> removes <em>visible</em> content from a PDF (text and image regions you draw rectangles over).</li>
+        <li><a href="/pdfsanitizer/"><strong>PDF Sanitizer</strong></a> removes <em>hidden</em> data from a PDF (metadata, scripts, attachments, comments).</li>
+        <li><strong>Image Sanitizer</strong> removes <em>hidden</em> metadata from a JPEG (EXIF, GPS, XMP, IPTC).</li>
+      </ul>
+      <p>All three are local-only, never overwrite the original, and verify the output before reporting success.</p>
+
+      <h2 id="privacy">Where is my data stored?</h2>
+      <p>The JPEGs you open stay where you opened them from &mdash; Image Sanitizer does not copy your input files anywhere and never overwrites the original. The detected metadata summary is held in memory while the file is open and discarded when you open a different image or quit the app. Sanitised output is written only where you tell the dialog to put it.</p>
+      <p>Image Sanitizer makes no network connections by default. An optional auto-update check can be enabled in Settings &rarr; Updates; if turned on, it makes one HTTPS request per launch to GitHub to look for a new version, and sends no image content, no telemetry, no user data. See the <a href="/imagesanitizer/privacy/">privacy policy</a> for the full detail.</p>
+
+      <h2 id="requirements">System requirements</h2>
+      <ul>
+        <li>macOS 11 (Big Sur) or later.</li>
+        <li>Apple Silicon (M1 or later) or Intel. Image Sanitizer ships separate disk images for each &mdash; pick the one matching your Mac.</li>
+        <li>Around 100 MB of free disk space.</li>
+      </ul>
+
+      <h2 id="download">How do I download the beta?</h2>
+      <p>Image Sanitizer is in public beta. Download the disk image matching your Mac&rsquo;s processor:</p>
+      <ul>
+        <li><a href="https://github.com/whiten1968/ImageSanitizer-downloads/releases/latest/download/ImageSanitizer-aarch64.dmg">ImageSanitizer-aarch64.dmg</a> &mdash; Apple Silicon (M1, M2, M3, M4).</li>
+        <li><a href="https://github.com/whiten1968/ImageSanitizer-downloads/releases/latest/download/ImageSanitizer-x86_64.dmg">ImageSanitizer-x86_64.dmg</a> &mdash; Intel Macs.</li>
+      </ul>
+      <p>Not sure which one? Click the Apple menu &rarr; <em>About This Mac</em>. If the &ldquo;Chip&rdquo; or &ldquo;Processor&rdquo; line starts with &ldquo;Apple&rdquo;, choose Apple Silicon. If it mentions Intel, choose Intel.</p>
+      <p>Both disk images are signed with our Developer ID Application certificate and notarized by Apple.</p>
+
+      <h2 id="install">How do I install it?</h2>
+      <ol>
+        <li>Double-click the <em>ImageSanitizer-aarch64.dmg</em> (or <em>ImageSanitizer-x86_64.dmg</em>) file to open it.</li>
+        <li>Drag the <em>Image Sanitizer</em> app into your <em>Applications</em> folder.</li>
+        <li>Eject the disk image (drag it to the Trash, or use the eject button in Finder).</li>
+        <li>Open the app from <em>Applications</em>. On first launch macOS may take a few seconds to verify the notarization; this is normal.</li>
+      </ol>
+      <p>If you launch Image Sanitizer from anywhere other than <em>Applications</em> (for example, by double-clicking the app inside the mounted DMG), the app will show a clear warning on launch and offer to quit so you can install it properly. Auto-updates require the app to live in <em>Applications</em>.</p>
+
+      <h2 id="first-launch">What happens on first launch?</h2>
+      <p>The first time you open Image Sanitizer after downloading it, macOS will show a confirmation dialog that looks like:</p>
+      <blockquote>
+        <p>&ldquo;Image Sanitizer&rdquo; is an app downloaded from the internet. Are you sure you want to open it?</p>
+        <p>[Your browser] downloaded this file today at [time]. Apple checked it for malicious software and none was detected.</p>
+        <p>[Cancel] [<strong>Open</strong>]</p>
+      </blockquote>
+      <p>This dialog is <strong>normal and expected</strong> &mdash; every app downloaded through a web browser triggers it on first launch, regardless of how cleanly it is signed. The reassuring line is <em>&ldquo;Apple checked it for malicious software and none was detected&rdquo;</em>: this is macOS confirming that the app&rsquo;s notarization and signature both check out. Click <strong>Open</strong> and Image Sanitizer will launch.</p>
+      <p>You will then see a one-time first-run modal in Image Sanitizer itself, explaining the local-only promise and asking whether you want to opt in to automatic update checks. The default is &ldquo;no&rdquo;, and you can change your mind later in Settings &rarr; Updates.</p>
+
+      <h2 id="unidentified">macOS says the app is from an unidentified developer</h2>
+      <p>This is a <strong>different and rare</strong> warning. The wording you are looking for is one of:</p>
+      <ul>
+        <li>&ldquo;<em>&hellip; cannot be opened because it is from an unidentified developer</em>&rdquo;</li>
+        <li>&ldquo;<em>&hellip; cannot be opened because Apple cannot check it for malicious software</em>&rdquo;</li>
+        <li>&ldquo;<em>&hellip; will damage your computer</em>&rdquo;</li>
+      </ul>
+      <p>None of these should happen with the disk image you download from our official link &mdash; the app and the disk image are both signed with our Developer ID Application certificate and notarized by Apple. If you do see one of them, please <strong>stop and email us</strong> at <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a> before bypassing the warning. It probably means you have an unofficial copy of the app, or that something happened to the download in transit.</p>
+      <p>The friendly &ldquo;downloaded from the internet, are you sure?&rdquo; dialog described in the previous section is <em>not</em> one of these warnings.</p>
+
+      <h2 id="formats">Which image formats are supported?</h2>
+      <p>Image Sanitizer v0.1 supports <strong>JPEG only</strong> (file extensions <code>.jpg</code> and <code>.jpeg</code>). JPEG is by far the most common format for photos shared on the web and over messaging apps, and it&rsquo;s where EXIF/GPS leaks bite hardest.</p>
+      <p>Planned for upcoming versions: HEIC (the default on modern iPhones), PNG, TIFF, and WebP. If a format you need isn&rsquo;t on that list, let us know.</p>
+
+      <h2 id="heic">What about HEIC photos from my iPhone?</h2>
+      <p>HEIC support is on the roadmap but not in v0.1. Until it lands, the quick workaround is to convert the HEIC to JPEG first:</p>
+      <ol>
+        <li>Open the HEIC photo in <em>Preview</em> on your Mac.</li>
+        <li>Choose <em>File &rarr; Export As&hellip;</em></li>
+        <li>Set <em>Format</em> to <strong>JPEG</strong> and save.</li>
+        <li>Open the resulting JPEG in Image Sanitizer.</li>
+      </ol>
+      <p>Preview&rsquo;s export drops most of the embedded EXIF/GPS metadata as a side effect; Image Sanitizer can then walk the result and confirm anything residual is gone.</p>
+
+      <h2 id="verify-failed">Verification failed when I saved &mdash; what does that mean?</h2>
+      <p>Image Sanitizer re-opens every sanitised output and counts the metadata markers present. If any remain, verification fails: the tainted output is deleted and you see an error with the leak counts.</p>
+      <p>This is the system working as designed &mdash; it means Image Sanitizer caught a case where it could not be sure the file was clean. Email us a description of the image (or, if you can, a small synthetic JPEG with the same shape that reproduces the failure) at <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a> and we will look into it.</p>
+
+      <h2 id="bug">How do I report a bug?</h2>
+      <p>Two channels, whichever you prefer:</p>
+      <ul>
+        <li><strong>Public Issue tracker</strong> at <a href="https://github.com/whiten1968/ImageSanitizer-downloads/issues">github.com/whiten1968/ImageSanitizer-downloads/issues</a>. Faster for us to triage, and other users can see what&rsquo;s being worked on. Don&rsquo;t attach actual images here &mdash; it&rsquo;s a public repository.</li>
+        <li><strong>Email</strong> <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a> for anything you&rsquo;d rather keep private (e.g. you need to attach a sensitive image to reproduce the issue).</li>
+      </ul>
+      <p>Either way, please include:</p>
+      <ul>
+        <li>What you were doing when the problem happened;</li>
+        <li>What you expected and what actually happened;</li>
+        <li>Your macOS version (<em>Apple menu &rarr; About This Mac</em>);</li>
+        <li>The Image Sanitizer version (Settings &rarr; bottom of the panel).</li>
+      </ul>
+      <p>If the bug only reproduces with a specific image, try to construct a small synthetic JPEG with the same structural shape and share that. Send original images only if we ask, and only via email.</p>
+
+      <h2 id="feature">How do I request a feature?</h2>
+      <p>Open a <a href="https://github.com/whiten1968/ImageSanitizer-downloads/discussions">Discussion</a> on the downloads repo (Ideas category), or email <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>. We read every request.</p>
+
+      <h2 id="contact">Contact</h2>
+      <p>Whiteforge Technologies Ltd<br>
+      <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a></p>
+
+      <p><a href="/imagesanitizer/">Back to Image Sanitizer overview &rarr;</a></p>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__block">
+        <strong>WHITEFORGE TECHNOLOGIES LTD</strong>
+        Registered in England and Wales<br>
+        Company No. 17224707
+      </div>
+      <div class="footer__block">
+        <strong>Contact</strong>
+        <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>
+      </div>
+      <div class="footer__block footer__links">
+        <strong>Image Sanitizer</strong>
+        <a href="/imagesanitizer/">Overview</a>
+        <a href="/imagesanitizer/privacy/">Privacy policy</a>
+        <a href="/imagesanitizer/terms/">Terms of service</a>
+        <a href="/imagesanitizer/support/">Support</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>

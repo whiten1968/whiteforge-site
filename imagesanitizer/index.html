@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Image Sanitizer &mdash; Whiteforge Technologies</title>
+  <meta name="description" content="Image Sanitizer: local-first macOS app that strips EXIF, GPS, IPTC and XMP metadata from JPEG images before you share them. Every save is verified.">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
+</head>
+<body>
+  <div class="page">
+
+    <header class="site-header">
+      <a href="/" class="site-logo">
+        <img class="site-logo__mark" src="/assets/whiteforge-mark.png" width="274" height="274" alt="">
+        <span class="site-logo__text">Whiteforge Technologies</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/#products">Products</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </header>
+
+    <main>
+
+      <section class="hero hero--product">
+        <img class="app-icon app-icon--large"
+             src="/assets/imagesanitizer-icon.png" width="1024" height="1024"
+             alt="Image Sanitizer app icon">
+        <p class="section__eyebrow">macOS</p>
+        <h1>Image Sanitizer</h1>
+        <p class="lede">Strip EXIF, GPS coordinates, camera serial numbers, IPTC, XMP and other hidden metadata from a JPEG before you share it. Every save is verified. Local-only &mdash; your image never leaves your Mac.</p>
+        <p class="cta-row">
+          <a class="appstore-button" href="https://github.com/whiten1968/ImageSanitizer-downloads/releases/latest/download/ImageSanitizer-aarch64.dmg" aria-label="Download Image Sanitizer for Apple Silicon Macs">
+            <span class="appstore-button__small">Download for</span>
+            <span class="appstore-button__large">macOS</span>
+          </a>
+          <span class="appstore-button__note">
+            Free public beta &middot;
+            <a href="https://github.com/whiten1968/ImageSanitizer-downloads/releases/latest/download/ImageSanitizer-aarch64.dmg">Apple Silicon</a> or
+            <a href="https://github.com/whiten1968/ImageSanitizer-downloads/releases/latest/download/ImageSanitizer-x86_64.dmg">Intel</a>
+            &middot; macOS 11 or later
+          </span>
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Why this exists</h2>
+        <p>A JPEG file taken on a phone or camera carries a surprising amount of hidden data: GPS coordinates, the camera&rsquo;s make and serial number, exact capture time, lens, exposure settings, edit history, software used to process the image, and sometimes a thumbnail of the original pre-edit photo. Send the file unaltered and the recipient gets all of that whether you meant to share it or not.</p>
+        <p>Image Sanitizer surfaces exactly what&rsquo;s in the JPEG you opened, lets you strip it with one click, and verifies the result before reporting success.</p>
+      </section>
+
+      <section class="section">
+        <h2>How it works</h2>
+        <ul class="feature-list">
+          <li>
+            <h3>Inspect first</h3>
+            <p>Pick a JPEG and Image Sanitizer reports every metadata segment present: EXIF (camera and capture data, often GPS), XMP (Adobe edit history and ratings), IPTC (captions, byline, copyright), JFIF (producer name), Adobe APP14, freeform comments, and any other application metadata markers.</p>
+          </li>
+          <li>
+            <h3>One-click sanitise</h3>
+            <p>Click <strong>Sanitise</strong> and Image Sanitizer walks the JPEG&rsquo;s marker stream, skipping every APPn and COM segment, and writes a fresh JPEG alongside the original. The pixel data (the visible image) is preserved exactly &mdash; same dimensions, same compression, byte-identical for the parts that aren&rsquo;t metadata.</p>
+          </li>
+          <li>
+            <h3>Verification on every save</h3>
+            <p>After every sanitisation, Image Sanitizer re-opens the output and confirms zero APPn and COM markers remain. If anything leaked through, the tainted file is deleted and you see a clear failure &mdash; you don&rsquo;t accidentally ship a file you think is clean.</p>
+          </li>
+          <li>
+            <h3>The original is never touched</h3>
+            <p>The output is always written to a new path of your choosing (suggested name: <code>&lt;original&gt;-sanitized.jpg</code>). The input JPEG remains exactly as you opened it.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>v0.1 limitations</h2>
+        <p>Image Sanitizer v0.1 supports <strong>JPEG only</strong> (.jpg, .jpeg). HEIC (the default on modern iPhones), PNG, TIFF and WebP support is planned for v0.2 onwards.</p>
+        <p>If you have a HEIC photo you need to sanitise today, the quick workaround is to open the photo on a Mac and use <em>File &rarr; Export As&hellip;</em> with JPEG format selected. The export drops most of the embedded metadata as a side effect; Image Sanitizer can then verify the result. Native HEIC support is on the way.</p>
+      </section>
+
+      <section class="section">
+        <h2>What Image Sanitizer does not do</h2>
+        <p>Image Sanitizer does <strong>not</strong> redact or blur visible content in the image &mdash; it only removes invisible metadata. To blur or black out a face, plate, or other visible region you&rsquo;ll want a dedicated image editor.</p>
+        <p>Image Sanitizer does <strong>not</strong> certify legal or regulatory compliance. It helps remove common categories of hidden data; it doesn&rsquo;t certify your workflow against any specific standard.</p>
+      </section>
+
+      <section class="section">
+        <h2>Privacy</h2>
+        <p>Image Sanitizer makes no network connections by default. JPEGs are processed entirely on your device. There are no analytics, no telemetry, no servers.</p>
+        <p>An optional auto-update check can be turned on in Settings &rarr; Updates, which makes one HTTPS request per launch to GitHub to look for a new version. No image content, no telemetry, no user data is sent &mdash; see the <a href="/imagesanitizer/privacy/">privacy policy</a> for the full detail.</p>
+      </section>
+
+      <section class="section">
+        <h2>Requirements</h2>
+        <p>macOS 11 (Big Sur) or later. Apple Silicon and Intel both supported &mdash; separate disk images for each. Distributed as a Developer ID signed and Apple-notarized disk image &mdash; not via the Mac App Store.</p>
+      </section>
+
+      <section class="section">
+        <h2>Support</h2>
+        <p>For bug reports and feature requests, see the <a href="/imagesanitizer/support/">support page</a>. For anything else, email <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>.</p>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__block">
+        <strong>WHITEFORGE TECHNOLOGIES LTD</strong>
+        Registered in England and Wales<br>
+        Company No. 17224707
+      </div>
+      <div class="footer__block">
+        <strong>Contact</strong>
+        <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>
+      </div>
+      <div class="footer__block footer__links">
+        <strong>Image Sanitizer</strong>
+        <a href="/imagesanitizer/">Overview</a>
+        <a href="/imagesanitizer/privacy/">Privacy policy</a>
+        <a href="/imagesanitizer/terms/">Terms of service</a>
+        <a href="/imagesanitizer/support/">Support</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>

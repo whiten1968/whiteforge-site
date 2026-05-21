@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Image Sanitizer privacy policy &mdash; Whiteforge Technologies</title>
+  <meta name="description" content="Privacy policy for the Image Sanitizer macOS app. Image Sanitizer processes JPEGs entirely on your device and makes no network connections by default.">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
+</head>
+<body>
+  <div class="page">
+
+    <header class="site-header">
+      <a href="/" class="site-logo">
+        <img class="site-logo__mark" src="/assets/whiteforge-mark.png" width="274" height="274" alt="">
+        <span class="site-logo__text">Whiteforge Technologies</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/#products">Products</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </header>
+
+    <main class="prose">
+
+      <header class="page-title">
+        <img class="app-icon app-icon--small"
+             src="/assets/imagesanitizer-icon.png" width="1024" height="1024"
+             alt="Image Sanitizer app icon">
+        <h1>Image Sanitizer privacy policy</h1>
+      </header>
+      <p class="doc-meta">For the Image Sanitizer macOS app &middot; Last updated 21 May 2026</p>
+
+      <div class="callout">
+        <p><strong>Summary.</strong> Image Sanitizer processes the JPEGs you open entirely on your device. It makes no network connections by default, has no servers, and Whiteforge Technologies never receives your images, file paths, telemetry, or any other data from the app. An optional auto-update check (off by default) makes a single HTTPS request to GitHub if you enable it &mdash; see <a href="#network">Network activity</a> for the full detail.</p>
+      </div>
+
+      <nav class="doc-toc" aria-label="Table of contents">
+        <strong>Contents</strong>
+        <ol>
+          <li><a href="#intro">Introduction</a></li>
+          <li><a href="#local">Data the app processes locally</a></li>
+          <li><a href="#received">Data Whiteforge receives</a></li>
+          <li><a href="#network">Network activity</a></li>
+          <li><a href="#storage">Where data is stored</a></li>
+          <li><a href="#crash">Crash reports and diagnostics</a></li>
+          <li><a href="#deletion">Deletion</a></li>
+          <li><a href="#children">Children</a></li>
+          <li><a href="#rights">Your rights</a></li>
+          <li><a href="#changes">Changes to this policy</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="intro">1. Introduction</h2>
+      <p>This policy explains how Image Sanitizer handles your data. Image Sanitizer is a macOS application published by Whiteforge Technologies Ltd (&ldquo;Whiteforge&rdquo;, &ldquo;we&rdquo;), a company registered in England and Wales (company number 17224707). It inspects JPEG images for hidden metadata, removes it, and verifies the result before saving.</p>
+      <p>This policy is for the Image Sanitizer app. The <a href="/">whiteforgetech.co.uk</a> website has its own <a href="/privacy/">privacy policy</a>.</p>
+
+      <h2 id="local">2. Data the app processes locally</h2>
+      <p>Image Sanitizer processes the JPEG files you open with it. While a file is open, the app holds in memory:</p>
+      <ul>
+        <li>The bytes of the JPEG file you opened.</li>
+        <li>A summary of the metadata segments detected in the file (EXIF / XMP / IPTC / JFIF / Adobe APP14 / other APPn / comments) and their sizes.</li>
+        <li>The output path you select for the sanitised copy.</li>
+      </ul>
+      <p>All of the above stays on your device. None of it is transmitted off the device.</p>
+
+      <h2 id="received">3. Data Whiteforge receives</h2>
+      <p>None. Image Sanitizer does not send your images, metadata summaries, file paths, or telemetry to Whiteforge. There are no Whiteforge servers in the data path. The app does not contain analytics SDKs, advertising SDKs, or third-party tracking libraries. The optional auto-update check (described below) goes directly to GitHub &mdash; Whiteforge does not see those requests.</p>
+
+      <h2 id="network">4. Network activity</h2>
+      <p><strong>By default, Image Sanitizer makes no outbound network connections.</strong> The auto-updater is off out of the box. The app shows a first-run modal explaining this; if you do not opt in, the app never touches the network.</p>
+      <p>In Settings &rarr; Updates (or via the first-run modal), you can enable two things:</p>
+      <ul>
+        <li><strong>&ldquo;Check for updates automatically on launch&rdquo;</strong> &mdash; off by default. If you turn it on, Image Sanitizer makes a single HTTPS request per app launch to <code>https://github.com/whiten1968/ImageSanitizer-downloads/releases/latest/download/latest.json</code>. This is a static text file describing the current latest release. If a newer version is available, the app offers to download and install it; the download itself is also an HTTPS request to GitHub.</li>
+        <li><strong>&ldquo;Check for updates now&rdquo;</strong> &mdash; a manual button. Makes the same request, once, only when you click it.</li>
+      </ul>
+      <p>The requests contain no image content, no file paths, no metadata, no usage statistics, no user identifier, and no telemetry of any kind. They are ordinary HTTPS GETs identical to any user requesting that URL in a browser. The only data GitHub receives is your IP address (visible to any server you connect to) and the fact that something is requesting the Image Sanitizer update manifest.</p>
+      <p>You can revoke consent at any time by turning &ldquo;Check for updates automatically&rdquo; off. Settings preferences are stored locally on your device only.</p>
+
+      <h2 id="storage">5. Where data is stored</h2>
+      <ul>
+        <li><strong>The JPEG file you open</strong> &mdash; remains where you opened it from. Image Sanitizer does not copy your input files into its own storage, and never overwrites the original.</li>
+        <li><strong>The detected metadata summary and your output path choice</strong> &mdash; held in memory while the file is open. When you open a different image or quit the app, this state is discarded.</li>
+        <li><strong>The sanitised output JPEG</strong> &mdash; only created when you choose to save and pick a destination. Image Sanitizer writes to the location you specify (typically alongside the original with a <code>-sanitized</code> suffix) and nowhere else.</li>
+      </ul>
+
+      <h2 id="crash">6. Crash reports and diagnostics</h2>
+      <p>Image Sanitizer does not collect or transmit crash reports, performance metrics, or diagnostic data. macOS itself may collect crash logs at the operating-system level and offer to share them with developers; that behaviour is controlled by your macOS privacy settings (<em>System Settings &rarr; Privacy &amp; Security &rarr; Analytics &amp; Improvements</em>), not by Image Sanitizer.</p>
+
+      <h2 id="deletion">7. Deletion</h2>
+      <ul>
+        <li><strong>Opening a different file</strong> &mdash; drops the in-memory state for the previous one.</li>
+        <li><strong>Quitting the app</strong> &mdash; drops all in-memory state.</li>
+        <li><strong>Uninstalling Image Sanitizer</strong> &mdash; remove the <em>Image Sanitizer.app</em> bundle from Applications. The app does not install components elsewhere on the system. Move the app to the Trash and empty it, and everything Image Sanitizer touched is gone.</li>
+      </ul>
+      <p>The JPEGs you opened, and the sanitised outputs you saved, are unaffected by uninstalling the app &mdash; they live where you put them.</p>
+
+      <h2 id="children">8. Children</h2>
+      <p>Image Sanitizer is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+
+      <h2 id="rights">9. Your rights</h2>
+      <p>If you are in the UK or the EU, you have rights under the UK GDPR and the EU GDPR &mdash; including the rights of access, rectification, erasure, restriction, objection, and the right to lodge a complaint. Because Image Sanitizer does not transmit your data to us, these rights are effectively under your direct control through the app and the file system on your device. If you have a question about your data in Image Sanitizer, email us at the address below.</p>
+      <p>You can complain to the UK Information Commissioner&rsquo;s Office at <a href="https://ico.org.uk">ico.org.uk</a>.</p>
+
+      <h2 id="changes">10. Changes to this policy</h2>
+      <p>If we change this policy, we will update the &ldquo;Last updated&rdquo; date at the top. Material changes will be summarised at the top of the policy for a reasonable period.</p>
+
+      <h2 id="contact">11. Contact</h2>
+      <p>For privacy questions about Image Sanitizer:</p>
+      <p>Whiteforge Technologies Ltd<br>
+      <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a></p>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__block">
+        <strong>WHITEFORGE TECHNOLOGIES LTD</strong>
+        Registered in England and Wales<br>
+        Company No. 17224707
+      </div>
+      <div class="footer__block">
+        <strong>Contact</strong>
+        <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>
+      </div>
+      <div class="footer__block footer__links">
+        <strong>Image Sanitizer</strong>
+        <a href="/imagesanitizer/">Overview</a>
+        <a href="/imagesanitizer/privacy/">Privacy policy</a>
+        <a href="/imagesanitizer/terms/">Terms of service</a>
+        <a href="/imagesanitizer/support/">Support</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
