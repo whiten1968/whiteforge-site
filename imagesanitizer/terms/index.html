@@ -56,9 +56,9 @@
       </ul>
 
       <h2>5. Sanitisation is best-effort and must be checked</h2>
-      <p>Image Sanitizer is designed to remove every APPn and COM marker (the standard JPEG containers for EXIF, XMP, IPTC, JFIF and similar metadata) and to verify the result by re-opening the output and confirming the markers are actually gone before letting the save complete. If verification fails, the save fails &mdash; Image Sanitizer will not write a sanitised file it cannot verify.</p>
+      <p>Image Sanitizer is designed to remove the standard metadata-bearing structures in each supported format &mdash; JPEG APPn / COM markers; HEIC EXIF, XMP and proprietary <code>meta</code> items; PNG ancillary chunks (<code>tEXt</code>, <code>zTXt</code>, <code>iTXt</code>, <code>eXIf</code>, <code>iCCP</code>, <code>tIME</code>, &hellip;); WebP EXIF and XMP chunks; and TIFF IFD entries outside the structural allow-list &mdash; and to verify the result by re-opening the output and confirming the metadata blocks are actually gone before letting the save complete. If verification fails, the save fails &mdash; Image Sanitizer will not write a sanitised file it cannot verify.</p>
 
-      <p>However, JPEG implementations and producer tools vary, and Whiteforge cannot guarantee that Image Sanitizer detects or removes every category of hidden data in every JPEG. The app removes hidden metadata only &mdash; it does not modify the visible pixel content. You remain responsible for reviewing every sanitised image before publishing or sharing it.</p>
+      <p>However, image-format implementations and producer tools vary, and Whiteforge cannot guarantee that Image Sanitizer detects or removes every category of hidden data in every image. The app removes hidden metadata only &mdash; it does not modify the visible pixel content. You remain responsible for reviewing every sanitised image before publishing or sharing it.</p>
 
       <h2>6. No warranty</h2>
       <p>Image Sanitizer is provided on an &ldquo;as is&rdquo; and &ldquo;as available&rdquo; basis. To the maximum extent permitted by law, Whiteforge disclaims all warranties, whether express or implied, including any warranty of merchantability, fitness for a particular purpose, or non-infringement. We do not warrant that the app will be uninterrupted, error-free, or that it will detect or remove every kind of hidden data in every image. The app makes no claim of legal or regulatory compliance.</p>
@@ -77,6 +77,8 @@
 
       <h2>9. Third-party trademarks</h2>
       <p>&ldquo;Apple&rdquo;, &ldquo;macOS&rdquo;, &ldquo;Mac&rdquo;, and the Apple logo are trademarks of Apple Inc. &ldquo;JPEG&rdquo; is a registered trademark of the International Organization for Standardization. Image Sanitizer is not affiliated with, endorsed by, or sponsored by Apple. Their marks are used in Image Sanitizer and on this website for descriptive purposes only.</p>
+
+      <p>Image Sanitizer&rsquo;s offline world map uses public-domain (CC0) Natural Earth vector data via the Equirectangular blank map asset on Wikimedia Commons.</p>
 
       <h2>10. Termination</h2>
       <p>You can stop using Image Sanitizer at any time by moving the <em>Image Sanitizer.app</em> bundle to the Trash. We may suspend or end your right to use Image Sanitizer if you materially breach these terms. The disclaimers, liability limits, and governing-law sections survive termination.</p>

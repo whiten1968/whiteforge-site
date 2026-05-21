@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Image Sanitizer &mdash; Whiteforge Technologies</title>
-  <meta name="description" content="Image Sanitizer: local-first macOS app that strips EXIF, GPS, IPTC and XMP metadata from JPEG images before you share them. Every save is verified.">
+  <meta name="description" content="Image Sanitizer: local-first macOS app that strips EXIF, GPS, IPTC and XMP metadata from JPEG, PNG, WebP, TIFF and HEIC images before you share them. Every save is verified.">
   <link rel="stylesheet" href="/css/base.css">
   <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
 </head>
@@ -59,27 +59,56 @@
         <ul class="feature-list">
           <li>
             <h3>Inspect first</h3>
-            <p>Pick a JPEG and Image Sanitizer reports every metadata segment present: EXIF (camera and capture data, often GPS), XMP (Adobe edit history and ratings), IPTC (captions, byline, copyright), JFIF (producer name), Adobe APP14, freeform comments, and any other application metadata markers.</p>
+            <p>Pick an image and Image Sanitizer reports every metadata block present and decodes what&rsquo;s actually in each one &mdash; not just &ldquo;EXIF: 4.2 KB&rdquo; but the decoded values: camera and lens, capture date, software, and any GPS coordinates. XMP (Adobe edit history, ratings, region tags), IPTC (captions, byline, copyright), PNG text chunks, ICC profile name, and any application-specific blocks are decoded and shown too. Fields that reveal location or identity are flagged.</p>
+          </li>
+          <li>
+            <h3>GPS shown on an offline world map</h3>
+            <p>If the photo carries GPS coordinates, Image Sanitizer plots them on a bundled offline world map so you can see at a glance where the photo would give you away. The map ships inside the app &mdash; no tile-server lookups, no network requests, no leak of the coordinate you&rsquo;re trying to remove.</p>
           </li>
           <li>
             <h3>One-click sanitise</h3>
-            <p>Click <strong>Sanitise</strong> and Image Sanitizer walks the JPEG&rsquo;s marker stream, skipping every APPn and COM segment, and writes a fresh JPEG alongside the original. The pixel data (the visible image) is preserved exactly &mdash; same dimensions, same compression, byte-identical for the parts that aren&rsquo;t metadata.</p>
+            <p>Click <strong>Sanitise</strong> and the format-specific writer strips every metadata block while preserving the visible pixels exactly. The output is byte-equivalent to the input for the parts that aren&rsquo;t metadata &mdash; same dimensions, same compression, same colour.</p>
           </li>
           <li>
             <h3>Verification on every save</h3>
-            <p>After every sanitisation, Image Sanitizer re-opens the output and confirms zero APPn and COM markers remain. If anything leaked through, the tainted file is deleted and you see a clear failure &mdash; you don&rsquo;t accidentally ship a file you think is clean.</p>
+            <p>After every sanitisation, Image Sanitizer re-opens the output and confirms zero metadata blocks remain. If anything leaked through, the tainted file is deleted and you see a clear failure &mdash; you don&rsquo;t accidentally ship a file you think is clean.</p>
+          </li>
+          <li>
+            <h3>Right-click integration</h3>
+            <p>Optionally install a Finder Quick Action so you can right-click any image and pick <em>Sanitize with Image Sanitizer</em>. Toggle it on or off from Settings &rarr; Finder integration; nothing is installed system-wide without your consent.</p>
           </li>
           <li>
             <h3>The original is never touched</h3>
-            <p>The output is always written to a new path of your choosing (suggested name: <code>&lt;original&gt;-sanitized.jpg</code>). The input JPEG remains exactly as you opened it.</p>
+            <p>The output is always written to a new path of your choosing (suggested name: <code>&lt;original&gt;-sanitized.&lt;ext&gt;</code>). The input image remains exactly as you opened it.</p>
           </li>
         </ul>
       </section>
 
       <section class="section">
-        <h2>v0.1 limitations</h2>
-        <p>Image Sanitizer v0.1 supports <strong>JPEG only</strong> (.jpg, .jpeg). HEIC (the default on modern iPhones), PNG, TIFF and WebP support is planned for v0.2 onwards.</p>
-        <p>If you have a HEIC photo you need to sanitise today, the quick workaround is to open the photo on a Mac and use <em>File &rarr; Export As&hellip;</em> with JPEG format selected. The export drops most of the embedded metadata as a side effect; Image Sanitizer can then verify the result. Native HEIC support is on the way.</p>
+        <h2>Supported formats</h2>
+        <p>Image Sanitizer handles the five formats you actually share:</p>
+        <ul class="feature-list">
+          <li>
+            <h3>JPEG (.jpg, .jpeg)</h3>
+            <p>Marker-stream walker that skips every APPn and COM segment. The same approach as <code>jpegtran&nbsp;-copy&nbsp;none</code> &mdash; no partial-edit risk.</p>
+          </li>
+          <li>
+            <h3>HEIC / HEIF (.heic, .heif)</h3>
+            <p>ISOBMFF box manipulation: EXIF, XMP, and Apple proprietary metadata items are removed in place, padded with <code>free</code> boxes so byte offsets to the image data don&rsquo;t shift. HEIC is the default format on modern iPhones; this is the most common format with the most aggressive default metadata.</p>
+          </li>
+          <li>
+            <h3>PNG (.png)</h3>
+            <p>Chunk walker that drops <code>tEXt</code>, <code>zTXt</code>, <code>iTXt</code>, <code>eXIf</code>, <code>iCCP</code>, <code>tIME</code>, <code>pHYs</code>, <code>sBIT</code>, <code>bKGD</code>, <code>hIST</code>, and <code>sPLT</code> chunks. The image stream and its CRC are preserved bit-for-bit.</p>
+          </li>
+          <li>
+            <h3>WebP (.webp)</h3>
+            <p>RIFF chunk walker. EXIF and XMP chunks are removed and the <code>VP8X</code> extension flags are cleared so downstream decoders don&rsquo;t go looking for chunks that aren&rsquo;t there.</p>
+          </li>
+          <li>
+            <h3>TIFF (.tif, .tiff)</h3>
+            <p>IFD walker with an allow-list: only the structural entries needed to render the image are kept; the rest are filtered out in place and offsets fixed up.</p>
+          </li>
+        </ul>
       </section>
 
       <section class="section">
@@ -90,7 +119,7 @@
 
       <section class="section">
         <h2>Privacy</h2>
-        <p>Image Sanitizer makes no network connections by default. JPEGs are processed entirely on your device. There are no analytics, no telemetry, no servers.</p>
+        <p>Image Sanitizer makes no network connections by default. Images are processed entirely on your device, and the GPS world map is rendered from data bundled inside the app &mdash; nothing about the photo, its coordinates, or its existence is sent anywhere. There are no analytics, no telemetry, no servers.</p>
         <p>An optional auto-update check can be turned on in Settings &rarr; Updates, which makes one HTTPS request per launch to GitHub to look for a new version. No image content, no telemetry, no user data is sent &mdash; see the <a href="/imagesanitizer/privacy/">privacy policy</a> for the full detail.</p>
       </section>
 

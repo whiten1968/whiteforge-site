@@ -39,6 +39,8 @@
           <li><a href="#what-is">What is Image Sanitizer?</a></li>
           <li><a href="#beta">Is Image Sanitizer stable? What does the beta status mean?</a></li>
           <li><a href="#how-works">How does sanitisation work?</a></li>
+          <li><a href="#gps-map">Why does it show my photo on a world map?</a></li>
+          <li><a href="#quick-action">Can I right-click an image in Finder to sanitise it?</a></li>
           <li><a href="#vs-others">How is this different from PDF Sanitizer / PDF Redaction?</a></li>
           <li><a href="#privacy">Where is my data stored?</a></li>
           <li><a href="#requirements">System requirements</a></li>
@@ -47,7 +49,6 @@
           <li><a href="#first-launch">What happens on first launch?</a></li>
           <li><a href="#unidentified">macOS says the app is from an unidentified developer</a></li>
           <li><a href="#formats">Which image formats are supported?</a></li>
-          <li><a href="#heic">What about HEIC photos from my iPhone?</a></li>
           <li><a href="#verify-failed">Verification failed when I saved &mdash; what does that mean?</a></li>
           <li><a href="#bug">How do I report a bug?</a></li>
           <li><a href="#feature">How do I request a feature?</a></li>
@@ -56,11 +57,11 @@
       </nav>
 
       <h2 id="what-is">What is Image Sanitizer?</h2>
-      <p>Image Sanitizer is a local-first macOS app that strips EXIF, GPS coordinates, IPTC, XMP and other hidden metadata from JPEG images. Every save is re-opened and verified before the app reports success.</p>
+      <p>Image Sanitizer is a local-first macOS app that strips EXIF, GPS coordinates, IPTC, XMP and other hidden metadata from JPEG, PNG, WebP, TIFF and HEIC/HEIF images. Every save is re-opened and verified before the app reports success.</p>
       <p>It is a companion to <a href="/pdfsanitizer/">PDF Sanitizer</a> (hidden data in PDFs) and <a href="/pdfredaction/">PDF Redaction</a> (visible content in PDFs). Use Image Sanitizer when you need to share a photo without revealing the camera you took it on, where you were when you took it, or any of the other invisible data the photo carries.</p>
 
       <h2 id="beta">Is Image Sanitizer stable? What does the beta status mean?</h2>
-      <p>Image Sanitizer is currently in beta. The core sanitisation engine is feature-complete and every save is verified before completing, but the app has not yet had wide real-world exercise across every kind of JPEG in the wild. Treat beta builds accordingly:</p>
+      <p>Image Sanitizer is currently in beta. The core sanitisation engine is feature-complete and every save is verified before completing, but the app has not yet had wide real-world exercise across every kind of image in the wild. Treat beta builds accordingly:</p>
       <ul>
         <li>Always keep the original image. Image Sanitizer never overwrites it by default, but you should keep your own backups regardless.</li>
         <li>If the sanitised output is going somewhere sensitive (publication, court filing, news outlet), open it in a different image viewer and re-check the metadata using a separate tool such as <code>exiftool</code>.</li>
@@ -68,30 +69,35 @@
       </ul>
 
       <h2 id="how-works">How does sanitisation work?</h2>
-      <p>A JPEG file is a sequence of <em>markers</em> &mdash; small structured segments that hold either image data or metadata. Image Sanitizer walks every marker and skips the metadata-bearing ones when writing the output:</p>
+      <p>Image Sanitizer ships a separate writer for each supported format. None of them re-encode the visible pixels &mdash; each one walks the file&rsquo;s container structure and removes the metadata blocks while leaving the image data byte-for-byte unchanged.</p>
       <ul>
-        <li><code>APP0</code> &mdash; JFIF container metadata (producer name, density units).</li>
-        <li><code>APP1</code> &mdash; EXIF (camera, capture time, often GPS) and XMP (Adobe edit history).</li>
-        <li><code>APP13</code> &mdash; IPTC / Photoshop annotations (caption, byline, copyright, location).</li>
-        <li><code>APP14</code> &mdash; Adobe transform metadata.</li>
-        <li>Other <code>APPn</code> markers (APP2 through APP15) &mdash; application-specific metadata from various tools.</li>
-        <li><code>COM</code> &mdash; freeform JPEG comments.</li>
+        <li><strong>JPEG.</strong> Marker-stream walker. <code>APP0</code> (JFIF), <code>APP1</code> (EXIF / XMP), <code>APP13</code> (IPTC / Photoshop), <code>APP14</code> (Adobe), all other <code>APPn</code> application markers, and <code>COM</code> (freeform comments) are skipped when writing the output. <code>SOI</code>, <code>EOI</code>, quantisation tables, Huffman tables, frame headers and scan data are preserved exactly. This is the same approach as <code>jpegtran&nbsp;-copy&nbsp;none</code> and <code>exiftool&nbsp;-all=</code> &mdash; no partial-edit leak risk.</li>
+        <li><strong>HEIC / HEIF.</strong> ISOBMFF box walker. EXIF, XMP and Apple-proprietary metadata items inside <code>meta</code>/<code>iinf</code>/<code>iloc</code> are removed in place and the freed bytes filled with standards-conformant <code>free</code> boxes so the offsets into <code>mdat</code> (the image data) don&rsquo;t shift. The image data itself is untouched.</li>
+        <li><strong>PNG.</strong> Chunk walker. <code>tEXt</code>, <code>zTXt</code>, <code>iTXt</code>, <code>eXIf</code>, <code>iCCP</code>, <code>tIME</code>, <code>pHYs</code>, <code>sBIT</code>, <code>bKGD</code>, <code>hIST</code>, and <code>sPLT</code> are dropped. <code>IHDR</code>, <code>PLTE</code>, <code>IDAT</code> and <code>IEND</code> &mdash; the image &mdash; pass through with their original CRCs.</li>
+        <li><strong>WebP.</strong> RIFF chunk walker. EXIF and XMP chunks are removed, and the corresponding flag bits in the <code>VP8X</code> extension header are cleared so downstream decoders don&rsquo;t expect chunks that no longer exist.</li>
+        <li><strong>TIFF.</strong> IFD walker with an allow-list. Only the tag entries needed to render the image are kept; the rest (Artist, Copyright, DateTime, GPS, IPTC, ICC, XMP, Software, HostComputer, &hellip;) are filtered out and the in-file offsets are fixed up in place.</li>
       </ul>
-      <p>Everything else (the <code>SOI</code>, <code>EOI</code>, quantisation tables, Huffman tables, frame headers, scan data) is preserved exactly. The pixel data is unchanged.</p>
-      <p>This is the same approach used by <code>jpegtran -copy none</code> and <code>exiftool -all=</code>. It doesn&rsquo;t try to parse the EXIF structure &mdash; it just removes the whole metadata-carrying section. No risk of partial-edit leaks.</p>
-      <p>After writing, Image Sanitizer re-opens the output and confirms zero APPn and COM markers remain. If anything slipped through, the tainted file is deleted and a clear failure is surfaced.</p>
+      <p>After writing, Image Sanitizer re-opens the output and re-runs the inspection. If any metadata block remains, the tainted file is deleted and you see a clear failure &mdash; you don&rsquo;t accidentally ship a file you think is clean.</p>
+
+      <h2 id="gps-map">Why does it show my photo on a world map?</h2>
+      <p>If the image you opened carries GPS coordinates, Image Sanitizer plots the location on a small world map next to the photo preview. The point is to make the size of the leak obvious: a single line that says &ldquo;<em>GPS: 37.97 N, 23.73 E</em>&rdquo; doesn&rsquo;t register; a pin on the Acropolis does.</p>
+      <p>The map is rendered from a CC0-licensed equirectangular Natural Earth SVG <strong>bundled inside the app</strong>. There is no tile-server lookup, no reverse-geocoding call, no network traffic of any kind &mdash; it would defeat the point of the app to leak the coordinate you are trying to remove. The optional <em>&ldquo;Open in Apple Maps&rdquo;</em> button only fires if you click it explicitly.</p>
+
+      <h2 id="quick-action">Can I right-click an image in Finder to sanitise it?</h2>
+      <p>Yes &mdash; open Image Sanitizer&rsquo;s Settings, find <em>Finder integration</em>, and turn on <em>&ldquo;Show Sanitize with Image Sanitizer in Finder right-click menu&rdquo;</em>. This installs a small macOS Quick Action workflow into <code>~/Library/Services/</code>. From then on, right-clicking any image in Finder offers <em>Quick Actions &rarr; Sanitize with Image Sanitizer</em>, which launches the app (or hands the file to it if it&rsquo;s already running) and pre-loads the image.</p>
+      <p>Nothing is installed without your consent, and turning the toggle off again uninstalls the workflow cleanly.</p>
 
       <h2 id="vs-others">How is this different from PDF Sanitizer / PDF Redaction?</h2>
-      <p>Image Sanitizer is the JPEG counterpart to the PDF tools. The three apps form a workflow for sharing files without leaking hidden data:</p>
+      <p>Image Sanitizer is the image-format counterpart to the PDF tools. The three apps form a workflow for sharing files without leaking hidden data:</p>
       <ul>
         <li><a href="/pdfredaction/"><strong>PDF Redaction</strong></a> removes <em>visible</em> content from a PDF (text and image regions you draw rectangles over).</li>
         <li><a href="/pdfsanitizer/"><strong>PDF Sanitizer</strong></a> removes <em>hidden</em> data from a PDF (metadata, scripts, attachments, comments).</li>
-        <li><strong>Image Sanitizer</strong> removes <em>hidden</em> metadata from a JPEG (EXIF, GPS, XMP, IPTC).</li>
+        <li><strong>Image Sanitizer</strong> removes <em>hidden</em> metadata from a JPEG, PNG, WebP, TIFF, or HEIC image (EXIF, GPS, XMP, IPTC, PNG text chunks, ICC profiles, and so on).</li>
       </ul>
       <p>All three are local-only, never overwrite the original, and verify the output before reporting success.</p>
 
       <h2 id="privacy">Where is my data stored?</h2>
-      <p>The JPEGs you open stay where you opened them from &mdash; Image Sanitizer does not copy your input files anywhere and never overwrites the original. The detected metadata summary is held in memory while the file is open and discarded when you open a different image or quit the app. Sanitised output is written only where you tell the dialog to put it.</p>
+      <p>The images you open stay where you opened them from &mdash; Image Sanitizer does not copy your input files anywhere and never overwrites the original. The detected metadata summary is held in memory while the file is open and discarded when you open a different image or quit the app. Sanitised output is written only where you tell the dialog to put it.</p>
       <p>Image Sanitizer makes no network connections by default. An optional auto-update check can be enabled in Settings &rarr; Updates; if turned on, it makes one HTTPS request per launch to GitHub to look for a new version, and sends no image content, no telemetry, no user data. See the <a href="/imagesanitizer/privacy/">privacy policy</a> for the full detail.</p>
 
       <h2 id="requirements">System requirements</h2>
@@ -140,22 +146,19 @@
       <p>The friendly &ldquo;downloaded from the internet, are you sure?&rdquo; dialog described in the previous section is <em>not</em> one of these warnings.</p>
 
       <h2 id="formats">Which image formats are supported?</h2>
-      <p>Image Sanitizer v0.1 supports <strong>JPEG only</strong> (file extensions <code>.jpg</code> and <code>.jpeg</code>). JPEG is by far the most common format for photos shared on the web and over messaging apps, and it&rsquo;s where EXIF/GPS leaks bite hardest.</p>
-      <p>Planned for upcoming versions: HEIC (the default on modern iPhones), PNG, TIFF, and WebP. If a format you need isn&rsquo;t on that list, let us know.</p>
-
-      <h2 id="heic">What about HEIC photos from my iPhone?</h2>
-      <p>HEIC support is on the roadmap but not in v0.1. Until it lands, the quick workaround is to convert the HEIC to JPEG first:</p>
-      <ol>
-        <li>Open the HEIC photo in <em>Preview</em> on your Mac.</li>
-        <li>Choose <em>File &rarr; Export As&hellip;</em></li>
-        <li>Set <em>Format</em> to <strong>JPEG</strong> and save.</li>
-        <li>Open the resulting JPEG in Image Sanitizer.</li>
-      </ol>
-      <p>Preview&rsquo;s export drops most of the embedded EXIF/GPS metadata as a side effect; Image Sanitizer can then walk the result and confirm anything residual is gone.</p>
+      <p>Image Sanitizer supports the five formats most photos actually arrive in:</p>
+      <ul>
+        <li><strong>JPEG</strong> &mdash; <code>.jpg</code>, <code>.jpeg</code>.</li>
+        <li><strong>HEIC / HEIF</strong> &mdash; <code>.heic</code>, <code>.heif</code>. The default format on modern iPhones, and the one with the most aggressive default metadata.</li>
+        <li><strong>PNG</strong> &mdash; <code>.png</code>.</li>
+        <li><strong>WebP</strong> &mdash; <code>.webp</code>.</li>
+        <li><strong>TIFF</strong> &mdash; <code>.tif</code>, <code>.tiff</code>.</li>
+      </ul>
+      <p>If a format you need isn&rsquo;t on this list, let us know &mdash; the <a href="#feature">feature request channel</a> is open.</p>
 
       <h2 id="verify-failed">Verification failed when I saved &mdash; what does that mean?</h2>
-      <p>Image Sanitizer re-opens every sanitised output and counts the metadata markers present. If any remain, verification fails: the tainted output is deleted and you see an error with the leak counts.</p>
-      <p>This is the system working as designed &mdash; it means Image Sanitizer caught a case where it could not be sure the file was clean. Email us a description of the image (or, if you can, a small synthetic JPEG with the same shape that reproduces the failure) at <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a> and we will look into it.</p>
+      <p>Image Sanitizer re-opens every sanitised output and re-runs the format-specific inspection. If any metadata block remains, verification fails: the tainted output is deleted and you see an error with the leak counts.</p>
+      <p>This is the system working as designed &mdash; it means Image Sanitizer caught a case where it could not be sure the file was clean. Email us a description of the image (or, if you can, a small synthetic file with the same structural shape that reproduces the failure) at <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a> and we will look into it.</p>
 
       <h2 id="bug">How do I report a bug?</h2>
       <p>Two channels, whichever you prefer:</p>
@@ -170,7 +173,7 @@
         <li>Your macOS version (<em>Apple menu &rarr; About This Mac</em>);</li>
         <li>The Image Sanitizer version (Settings &rarr; bottom of the panel).</li>
       </ul>
-      <p>If the bug only reproduces with a specific image, try to construct a small synthetic JPEG with the same structural shape and share that. Send original images only if we ask, and only via email.</p>
+      <p>If the bug only reproduces with a specific image, try to construct a small synthetic file with the same structural shape and share that. Send original images only if we ask, and only via email.</p>
 
       <h2 id="feature">How do I request a feature?</h2>
       <p>Open a <a href="https://github.com/whiten1968/ImageSanitizer-downloads/discussions">Discussion</a> on the downloads repo (Ideas category), or email <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>. We read every request.</p>

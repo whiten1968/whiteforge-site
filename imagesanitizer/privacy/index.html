@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Image Sanitizer privacy policy &mdash; Whiteforge Technologies</title>
-  <meta name="description" content="Privacy policy for the Image Sanitizer macOS app. Image Sanitizer processes JPEGs entirely on your device and makes no network connections by default.">
+  <meta name="description" content="Privacy policy for the Image Sanitizer macOS app. Image Sanitizer processes JPEG, PNG, WebP, TIFF and HEIC images entirely on your device and makes no network connections by default.">
   <link rel="stylesheet" href="/css/base.css">
   <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
 </head>
@@ -34,7 +34,7 @@
       <p class="doc-meta">For the Image Sanitizer macOS app &middot; Last updated 21 May 2026</p>
 
       <div class="callout">
-        <p><strong>Summary.</strong> Image Sanitizer processes the JPEGs you open entirely on your device. It makes no network connections by default, has no servers, and Whiteforge Technologies never receives your images, file paths, telemetry, or any other data from the app. An optional auto-update check (off by default) makes a single HTTPS request to GitHub if you enable it &mdash; see <a href="#network">Network activity</a> for the full detail.</p>
+        <p><strong>Summary.</strong> Image Sanitizer processes the images you open entirely on your device. It makes no network connections by default, has no servers, and Whiteforge Technologies never receives your images, file paths, GPS coordinates, telemetry, or any other data from the app. An optional auto-update check (off by default) makes a single HTTPS request to GitHub if you enable it &mdash; see <a href="#network">Network activity</a> for the full detail.</p>
       </div>
 
       <nav class="doc-toc" aria-label="Table of contents">
@@ -55,17 +55,17 @@
       </nav>
 
       <h2 id="intro">1. Introduction</h2>
-      <p>This policy explains how Image Sanitizer handles your data. Image Sanitizer is a macOS application published by Whiteforge Technologies Ltd (&ldquo;Whiteforge&rdquo;, &ldquo;we&rdquo;), a company registered in England and Wales (company number 17224707). It inspects JPEG images for hidden metadata, removes it, and verifies the result before saving.</p>
+      <p>This policy explains how Image Sanitizer handles your data. Image Sanitizer is a macOS application published by Whiteforge Technologies Ltd (&ldquo;Whiteforge&rdquo;, &ldquo;we&rdquo;), a company registered in England and Wales (company number 17224707). It inspects JPEG, PNG, WebP, TIFF and HEIC/HEIF images for hidden metadata, removes it, and verifies the result before saving.</p>
       <p>This policy is for the Image Sanitizer app. The <a href="/">whiteforgetech.co.uk</a> website has its own <a href="/privacy/">privacy policy</a>.</p>
 
       <h2 id="local">2. Data the app processes locally</h2>
-      <p>Image Sanitizer processes the JPEG files you open with it. While a file is open, the app holds in memory:</p>
+      <p>Image Sanitizer processes the image files you open with it. While a file is open, the app holds in memory:</p>
       <ul>
-        <li>The bytes of the JPEG file you opened.</li>
-        <li>A summary of the metadata segments detected in the file (EXIF / XMP / IPTC / JFIF / Adobe APP14 / other APPn / comments) and their sizes.</li>
+        <li>The bytes of the image file you opened.</li>
+        <li>A summary of the metadata blocks detected in the file (EXIF, XMP, IPTC, PNG text chunks, ICC profile, GPS, camera, lens, capture date, software, and so on) and their sizes. If the photo carries GPS coordinates, those coordinates are held in memory so the world map can plot them.</li>
         <li>The output path you select for the sanitised copy.</li>
       </ul>
-      <p>All of the above stays on your device. None of it is transmitted off the device.</p>
+      <p>All of the above stays on your device. None of it is transmitted off the device &mdash; including GPS coordinates: the world map is rendered from a bundled offline SVG, with no tile-server, geocoding, or analytics requests.</p>
 
       <h2 id="received">3. Data Whiteforge receives</h2>
       <p>None. Image Sanitizer does not send your images, metadata summaries, file paths, or telemetry to Whiteforge. There are no Whiteforge servers in the data path. The app does not contain analytics SDKs, advertising SDKs, or third-party tracking libraries. The optional auto-update check (described below) goes directly to GitHub &mdash; Whiteforge does not see those requests.</p>
@@ -82,9 +82,10 @@
 
       <h2 id="storage">5. Where data is stored</h2>
       <ul>
-        <li><strong>The JPEG file you open</strong> &mdash; remains where you opened it from. Image Sanitizer does not copy your input files into its own storage, and never overwrites the original.</li>
+        <li><strong>The image file you open</strong> &mdash; remains where you opened it from. Image Sanitizer does not copy your input files into its own storage, and never overwrites the original.</li>
         <li><strong>The detected metadata summary and your output path choice</strong> &mdash; held in memory while the file is open. When you open a different image or quit the app, this state is discarded.</li>
-        <li><strong>The sanitised output JPEG</strong> &mdash; only created when you choose to save and pick a destination. Image Sanitizer writes to the location you specify (typically alongside the original with a <code>-sanitized</code> suffix) and nowhere else.</li>
+        <li><strong>The sanitised output</strong> &mdash; only created when you choose to save and pick a destination. Image Sanitizer writes to the location you specify (typically alongside the original with a <code>-sanitized</code> suffix, matching the input&rsquo;s format) and nowhere else.</li>
+        <li><strong>Optional Finder Quick Action.</strong> If you turn on <em>Settings &rarr; Finder integration</em>, Image Sanitizer writes a small Automator workflow into <code>~/Library/Services/</code> so that right-clicking an image in Finder offers <em>Sanitize with Image Sanitizer</em>. Turning the toggle off again removes the workflow. The workflow itself contains no personal data &mdash; it&rsquo;s a fixed script that runs <code>open -a &ldquo;Image Sanitizer&rdquo; &lt;file&gt;</code>.</li>
       </ul>
 
       <h2 id="crash">6. Crash reports and diagnostics</h2>
@@ -96,7 +97,7 @@
         <li><strong>Quitting the app</strong> &mdash; drops all in-memory state.</li>
         <li><strong>Uninstalling Image Sanitizer</strong> &mdash; remove the <em>Image Sanitizer.app</em> bundle from Applications. The app does not install components elsewhere on the system. Move the app to the Trash and empty it, and everything Image Sanitizer touched is gone.</li>
       </ul>
-      <p>The JPEGs you opened, and the sanitised outputs you saved, are unaffected by uninstalling the app &mdash; they live where you put them.</p>
+      <p>The images you opened, and the sanitised outputs you saved, are unaffected by uninstalling the app &mdash; they live where you put them. If you previously turned on the Finder Quick Action, remove <code>~/Library/Services/Sanitize&nbsp;with&nbsp;Image&nbsp;Sanitizer.workflow</code> by hand, or turn the toggle off in Settings first.</p>
 
       <h2 id="children">8. Children</h2>
       <p>Image Sanitizer is not directed at children under 13. We do not knowingly collect personal information from children.</p>
