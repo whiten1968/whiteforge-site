@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Doc Sanitizer &mdash; Whiteforge Technologies</title>
+  <meta name="description" content="Doc Sanitizer: local-first macOS app that strips authors, tracked changes, comments, speaker notes, pivot caches and other hidden data from Word, Excel and PowerPoint documents before you share them. Every save is verified.">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
+</head>
+<body>
+  <div class="page">
+
+    <header class="site-header">
+      <a href="/" class="site-logo">
+        <img class="site-logo__mark" src="/assets/whiteforge-mark.png" width="274" height="274" alt="">
+        <span class="site-logo__text">Whiteforge Technologies</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/#products">Products</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </header>
+
+    <main>
+
+      <section class="hero hero--product">
+        <img class="app-icon app-icon--large"
+             src="/assets/docsanitizer-icon.png" width="1024" height="1024"
+             alt="Doc Sanitizer app icon">
+        <p class="section__eyebrow">macOS</p>
+        <h1>Doc Sanitizer</h1>
+        <p class="lede">Word, Excel and PowerPoint files carry hidden data the visible content doesn&rsquo;t show &mdash; every author and editor by name, every comment ever written, the tracked changes you thought you accepted, the speaker notes you forgot were there, the pivot caches that still hold the unfiltered source data. Send the document, share all of that with whoever receives it. Doc Sanitizer reveals every category, surfaces the decoded values, strips them cleanly, and verifies the result &mdash; without changing what the document looks like. Local-only.</p>
+        <p class="cta-row">
+          <a class="appstore-button" href="https://github.com/whiten1968/DocSanitizer-downloads/releases/latest/download/DocSanitizer-aarch64.dmg" aria-label="Download Doc Sanitizer for Apple Silicon Macs">
+            <span class="appstore-button__small">Download for</span>
+            <span class="appstore-button__large">macOS</span>
+          </a>
+          <span class="appstore-button__note">
+            Free public beta &middot;
+            <a href="https://github.com/whiten1968/DocSanitizer-downloads/releases/latest/download/DocSanitizer-aarch64.dmg">Apple Silicon</a> or
+            <a href="https://github.com/whiten1968/DocSanitizer-downloads/releases/latest/download/DocSanitizer-x86_64.dmg">Intel</a>
+            &middot; macOS 11 or later
+          </span>
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Why this exists</h2>
+        <p>In 2003, Tony Blair&rsquo;s government published a Word document making the case for the Iraq War &mdash; the &ldquo;Dodgy Dossier.&rdquo; A researcher in Cambridge opened the file and noticed the change history embedded inside it. Within hours, the document had been picked apart in public: the names of the political staff who had edited it, the order in which they had worked on it, the source paragraphs that had been lifted (uncited) from a postgraduate student&rsquo;s thesis. None of that was visible in the printed document. All of it travelled with the file.</p>
+        <p>Two decades on, the hidden data is still there, in every Word, Excel and PowerPoint file, by default. Microsoft&rsquo;s own &ldquo;Inspect Document&rdquo; tool catches some of it; it misses categories like pivot table source caches, the contents of speaker notes, the SharePoint compliance tags that travel inside a corporate-exported file. A surprising amount of what you send is what you didn&rsquo;t mean to send.</p>
+        <p>Doc Sanitizer surfaces every category in the document you opened, lets you strip it with one click, and verifies the result before reporting success.</p>
+      </section>
+
+      <section class="section">
+        <h2>How it works</h2>
+        <ul class="feature-list">
+          <li>
+            <h3>Inspect first &mdash; with decoded values</h3>
+            <p>Pick a document and Doc Sanitizer walks every part inside the file&rsquo;s zip container and decodes what&rsquo;s actually there. Not just &ldquo;Document properties: 814 B&rdquo; but <em>&ldquo;Author: Chris Burgess&rdquo;</em>, <em>&ldquo;Last modified by: Nick White&rdquo;</em>, <em>&ldquo;Company: SecretCorp Plc&rdquo;</em>. For Word: every tracked insertion and deletion with the author and date, every comment body in full, every embedded file. For Excel: hidden sheet names, the column names and source-range cached inside each pivot table, email-shaped author IDs from threaded comments, external workbook paths, connection strings. For PowerPoint: the full text of every speaker note, the titles of hidden slides. Fields that reveal identity are flagged.</p>
+          </li>
+          <li>
+            <h3>One-click sanitise</h3>
+            <p>Click <strong>Sanitise</strong> and the OOXML-aware writer drops the metadata-bearing parts wholesale, rewrites the <code>[Content_Types].xml</code> manifest and every <code>.rels</code> file to remove dangling references, and replaces <code>docProps/core.xml</code> and <code>docProps/app.xml</code> with empty shells. The visible content of the document &mdash; text, tables, slides, charts, formatting &mdash; passes through byte-for-byte. Hidden slides and hidden sheets are surfaced for your attention but preserved by default; deleting visible-but-unseen content is your call, not ours.</p>
+          </li>
+          <li>
+            <h3>Verification on every save</h3>
+            <p>After every sanitisation, Doc Sanitizer re-inspects the output zip and confirms zero metadata categories remain in the parts that should have been cleaned. If anything leaked through, the tainted file is deleted and you see a clear failure &mdash; you don&rsquo;t accidentally ship a file you think is clean.</p>
+          </li>
+          <li>
+            <h3>Right-click integration</h3>
+            <p>Optionally install a Finder Quick Action so you can right-click any Word, Excel or PowerPoint document and pick <em>Sanitize with Doc Sanitizer</em>. Toggle it on or off from Settings &rarr; Finder integration; nothing is installed system-wide without your consent.</p>
+          </li>
+          <li>
+            <h3>The original is never touched</h3>
+            <p>The output is always written to a new path of your choosing (suggested name: <code>&lt;original&gt;-sanitized.&lt;ext&gt;</code>). The input document remains exactly as you opened it.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Supported formats</h2>
+        <p>Doc Sanitizer handles the three OOXML formats Office produces:</p>
+        <ul class="feature-list">
+          <li>
+            <h3>Word (.docx)</h3>
+            <p>Walks <code>word/document.xml</code> for tracked changes (<code>w:ins</code>, <code>w:del</code>, <code>w:moveFrom</code>, <code>w:moveTo</code>) and comment anchors; strips them while keeping accepted insertions and discarding accepted deletions. Removes <code>word/comments.xml</code> and the modern threaded-comment companions wholesale. Strips revision-save IDs (<code>w:rsids</code>) from <code>word/settings.xml</code>. Drops <code>word/embeddings/</code>, <code>word/vbaProject.bin</code>, <code>customXml/</code>. Empties the docProps trio.</p>
+          </li>
+          <li>
+            <h3>Excel (.xlsx)</h3>
+            <p>The widest hidden-data surface of the three. Drops <code>xl/comments*.xml</code>, the threaded-comment and persons registry, <strong>pivot caches</strong> (the original unfiltered rows behind every pivot table), external workbook references, connection strings, query tables, embeddings, VBA. Hidden sheets are surfaced in the inspection panel but preserved &mdash; that&rsquo;s visible content, your call to remove.</p>
+          </li>
+          <li>
+            <h3>PowerPoint (.pptx)</h3>
+            <p>Strips <code>ppt/notesSlides/</code> wholesale &mdash; the speaker-notes pane is the headline pptx leak. Removes <code>ppt/comments/</code>, the comment-author registry (which routinely leaks email-shaped userIds), embeddings, ink annotations, application tags, VBA. Hidden slides are surfaced with title sniffed and preserved.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>What Doc Sanitizer does not do</h2>
+        <p>Doc Sanitizer does <strong>not</strong> redact or modify the visible body of the document. To remove a sentence from a paragraph, a row from a table, or a slide from a deck, you&rsquo;ll want Word, Excel or PowerPoint itself.</p>
+        <p>Doc Sanitizer does <strong>not</strong> handle the older binary Office formats (<code>.doc</code>, <code>.xls</code>, <code>.ppt</code>) or non-Office productivity formats (<code>.odt</code>, <code>.ods</code>, <code>.odp</code>) yet. OOXML (.docx / .xlsx / .pptx) is the dominant format the world actually shares; the legacy formats are a different surface.</p>
+        <p>Doc Sanitizer does <strong>not</strong> certify legal or regulatory compliance. It helps remove common categories of hidden data; it doesn&rsquo;t certify your workflow against any specific standard.</p>
+      </section>
+
+      <section class="section">
+        <h2>Privacy</h2>
+        <p>Doc Sanitizer makes no network connections by default. Documents are processed entirely on your device &mdash; nothing about the file, its authors, its comment text, or its existence is sent anywhere. There are no analytics, no telemetry, no servers.</p>
+        <p>An optional auto-update check can be turned on in Settings &rarr; Updates, which makes one HTTPS request per launch to GitHub to look for a new version. No document content, no telemetry, no user data is sent &mdash; see the <a href="/docsanitizer/privacy/">privacy policy</a> for the full detail.</p>
+      </section>
+
+      <section class="section">
+        <h2>Requirements</h2>
+        <p>macOS 11 (Big Sur) or later. Apple Silicon and Intel both supported &mdash; separate disk images for each. Distributed as a Developer ID signed and Apple-notarized disk image &mdash; not via the Mac App Store.</p>
+      </section>
+
+      <section class="section">
+        <h2>Support</h2>
+        <p>For bug reports and feature requests, see the <a href="/docsanitizer/support/">support page</a>. For anything else, email <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>.</p>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__block">
+        <strong>WHITEFORGE TECHNOLOGIES LTD</strong>
+        Registered in England and Wales<br>
+        Company No. 17224707
+      </div>
+      <div class="footer__block">
+        <strong>Contact</strong>
+        <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>
+      </div>
+      <div class="footer__block footer__links">
+        <strong>Doc Sanitizer</strong>
+        <a href="/docsanitizer/">Overview</a>
+        <a href="/docsanitizer/privacy/">Privacy policy</a>
+        <a href="/docsanitizer/terms/">Terms of service</a>
+        <a href="/docsanitizer/support/">Support</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
