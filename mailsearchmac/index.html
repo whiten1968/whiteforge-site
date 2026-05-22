@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MailSearch &mdash; Whiteforge Technologies</title>
+  <meta name="description" content="MailSearch for Mac: search every email you've ever received. Local-only full-text index across Gmail, Outlook, iCloud and IMAP — including text inside PDF and document attachments. Tokens stay in your Keychain; no Whiteforge servers in the data path.">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
+</head>
+<body>
+  <div class="page">
+
+    <header class="site-header">
+      <a href="/" class="site-logo">
+        <img class="site-logo__mark" src="/assets/whiteforge-mark.png" width="274" height="274" alt="">
+        <span class="site-logo__text">Whiteforge Technologies</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/#products">Products</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </header>
+
+    <main>
+
+      <section class="hero hero--product">
+        <img class="app-icon app-icon--large"
+             src="/assets/mailsearch-icon.png" width="1024" height="1024"
+             alt="MailSearch app icon">
+        <p class="section__eyebrow">macOS</p>
+        <h1>MailSearch</h1>
+        <p class="lede">Search every email you&rsquo;ve ever received. MailSearch connects to Gmail, Outlook, iCloud, or any IMAP mailbox and builds a full-text index on your Mac &mdash; subjects, senders, recipients, body text, and the text inside PDF and document attachments. Tokens stay in your Keychain. Mail flows directly from your provider to MailSearch &mdash; no Whiteforge servers in the path.</p>
+        <p class="cta-row">
+          <a class="appstore-button" href="https://github.com/whiten1968/MailSearchMac-downloads/releases/latest/download/MailSearchMac-aarch64.dmg" aria-label="Download MailSearch for Apple Silicon Macs">
+            <span class="appstore-button__small">Download for</span>
+            <span class="appstore-button__large">macOS</span>
+          </a>
+          <span class="appstore-button__note">
+            Free public beta &middot;
+            <a href="https://github.com/whiten1968/MailSearchMac-downloads/releases/latest/download/MailSearchMac-aarch64.dmg">Apple Silicon</a> or
+            <a href="https://github.com/whiten1968/MailSearchMac-downloads/releases/latest/download/MailSearchMac-x86_64.dmg">Intel</a>
+            &middot; macOS 11 or later
+          </span>
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Why this exists</h2>
+        <p>Mail clients are bad at search. Apple Mail&rsquo;s built-in search misses messages older than its arbitrary recency window. Gmail&rsquo;s web search is fast but only for that one Gmail account, and finding text inside a PDF attachment from 2019 is a coin-flip. Outlook&rsquo;s desktop search regularly forgets your archive exists.</p>
+        <p>MailSearch is a search engine, not a mail client. It pulls every message from every mailbox you connect, indexes the lot, and answers in milliseconds. Type words you remember from the message &mdash; <em>&ldquo;easyjet barcelona&rdquo;</em>, <em>&ldquo;amazon refund&rdquo;</em>, <em>&ldquo;invoice anderson&rdquo;</em> &mdash; and the matching email comes up, even if the words live inside an attached PDF.</p>
+        <p>The index lives on your Mac. No Whiteforge servers see your mail. Tokens never leave your Keychain.</p>
+      </section>
+
+      <section class="section">
+        <h2>How it works</h2>
+        <ul class="feature-list">
+          <li>
+            <h3>Connect a mailbox</h3>
+            <p>Click <em>+ Add Gmail</em> / <em>+ Add Outlook</em> and grant access in your browser; click <em>+ Add iCloud Mail</em> and paste an app-specific password from <a href="https://appleid.apple.com">appleid.apple.com</a>; or click <em>+ Add IMAP</em> for any other IMAP server (BT, Fastmail, Yahoo, your work&rsquo;s Microsoft 365 on a non-Outlook tenant). All four providers index identically once connected.</p>
+          </li>
+          <li>
+            <h3>One-click sync</h3>
+            <p>Click <em>Sync now</em>. MailSearch fetches your most recent 500 messages from that mailbox, parses subjects + senders + recipients + body text + attachment text, and writes the lot to a local SQLite full-text index. Progress streams to the sidebar as it goes.</p>
+          </li>
+          <li>
+            <h3>Search across everything</h3>
+            <p>One search box, one set of results, spanning every connected mailbox. Words use AND semantics with prefix matching &mdash; type <code>invoi anderson</code> and the invoice from Anderson Consulting comes up immediately, even if the matching text is inside the attached PDF.</p>
+          </li>
+          <li>
+            <h3>PDF, RTF and plain-text attachments are searchable</h3>
+            <p>Attachments in those three formats are extracted at index time. A search for words from inside a PDF receipt or RTF report finds the email that delivered them. Image attachments and binary formats are skipped &mdash; no text payload to index cheaply.</p>
+          </li>
+          <li>
+            <h3>Read messages in the app</h3>
+            <p>Click a result to open the message inside MailSearch. The viewer shows the sender, full date, folder, and the matching snippet with the words highlighted. Full HTML body rendering arrives in a follow-up release.</p>
+          </li>
+          <li>
+            <h3>Local-only by design</h3>
+            <p>MailSearch is a search tool with a read-only viewer. It does not reply, send, archive, delete, or otherwise modify your mailbox. Mail goes from your provider straight to your Mac &mdash; no Whiteforge servers in the path, no analytics, no telemetry, no crash reporting, ever.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Supported mailboxes</h2>
+        <ul class="feature-list">
+          <li>
+            <h3>Gmail</h3>
+            <p>OAuth via a desktop loopback redirect. Read-only scope (<code>gmail.readonly</code>). Tokens in Keychain; refresh handled automatically.</p>
+          </li>
+          <li>
+            <h3>Outlook / Microsoft 365</h3>
+            <p>OAuth via Microsoft&rsquo;s Mobile and desktop applications platform. Mail.Read + User.Read + offline_access scopes. Tokens in Keychain.</p>
+          </li>
+          <li>
+            <h3>iCloud Mail</h3>
+            <p>IMAP over TLS to <code>imap.mail.me.com:993</code> with an Apple ID app-specific password (generated at <a href="https://appleid.apple.com">appleid.apple.com</a> &rarr; Sign-In and Security). Apple doesn&rsquo;t support OAuth for iCloud Mail, so app-specific is the canonical path.</p>
+          </li>
+          <li>
+            <h3>Generic IMAP (BT, Fastmail, Yahoo, ...)</h3>
+            <p>You supply the server hostname, port and credentials. IMAP over TLS, with rustls (no system OpenSSL).</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>What MailSearch does not do</h2>
+        <p>MailSearch does <strong>not</strong> reply, send, archive, delete, label, or otherwise modify your mailbox. It is a read-only search engine with a read-only viewer.</p>
+        <p>MailSearch does <strong>not</strong> currently render full HTML email bodies in the viewer &mdash; the search-results pane shows the matching snippet and the full plain-text body. Sanitised-HTML rendering arrives in a follow-up release.</p>
+        <p>MailSearch does <strong>not</strong> index image / video / archive attachments. Only PDF, RTF and plain-text are extracted at index time.</p>
+        <p>MailSearch does <strong>not</strong> currently sync incrementally on a schedule &mdash; you click <em>Sync now</em> when you want fresh mail. Background indexing arrives in a follow-up release.</p>
+      </section>
+
+      <section class="section">
+        <h2>Privacy</h2>
+        <p>MailSearch makes outbound network connections <em>by design</em> &mdash; it has to, to fetch your mail. Those connections go to your mail provider, not to Whiteforge. There are no Whiteforge servers in the data path. There are no analytics, telemetry, or crash reporting in the app.</p>
+        <p>Tokens (Gmail / Outlook) and app-specific passwords (iCloud / IMAP) live in your macOS Keychain. The full-text index and any cached message bodies live in a SQLite database under <code>~/Library/Application&nbsp;Support/</code>. See the <a href="/mailsearchmac/privacy/">privacy policy</a> for the full detail.</p>
+      </section>
+
+      <section class="section">
+        <h2>Requirements</h2>
+        <p>macOS 11 (Big Sur) or later. Apple Silicon and Intel both supported &mdash; separate disk images for each. Distributed as a Developer ID signed and Apple-notarized disk image &mdash; not via the Mac App Store.</p>
+      </section>
+
+      <section class="section">
+        <h2>Support</h2>
+        <p>For bug reports and feature requests, see the <a href="/mailsearchmac/support/">support page</a>. For anything else, email <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>.</p>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__block">
+        <strong>WHITEFORGE TECHNOLOGIES LTD</strong>
+        Registered in England and Wales<br>
+        Company No. 17224707
+      </div>
+      <div class="footer__block">
+        <strong>Contact</strong>
+        <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>
+      </div>
+      <div class="footer__block footer__links">
+        <strong>MailSearch</strong>
+        <a href="/mailsearchmac/">Overview</a>
+        <a href="/mailsearchmac/privacy/">Privacy policy</a>
+        <a href="/mailsearchmac/terms/">Terms of service</a>
+        <a href="/mailsearchmac/support/">Support</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>

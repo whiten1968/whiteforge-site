@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MailSearch support &mdash; Whiteforge Technologies</title>
+  <meta name="description" content="Support and FAQ for the MailSearch macOS app.">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
+</head>
+<body>
+  <div class="page">
+
+    <header class="site-header">
+      <a href="/" class="site-logo">
+        <img class="site-logo__mark" src="/assets/whiteforge-mark.png" width="274" height="274" alt="">
+        <span class="site-logo__text">Whiteforge Technologies</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/#products">Products</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </header>
+
+    <main class="prose">
+
+      <header class="page-title">
+        <img class="app-icon app-icon--small"
+             src="/assets/mailsearch-icon.png" width="1024" height="1024"
+             alt="MailSearch app icon">
+        <h1>MailSearch support</h1>
+      </header>
+      <p class="doc-meta">Help and frequently asked questions &middot; Last updated 22 May 2026</p>
+
+      <nav class="doc-toc" aria-label="Table of contents">
+        <strong>Contents</strong>
+        <ol>
+          <li><a href="#what-is">What is MailSearch?</a></li>
+          <li><a href="#beta">Is MailSearch stable? What does beta mean here?</a></li>
+          <li><a href="#how-search">How does the search work?</a></li>
+          <li><a href="#connect-gmail">How do I connect a Gmail account?</a></li>
+          <li><a href="#connect-outlook">How do I connect an Outlook / Microsoft 365 account?</a></li>
+          <li><a href="#connect-icloud">How do I connect iCloud Mail?</a></li>
+          <li><a href="#connect-imap">How do I connect a generic IMAP mailbox?</a></li>
+          <li><a href="#how-much">How much of my mail does MailSearch index?</a></li>
+          <li><a href="#attachments">Are attachments searchable?</a></li>
+          <li><a href="#privacy">Where is my data stored?</a></li>
+          <li><a href="#requirements">System requirements</a></li>
+          <li><a href="#download">How do I download the beta?</a></li>
+          <li><a href="#install">How do I install it?</a></li>
+          <li><a href="#first-launch">What happens on first launch?</a></li>
+          <li><a href="#keychain-prompt">macOS keeps prompting me for my password</a></li>
+          <li><a href="#bug">How do I report a bug?</a></li>
+          <li><a href="#feature">How do I request a feature?</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="what-is">What is MailSearch?</h2>
+      <p>MailSearch is a local-first macOS app that lets you search every email you&rsquo;ve ever received, across every mailbox you connect to it. It indexes your mail on your Mac &mdash; subjects, senders, recipients, body text, plus text extracted from PDF / RTF / plain-text attachments &mdash; and answers searches in milliseconds. Tokens stay in your Keychain; mail flows directly from your provider to MailSearch with no Whiteforge servers in the path.</p>
+      <p>MailSearch is a search engine + read-only viewer. It does not reply, send, archive, delete, or modify your mailbox in any way.</p>
+
+      <h2 id="beta">Is MailSearch stable? What does beta mean here?</h2>
+      <p>MailSearch is in public beta. The four mail providers (Gmail, Outlook, iCloud, generic IMAP) are all wired end-to-end and tested against real mailboxes; the local search index uses SQLite&rsquo;s FTS5 (which has been stable since 2015). The beta status reflects:</p>
+      <ul>
+        <li>Limited real-world exposure across the universe of weird MIME / RTF / encoded-word forms in the wild.</li>
+        <li>Incremental sync isn&rsquo;t wired yet &mdash; each <em>Sync now</em> fetches the most recent 500 messages from scratch (de-duplicated against the existing index, so re-running is cheap, but new mail since the last sync is what you&rsquo;ll see).</li>
+        <li>Full HTML body rendering inside the viewer hasn&rsquo;t landed yet &mdash; the message-detail panel shows the matching snippet and the plain-text body.</li>
+      </ul>
+
+      <h2 id="how-search">How does the search work?</h2>
+      <p>MailSearch uses SQLite&rsquo;s FTS5 full-text search over five indexed columns per message: subject, sender, recipients, body text (up to 50 KB), attachment text (up to 20 KB). Your query is split into words and treated as AND-with-prefix:</p>
+      <ul>
+        <li><strong>AND semantics</strong>: every word you type must appear in the matched message. <code>amazon refund</code> matches a message that contains <em>both</em> &ldquo;amazon&rdquo; and &ldquo;refund&rdquo;.</li>
+        <li><strong>Prefix matching</strong>: each word is treated as a prefix, so <code>invoi</code> matches &ldquo;invoice&rdquo; and <code>anders</code> matches &ldquo;Anderson&rdquo;.</li>
+        <li>No fuzzy match, no synonyms. If the word isn&rsquo;t in the message exactly (or as a prefix), the message won&rsquo;t match.</li>
+      </ul>
+
+      <h2 id="connect-gmail">How do I connect a Gmail account?</h2>
+      <p>Open MailSearch, find the sidebar on the left, click <em>+ Add Gmail</em>. Your default browser opens to Google&rsquo;s consent screen. The first time you connect, you may see a yellow &ldquo;Google hasn&rsquo;t verified this app&rdquo; warning &mdash; that&rsquo;s expected for a desktop app in early use. Click <em>Advanced</em> &rarr; <em>Go to MailSearch Desktop (unsafe)</em> to proceed (it&rsquo;s the same OAuth client that owns the scope you&rsquo;re granting). Grant the read-only Gmail scope; the browser tab redirects to a small &ldquo;you can close this&rdquo; page, and the sidebar shows your account.</p>
+      <p>MailSearch only requests <code>gmail.readonly</code> &mdash; no ability to send, reply, archive or delete.</p>
+
+      <h2 id="connect-outlook">How do I connect an Outlook / Microsoft 365 account?</h2>
+      <p>Same flow as Gmail: <em>+ Add Outlook</em> in the sidebar opens Microsoft&rsquo;s consent page in your browser. Grant the requested scopes (<code>Mail.Read</code>, <code>User.Read</code>, <code>offline_access</code>), the browser redirects back, the sidebar shows your account.</p>
+
+      <h2 id="connect-icloud">How do I connect iCloud Mail?</h2>
+      <p>Apple doesn&rsquo;t support OAuth for iCloud Mail, so you&rsquo;ll need an <strong>app-specific password</strong> (your regular Apple ID password won&rsquo;t work):</p>
+      <ol>
+        <li>Open <a href="https://appleid.apple.com">appleid.apple.com</a> and sign in.</li>
+        <li><em>Sign-In and Security</em> &rarr; <em>App-Specific Passwords</em>.</li>
+        <li>Generate a new password labelled <em>MailSearch</em>. Apple shows it once &mdash; copy it.</li>
+        <li>In MailSearch, click <em>+ Add iCloud Mail</em>, enter your full iCloud email + paste the 16-character app-specific password.</li>
+      </ol>
+      <p>MailSearch validates the credentials by opening an IMAP session + LOGIN + SELECT INBOX before saving anything. If those three succeed, the password lands in your Keychain; if any fail, nothing is saved.</p>
+
+      <h2 id="connect-imap">How do I connect a generic IMAP mailbox?</h2>
+      <p>Click <em>+ Add IMAP</em>, fill in: email address, IMAP server (e.g. <code>mail.btinternet.com</code>, <code>imap.fastmail.com</code>), port (usually 993), and your password. If your provider requires an app-specific password (most do once 2FA is on), generate one in their settings first.</p>
+
+      <h2 id="how-much">How much of my mail does MailSearch index?</h2>
+      <p>v0.1.0 indexes the most recent 500 messages per mailbox per <em>Sync now</em>. The cap is conservative for a first release; incremental sync + a higher per-run cap arrive in a follow-up.</p>
+      <p>Re-running <em>Sync now</em> on the same mailbox is cheap: messages already in the index with byte-identical contents are skipped at insert time, bypassing the FTS triggers entirely.</p>
+
+      <h2 id="attachments">Are attachments searchable?</h2>
+      <p>Yes, for three formats: <strong>PDF</strong>, <strong>RTF</strong> and <strong>plain text</strong> (.txt / .log / .md). Image / video / archive / binary attachments are skipped because there&rsquo;s no text payload to index cheaply. Per-attachment cap: 5 MB (larger ones get skipped at fetch time); per-message attachment text cap: 20 KB.</p>
+
+      <h2 id="privacy">Where is my data stored?</h2>
+      <ul>
+        <li><strong>Local index + body cache</strong>: <code>~/Library/Application&nbsp;Support/uk.co.whiteforgetech.mailsearchmac/mailsearchmac.db</code>.</li>
+        <li><strong>Connected-account list</strong>: <code>accounts.json</code> in the same directory. Contains email + provider kind + IMAP host. No tokens, no passwords.</li>
+        <li><strong>Tokens / IMAP passwords</strong>: macOS Keychain.</li>
+      </ul>
+      <p>See the <a href="/mailsearchmac/privacy/">privacy policy</a> for the full detail. Whiteforge servers see none of this &mdash; mail flows directly from your provider to your Mac.</p>
+
+      <h2 id="requirements">System requirements</h2>
+      <ul>
+        <li>macOS 11 (Big Sur) or later.</li>
+        <li>Apple Silicon (M1+) or Intel.</li>
+        <li>Around 200 MB of free disk space, plus space for the index (typically 5&ndash;50 MB per 500 messages depending on attachment sizes).</li>
+      </ul>
+
+      <h2 id="download">How do I download the beta?</h2>
+      <p>Download the disk image matching your Mac&rsquo;s processor:</p>
+      <ul>
+        <li><a href="https://github.com/whiten1968/MailSearchMac-downloads/releases/latest/download/MailSearchMac-aarch64.dmg">MailSearchMac-aarch64.dmg</a> &mdash; Apple Silicon.</li>
+        <li><a href="https://github.com/whiten1968/MailSearchMac-downloads/releases/latest/download/MailSearchMac-x86_64.dmg">MailSearchMac-x86_64.dmg</a> &mdash; Intel Macs.</li>
+      </ul>
+      <p>Both disk images are signed with our Developer ID Application certificate and notarized by Apple.</p>
+
+      <h2 id="install">How do I install it?</h2>
+      <ol>
+        <li>Double-click the <code>.dmg</code> to open it.</li>
+        <li>Drag <em>MailSearch</em> into <em>Applications</em>.</li>
+        <li>Eject the disk image.</li>
+        <li>Launch MailSearch from <em>Applications</em>.</li>
+      </ol>
+
+      <h2 id="first-launch">What happens on first launch?</h2>
+      <p>macOS will show a confirmation dialog the first time you open it (&ldquo;MailSearch is an app downloaded from the internet. Apple checked it for malicious software and none was detected.&rdquo;). Click <em>Open</em>. The app shows a one-time welcome modal; close it, then click any of the <em>+ Add</em> buttons in the sidebar to connect a mailbox.</p>
+
+      <h2 id="keychain-prompt">macOS keeps prompting me for my password</h2>
+      <p>When MailSearch first reads a token / password from your Keychain after a fresh install or update, macOS asks you to confirm. Click <strong>Always Allow</strong> (not <em>Allow</em>) to make the trust persistent &mdash; <em>Allow</em> grants one-shot access only and you&rsquo;ll be re-prompted next sync.</p>
+      <p>If you ever update MailSearch and the prompt comes back, that&rsquo;s because the new binary&rsquo;s code signature differs &mdash; <em>Always Allow</em> the new one and you&rsquo;re set until the next update.</p>
+
+      <h2 id="bug">How do I report a bug?</h2>
+      <p>Two channels:</p>
+      <ul>
+        <li><strong>Public Issue tracker</strong> at <a href="https://github.com/whiten1968/MailSearchMac-downloads/issues">github.com/whiten1968/MailSearchMac-downloads/issues</a>. Faster for us to triage. Don&rsquo;t attach actual emails here &mdash; it&rsquo;s a public repository.</li>
+        <li><strong>Email</strong> <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a> for anything you&rsquo;d rather keep private.</li>
+      </ul>
+      <p>Either way, please include: what you were doing, what you expected, what actually happened, your macOS version, the MailSearch version (Settings &rarr; bottom of the panel).</p>
+
+      <h2 id="feature">How do I request a feature?</h2>
+      <p>Open a <a href="https://github.com/whiten1968/MailSearchMac-downloads/discussions">Discussion</a> on the downloads repo, or email <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>.</p>
+
+      <h2 id="contact">Contact</h2>
+      <p>Whiteforge Technologies Ltd<br>
+      <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a></p>
+
+      <p><a href="/mailsearchmac/">Back to MailSearch overview &rarr;</a></p>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__block">
+        <strong>WHITEFORGE TECHNOLOGIES LTD</strong>
+        Registered in England and Wales<br>
+        Company No. 17224707
+      </div>
+      <div class="footer__block">
+        <strong>Contact</strong>
+        <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>
+      </div>
+      <div class="footer__block footer__links">
+        <strong>MailSearch</strong>
+        <a href="/mailsearchmac/">Overview</a>
+        <a href="/mailsearchmac/privacy/">Privacy policy</a>
+        <a href="/mailsearchmac/terms/">Terms of service</a>
+        <a href="/mailsearchmac/support/">Support</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>

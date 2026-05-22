@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MailSearch terms of service &mdash; Whiteforge Technologies</title>
+  <meta name="description" content="Terms of service for the MailSearch macOS app.">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
+</head>
+<body>
+  <div class="page">
+
+    <header class="site-header">
+      <a href="/" class="site-logo">
+        <img class="site-logo__mark" src="/assets/whiteforge-mark.png" width="274" height="274" alt="">
+        <span class="site-logo__text">Whiteforge Technologies</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/#products">Products</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </header>
+
+    <main class="prose">
+
+      <header class="page-title">
+        <img class="app-icon app-icon--small"
+             src="/assets/mailsearch-icon.png" width="1024" height="1024"
+             alt="MailSearch app icon">
+        <h1>MailSearch terms of service</h1>
+      </header>
+      <p class="doc-meta">For the MailSearch macOS app &middot; Last updated 22 May 2026</p>
+
+      <p>These terms govern your use of MailSearch for Mac (the &ldquo;app&rdquo;), a macOS application published by WHITEFORGE TECHNOLOGIES LTD (&ldquo;Whiteforge&rdquo;, &ldquo;we&rdquo;), a company registered in England and Wales (company number 17224707). By installing or using the app, you agree to these terms.</p>
+
+      <p>How MailSearch handles your data is described separately in the <a href="/mailsearchmac/privacy/">MailSearch privacy policy</a>.</p>
+
+      <h2>1. Beta status</h2>
+      <p>MailSearch is currently distributed as a pre-release (&ldquo;beta&rdquo;) version for evaluation and feedback. Beta versions may contain defects, may produce unexpected results, and may be changed or withdrawn at any time. The app is a read-only search engine over your mail &mdash; it never sends, replies, archives or deletes &mdash; so the worst-case beta failure is &ldquo;index missing a message&rdquo; or &ldquo;sync errored out and needs a retry&rdquo;, not lost mail.</p>
+
+      <h2>2. Licence</h2>
+      <p>MailSearch is licensed to you, not sold. Subject to your compliance with these terms, Whiteforge grants you a personal, non-exclusive, non-transferable, revocable licence to install and use the app on Apple computers running macOS that you own or control.</p>
+
+      <h2>3. Distribution</h2>
+      <p>MailSearch is distributed directly by Whiteforge as a Developer ID signed and Apple-notarized disk image (<code>.dmg</code>), outside the Mac App Store. Apple&rsquo;s notarization confirms only that the app has been scanned for known malicious components and is signed by an identified Apple developer; it is not an endorsement by Apple of the app&rsquo;s functionality.</p>
+
+      <h2>4. Your mail provider relationship</h2>
+      <p>MailSearch connects to mail accounts you authorise (Gmail, Outlook / Microsoft 365, iCloud Mail, generic IMAP) using credentials you supply or grant via OAuth. Your relationship with those providers (Google, Microsoft, Apple, your IMAP host) is governed by their terms of service, not these terms. You are responsible for ensuring your use of MailSearch with each provider complies with that provider&rsquo;s terms.</p>
+
+      <p>Specifically: you confirm you have the right to grant MailSearch read access to each mail account you connect, and that connecting that account does not breach any agreement between you and your provider, your employer, or any other party.</p>
+
+      <h2>5. Acceptable use</h2>
+      <p>You agree not to:</p>
+      <ul>
+        <li>use the app for any unlawful purpose;</li>
+        <li>use the app to access mail accounts you are not authorised to read;</li>
+        <li>reverse engineer, decompile, or disassemble the app except where applicable law expressly permits it;</li>
+        <li>attempt to interfere with, circumvent, or disable any security feature of the app.</li>
+      </ul>
+
+      <h2>6. Sanitisation, completeness, and correctness</h2>
+      <p>MailSearch is designed to index every message your provider returns through its API, decoded per the standard MIME, RFC 2047, and Content-Transfer-Encoding conventions, plus the text content of PDF, RTF, and plain-text attachments. However, mail-format implementations vary widely, attachment formats can be malformed, and provider APIs occasionally return surprises. Whiteforge cannot guarantee that MailSearch indexes every message you have, or that every word inside every attachment ends up in the index.</p>
+
+      <p>If a search doesn&rsquo;t find a message you know exists, treat it as a known limitation of beta software rather than a definitive answer about your mailbox. The provider&rsquo;s own search interface remains the authoritative way to confirm whether a message exists.</p>
+
+      <h2>7. No warranty</h2>
+      <p>MailSearch is provided on an &ldquo;as is&rdquo; and &ldquo;as available&rdquo; basis. To the maximum extent permitted by law, Whiteforge disclaims all warranties, whether express or implied, including any warranty of merchantability, fitness for a particular purpose, or non-infringement. We do not warrant that the app will be uninterrupted, error-free, or that it will index every message in every mailbox completely. The app makes no claim of legal or regulatory compliance and is not a substitute for archival or e-discovery software.</p>
+
+      <h2>8. Limitation of liability</h2>
+      <p>To the fullest extent permitted by law, Whiteforge will not be liable for any indirect, incidental, special, consequential, or punitive damages, or for any loss of profits, revenue, data, goodwill, or reputation, arising out of or in connection with your use of MailSearch &mdash; including any damages arising from a message that MailSearch failed to index, surface, or render correctly.</p>
+      <p>Where liability cannot lawfully be excluded, Whiteforge&rsquo;s total aggregate liability is limited to the greater of (a) the amount you paid for MailSearch in the twelve months preceding the event giving rise to the claim, or (b) ten pounds sterling (&pound;10).</p>
+      <p>Nothing in these terms limits or excludes any liability that cannot lawfully be limited or excluded under the laws of England and Wales, including liability for death or personal injury caused by negligence, or for fraud or fraudulent misrepresentation.</p>
+
+      <h2>9. Third-party components</h2>
+      <p>MailSearch incorporates the following open-source components. Each is used under the terms of its respective licence, copies of which are included with the app:</p>
+      <ul>
+        <li><strong>Tauri</strong> &mdash; Apache 2.0 / MIT. Application shell.</li>
+        <li><strong>rusqlite</strong>, <strong>async-imap</strong>, <strong>reqwest</strong>, <strong>tokio-rustls</strong>, <strong>encoding_rs</strong>, <strong>quoted_printable</strong>, <strong>pdf-extract</strong>, <strong>keyring</strong> &mdash; MIT / Apache 2.0. Storage, IMAP, HTTP, TLS, decoding, attachment extraction, Keychain integration.</li>
+      </ul>
+
+      <h2>10. Third-party trademarks</h2>
+      <p>&ldquo;Apple&rdquo;, &ldquo;macOS&rdquo;, &ldquo;Mac&rdquo;, &ldquo;iCloud&rdquo; and the Apple logo are trademarks of Apple Inc. &ldquo;Google&rdquo; and &ldquo;Gmail&rdquo; are trademarks of Google LLC. &ldquo;Microsoft&rdquo;, &ldquo;Outlook&rdquo; and related marks are trademarks of Microsoft Corporation. MailSearch is not affiliated with, endorsed by, or sponsored by Apple, Google or Microsoft. Their marks are used in MailSearch and on this website for descriptive purposes only.</p>
+
+      <h2>11. Termination</h2>
+      <p>You can stop using MailSearch at any time by moving <em>MailSearch.app</em> to the Trash. We may suspend or end your right to use MailSearch if you materially breach these terms. The disclaimers, liability limits, and governing-law sections survive termination.</p>
+
+      <h2>12. Changes</h2>
+      <p>We may update these terms from time to time. Updates will be reflected by the &ldquo;Last updated&rdquo; date at the top of this page. Material changes will be highlighted at the top for a reasonable period. Continued use after an update means you accept the revised terms.</p>
+
+      <h2>13. Governing law</h2>
+      <p>These terms are governed by the laws of England and Wales. Disputes are subject to the exclusive jurisdiction of the courts of England and Wales, except where mandatory consumer protection law in your country of residence grants you the right to bring proceedings in your local courts.</p>
+
+      <h2>14. Contact</h2>
+      <p>Whiteforge Technologies Ltd<br>
+      <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a></p>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__block">
+        <strong>WHITEFORGE TECHNOLOGIES LTD</strong>
+        Registered in England and Wales<br>
+        Company No. 17224707
+      </div>
+      <div class="footer__block">
+        <strong>Contact</strong>
+        <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>
+      </div>
+      <div class="footer__block footer__links">
+        <strong>MailSearch</strong>
+        <a href="/mailsearchmac/">Overview</a>
+        <a href="/mailsearchmac/privacy/">Privacy policy</a>
+        <a href="/mailsearchmac/terms/">Terms of service</a>
+        <a href="/mailsearchmac/support/">Support</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>

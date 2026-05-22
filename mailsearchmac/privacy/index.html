@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MailSearch privacy policy &mdash; Whiteforge Technologies</title>
+  <meta name="description" content="Privacy policy for the MailSearch macOS app. MailSearch indexes your email locally on this Mac. Mail flows directly from your provider to MailSearch — no Whiteforge servers in the data path.">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
+</head>
+<body>
+  <div class="page">
+
+    <header class="site-header">
+      <a href="/" class="site-logo">
+        <img class="site-logo__mark" src="/assets/whiteforge-mark.png" width="274" height="274" alt="">
+        <span class="site-logo__text">Whiteforge Technologies</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/#products">Products</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </header>
+
+    <main class="prose">
+
+      <header class="page-title">
+        <img class="app-icon app-icon--small"
+             src="/assets/mailsearch-icon.png" width="1024" height="1024"
+             alt="MailSearch app icon">
+        <h1>MailSearch privacy policy</h1>
+      </header>
+      <p class="doc-meta">For the MailSearch macOS app &middot; Last updated 22 May 2026</p>
+
+      <div class="callout">
+        <p><strong>Summary.</strong> MailSearch indexes your email locally on your Mac. To do that it has to fetch your mail from your provider (Gmail, Outlook, iCloud, IMAP) &mdash; those connections go directly from your Mac to the provider, with no Whiteforge servers in the path. Your mail content, search index, authentication tokens, and search queries never leave your device. There are no Whiteforge analytics or telemetry &mdash; ever.</p>
+      </div>
+
+      <nav class="doc-toc" aria-label="Table of contents">
+        <strong>Contents</strong>
+        <ol>
+          <li><a href="#intro">Introduction</a></li>
+          <li><a href="#data-shape">What MailSearch holds on your Mac</a></li>
+          <li><a href="#received">Data Whiteforge receives</a></li>
+          <li><a href="#network">Network activity</a></li>
+          <li><a href="#tokens">How authentication tokens are stored</a></li>
+          <li><a href="#provider-policies">Your mail provider's role</a></li>
+          <li><a href="#storage">Where data is stored on this Mac</a></li>
+          <li><a href="#deletion">Deletion</a></li>
+          <li><a href="#children">Children</a></li>
+          <li><a href="#rights">Your rights</a></li>
+          <li><a href="#changes">Changes to this policy</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="intro">1. Introduction</h2>
+      <p>This policy explains how MailSearch handles your data. MailSearch is a macOS application published by Whiteforge Technologies Ltd (&ldquo;Whiteforge&rdquo;, &ldquo;we&rdquo;), a company registered in England and Wales (company number 17224707). It connects to mail accounts you authorise (Gmail, Outlook / Microsoft 365, iCloud Mail, generic IMAP) and builds a full-text search index of the messages on your Mac.</p>
+      <p>Unlike the other Whiteforge apps, MailSearch does make outbound network connections by design &mdash; it has to, to fetch your email. Those connections go to your <em>mail provider</em>, not to Whiteforge.</p>
+      <p>This policy is for the MailSearch app. The <a href="/">whiteforgetech.co.uk</a> website has its own <a href="/privacy/">privacy policy</a>.</p>
+
+      <h2 id="data-shape">2. What MailSearch holds on your Mac</h2>
+      <p>While MailSearch is running it holds, locally on this device only:</p>
+      <ul>
+        <li>For each connected account: the account&rsquo;s identifier (typically your email address), the provider type (Gmail / Outlook / iCloud / IMAP), the server hostname for IMAP accounts. Persisted to <code>~/Library/Application&nbsp;Support/uk.co.whiteforgetech.mailsearchmac/accounts.json</code>.</li>
+        <li>OAuth access + refresh tokens (Gmail, Outlook) or app-specific passwords (iCloud, generic IMAP). Stored in your macOS Keychain, never on disk in plain text. See <a href="#tokens">section 5</a>.</li>
+        <li>An on-device SQLite full-text index containing your messages&rsquo; subjects, senders, recipients, body text (up to 50 KB per message), and text extracted from PDF / RTF / plain-text attachments (up to 20 KB per message). At <code>~/Library/Application&nbsp;Support/uk.co.whiteforgetech.mailsearchmac/mailsearchmac.db</code>.</li>
+        <li>Optionally, a cached HTML body for messages you&rsquo;ve recently opened in the in-app viewer, in the same database file. Discarded when the row is deleted (via disconnect or wipe).</li>
+        <li>Your current search query while you&rsquo;re typing.</li>
+      </ul>
+      <p>None of this leaves your device.</p>
+
+      <h2 id="received">3. Data Whiteforge receives</h2>
+      <p>None. MailSearch does not send your email, your tokens, your search queries, or your usage to Whiteforge. There are no Whiteforge servers in the mail-fetching data path. The app contains no analytics SDKs, no crash-reporting SDKs, no advertising SDKs, no third-party tracking libraries.</p>
+      <p>The single optional exception is the auto-update check described below, which (when enabled) makes one HTTPS request per launch to GitHub. That request still does not pass through Whiteforge servers.</p>
+
+      <h2 id="network">4. Network activity</h2>
+      <p>MailSearch makes the following kinds of network connections:</p>
+
+      <h3>4.1 Mail-fetching (per connected account)</h3>
+      <p>When you click <em>Sync now</em> or open the app with auto-sync enabled, MailSearch connects to the mail provider you authorised:</p>
+      <ul>
+        <li><strong>Gmail</strong> &mdash; HTTPS to <code>oauth2.googleapis.com</code> (token refresh) and <code>gmail.googleapis.com</code> (message list + content + attachments).</li>
+        <li><strong>Outlook / Microsoft 365</strong> &mdash; HTTPS to <code>login.microsoftonline.com</code> (token refresh) and <code>graph.microsoft.com</code> (message list + content + attachments).</li>
+        <li><strong>iCloud Mail</strong> &mdash; TLS IMAP to <code>imap.mail.me.com:993</code> using the app-specific password you generated at <a href="https://appleid.apple.com">appleid.apple.com</a>.</li>
+        <li><strong>Generic IMAP</strong> &mdash; TLS IMAP to the server / port you supplied during account setup.</li>
+      </ul>
+      <p>These requests deliver the bytes of your mail to your Mac. Whiteforge is not on this path. We do not see your mail or any aspect of it.</p>
+
+      <h3>4.2 OAuth consent (one-off per Gmail / Outlook account)</h3>
+      <p>When you click <em>+ Add Gmail</em> or <em>+ Add Outlook</em>, MailSearch opens the provider&rsquo;s consent page in your default browser. That page is hosted by Google / Microsoft respectively. After you grant access, the browser redirects to a one-shot loopback HTTP listener on <code>127.0.0.1</code> / <code>localhost</code> running inside MailSearch on your Mac. The listener picks up the authorisation code, MailSearch swaps it for access + refresh tokens via the provider&rsquo;s token endpoint, and the loopback server shuts down. The whole exchange happens on your machine; Whiteforge is not involved.</p>
+
+      <h3>4.3 Optional auto-update check</h3>
+      <p>MailSearch can optionally check for newer versions on launch. This is <strong>off by default</strong>. If you enable it in Settings &rarr; Updates (or via the first-run modal), the app makes one HTTPS request per launch to <code>https://github.com/whiten1968/MailSearchMac-downloads/releases/latest/download/latest.json</code>. The request contains no mail content, no tokens, no telemetry. GitHub sees your IP address and the fact that something is requesting the manifest. You can revoke consent at any time.</p>
+
+      <h2 id="tokens">5. How authentication tokens are stored</h2>
+      <p>Credentials for each connected account live in the macOS Keychain &mdash; the OS-managed encrypted credential store, the same place Mail.app, Safari, and other native apps store passwords. Specifically:</p>
+      <ul>
+        <li><strong>OAuth tokens</strong> (Gmail, Outlook) live under the Keychain service <code>uk.co.whiteforgetech.mailsearchmac.oauth</code>.</li>
+        <li><strong>IMAP passwords</strong> (iCloud, generic IMAP) live under <code>uk.co.whiteforgetech.mailsearchmac.imap</code>.</li>
+      </ul>
+      <p>Tokens are accessed by MailSearch when it needs to authenticate to your provider. They are never written to log files or to disk outside the Keychain. Disconnecting an account (Settings &rarr; the account&rsquo;s <em>Disconnect</em> button) deletes the Keychain entry, deletes that account&rsquo;s indexed messages from the local store, and best-effort revokes the OAuth token at the provider (for Gmail; Microsoft Graph has no public revoke endpoint).</p>
+
+      <h2 id="provider-policies">6. Your mail provider's role</h2>
+      <p>MailSearch reads your mail from your provider; your provider therefore sees that you&rsquo;re reading it. Each provider has its own privacy policy and visibility into your account:</p>
+      <ul>
+        <li><strong>Google (Gmail)</strong>: <a href="https://policies.google.com/privacy">policies.google.com/privacy</a>. Google logs API requests as part of normal Gmail use; MailSearch&rsquo;s reads are visible to you in your Google Account &rarr; Security &rarr; Third-party apps with account access.</li>
+        <li><strong>Microsoft (Outlook / Microsoft 365)</strong>: <a href="https://privacy.microsoft.com">privacy.microsoft.com</a>. Visible in your Microsoft account&rsquo;s sign-in activity.</li>
+        <li><strong>Apple (iCloud Mail)</strong>: <a href="https://www.apple.com/legal/privacy/">apple.com/legal/privacy/</a>. App-specific passwords show up under your Apple ID&rsquo;s Sign-In and Security page.</li>
+        <li><strong>Other IMAP providers</strong>: see your provider&rsquo;s own privacy policy.</li>
+      </ul>
+      <p>Revoking MailSearch&rsquo;s access at the provider side will end its ability to fetch new mail from that account.</p>
+
+      <h2 id="storage">7. Where data is stored on this Mac</h2>
+      <ul>
+        <li><strong>Search index + body cache</strong>: <code>~/Library/Application&nbsp;Support/uk.co.whiteforgetech.mailsearchmac/mailsearchmac.db</code> (and its <code>-wal</code> / <code>-shm</code> sidecar files).</li>
+        <li><strong>Connected-account list</strong>: <code>~/Library/Application&nbsp;Support/uk.co.whiteforgetech.mailsearchmac/accounts.json</code>. Contains the account id (typically your email), provider kind, display name, and the IMAP server hostname for IMAP accounts. No passwords, no tokens.</li>
+        <li><strong>Tokens + IMAP passwords</strong>: macOS Keychain (see <a href="#tokens">section 5</a>).</li>
+        <li><strong>Settings preferences</strong> (auto-update toggle, last-used UI state): browser-style <code>localStorage</code> inside MailSearch&rsquo;s WebView, scoped to MailSearch only.</li>
+      </ul>
+
+      <h2 id="deletion">8. Deletion</h2>
+      <ul>
+        <li><strong>Disconnect a single account</strong>: deletes its OAuth token / IMAP password from Keychain, deletes its indexed messages + cached bodies from the local store, removes its entry from <code>accounts.json</code>. Best-effort revoke against the provider for Gmail.</li>
+        <li><strong>Uninstall MailSearch</strong>: move <em>MailSearch.app</em> to Trash and empty. To also remove your local data: delete <code>~/Library/Application&nbsp;Support/uk.co.whiteforgetech.mailsearchmac/</code>. Keychain entries persist until you remove them in <em>Keychain Access.app</em> &rarr; search for <code>mailsearchmac</code>. (Or disconnect every account before uninstalling, which deletes them cleanly.)</li>
+      </ul>
+
+      <h2 id="children">9. Children</h2>
+      <p>MailSearch is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+
+      <h2 id="rights">10. Your rights</h2>
+      <p>If you are in the UK or the EU, you have rights under the UK GDPR and the EU GDPR &mdash; including the rights of access, rectification, erasure, restriction, objection, and the right to lodge a complaint. Because MailSearch does not transmit your data to Whiteforge, these rights are largely exercised through the app itself + your mail provider. You can complain to the UK Information Commissioner&rsquo;s Office at <a href="https://ico.org.uk">ico.org.uk</a>.</p>
+
+      <h2 id="changes">11. Changes to this policy</h2>
+      <p>If we change this policy we will update the &ldquo;Last updated&rdquo; date at the top. Material changes will be summarised at the top of the policy for a reasonable period.</p>
+
+      <h2 id="contact">12. Contact</h2>
+      <p>For privacy questions about MailSearch:</p>
+      <p>Whiteforge Technologies Ltd<br>
+      <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a></p>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__block">
+        <strong>WHITEFORGE TECHNOLOGIES LTD</strong>
+        Registered in England and Wales<br>
+        Company No. 17224707
+      </div>
+      <div class="footer__block">
+        <strong>Contact</strong>
+        <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>
+      </div>
+      <div class="footer__block footer__links">
+        <strong>MailSearch</strong>
+        <a href="/mailsearchmac/">Overview</a>
+        <a href="/mailsearchmac/privacy/">Privacy policy</a>
+        <a href="/mailsearchmac/terms/">Terms of service</a>
+        <a href="/mailsearchmac/support/">Support</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
