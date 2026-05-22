@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Doc Sanitizer privacy policy &mdash; Whiteforge Technologies</title>
+  <meta name="description" content="Privacy policy for the Doc Sanitizer macOS app. Doc Sanitizer processes Word, Excel and PowerPoint documents entirely on your device and makes no network connections by default.">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
+</head>
+<body>
+  <div class="page">
+
+    <header class="site-header">
+      <a href="/" class="site-logo">
+        <img class="site-logo__mark" src="/assets/whiteforge-mark.png" width="274" height="274" alt="">
+        <span class="site-logo__text">Whiteforge Technologies</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/#products">Products</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </header>
+
+    <main class="prose">
+
+      <header class="page-title">
+        <img class="app-icon app-icon--small"
+             src="/assets/docsanitizer-icon.png" width="1024" height="1024"
+             alt="Doc Sanitizer app icon">
+        <h1>Doc Sanitizer privacy policy</h1>
+      </header>
+      <p class="doc-meta">For the Doc Sanitizer macOS app &middot; Last updated 22 May 2026</p>
+
+      <div class="callout">
+        <p><strong>Summary.</strong> Doc Sanitizer processes the Word, Excel and PowerPoint documents you open entirely on your device. It makes no network connections by default, has no servers, and Whiteforge Technologies never receives your documents, file paths, author names, comment text, speaker notes, telemetry, or any other data from the app. An optional auto-update check (off by default) makes a single HTTPS request to GitHub if you enable it &mdash; see <a href="#network">Network activity</a> for the full detail.</p>
+      </div>
+
+      <nav class="doc-toc" aria-label="Table of contents">
+        <strong>Contents</strong>
+        <ol>
+          <li><a href="#intro">Introduction</a></li>
+          <li><a href="#local">Data the app processes locally</a></li>
+          <li><a href="#received">Data Whiteforge receives</a></li>
+          <li><a href="#network">Network activity</a></li>
+          <li><a href="#storage">Where data is stored</a></li>
+          <li><a href="#crash">Crash reports and diagnostics</a></li>
+          <li><a href="#deletion">Deletion</a></li>
+          <li><a href="#children">Children</a></li>
+          <li><a href="#rights">Your rights</a></li>
+          <li><a href="#changes">Changes to this policy</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="intro">1. Introduction</h2>
+      <p>This policy explains how Doc Sanitizer handles your data. Doc Sanitizer is a macOS application published by Whiteforge Technologies Ltd (&ldquo;Whiteforge&rdquo;, &ldquo;we&rdquo;), a company registered in England and Wales (company number 17224707). It inspects Word (<code>.docx</code>), Excel (<code>.xlsx</code>) and PowerPoint (<code>.pptx</code>) documents for hidden data &mdash; authors and editors, tracked changes, comments, speaker notes, pivot caches, hidden sheets and slides, embedded files, VBA macros, custom XML &mdash; removes it, and verifies the result before saving.</p>
+      <p>This policy is for the Doc Sanitizer app. The <a href="/">whiteforgetech.co.uk</a> website has its own <a href="/privacy/">privacy policy</a>.</p>
+
+      <h2 id="local">2. Data the app processes locally</h2>
+      <p>Doc Sanitizer processes the document files you open with it. While a file is open, the app holds in memory:</p>
+      <ul>
+        <li>The bytes of the document file you opened.</li>
+        <li>The decoded contents of the document&rsquo;s hidden-data categories. For Word files this includes author and last-editor names, the company and template path the file came from, the text of comments, the wording of tracked insertions and deletions. For Excel files it includes the names of hidden sheets, the source-range and column names cached inside pivot tables, comment authors and bodies (including email-shaped userIds in threaded comments), external workbook references, and connection strings. For PowerPoint files it includes the full text of speaker notes, the titles of hidden slides, comment authors and bodies. Across all three it includes any custom-defined document properties (project codes, classification labels, internal metadata) and the file paths of any embedded objects.</li>
+        <li>The output path you select for the sanitised copy.</li>
+      </ul>
+      <p>All of the above stays on your device. None of it is transmitted off the device &mdash; including author names, comment text, and speaker notes: every category is decoded locally and displayed in the app window only.</p>
+
+      <h2 id="received">3. Data Whiteforge receives</h2>
+      <p>None. Doc Sanitizer does not send your documents, decoded metadata, file paths, or telemetry to Whiteforge. There are no Whiteforge servers in the data path. The app does not contain analytics SDKs, advertising SDKs, or third-party tracking libraries. The optional auto-update check (described below) goes directly to GitHub &mdash; Whiteforge does not see those requests.</p>
+
+      <h2 id="network">4. Network activity</h2>
+      <p><strong>By default, Doc Sanitizer makes no outbound network connections.</strong> The auto-updater is off out of the box. The app shows a first-run modal explaining this; if you do not opt in, the app never touches the network.</p>
+      <p>In Settings &rarr; Updates (or via the first-run modal), you can enable two things:</p>
+      <ul>
+        <li><strong>&ldquo;Check for updates automatically on launch&rdquo;</strong> &mdash; off by default. If you turn it on, Doc Sanitizer makes a single HTTPS request per app launch to <code>https://github.com/whiten1968/DocSanitizer-downloads/releases/latest/download/latest.json</code>. This is a static text file describing the current latest release. If a newer version is available, the app offers to download and install it; the download itself is also an HTTPS request to GitHub.</li>
+        <li><strong>&ldquo;Check for updates now&rdquo;</strong> &mdash; a manual button. Makes the same request, once, only when you click it.</li>
+      </ul>
+      <p>The requests contain no document content, no file paths, no decoded metadata, no usage statistics, no user identifier, and no telemetry of any kind. They are ordinary HTTPS GETs identical to any user requesting that URL in a browser. The only data GitHub receives is your IP address (visible to any server you connect to) and the fact that something is requesting the Doc Sanitizer update manifest.</p>
+      <p>You can revoke consent at any time by turning &ldquo;Check for updates automatically&rdquo; off. Settings preferences are stored locally on your device only.</p>
+
+      <h2 id="storage">5. Where data is stored</h2>
+      <ul>
+        <li><strong>The document file you open</strong> &mdash; remains where you opened it from. Doc Sanitizer does not copy your input files into its own storage, and never overwrites the original.</li>
+        <li><strong>The decoded metadata and your output path choice</strong> &mdash; held in memory while the file is open. When you open a different document or quit the app, this state is discarded.</li>
+        <li><strong>The sanitised output</strong> &mdash; only created when you choose to save and pick a destination. Doc Sanitizer writes to the location you specify (typically alongside the original with a <code>-sanitized</code> suffix, matching the input&rsquo;s format) and nowhere else.</li>
+        <li><strong>Optional Finder Quick Action.</strong> If you turn on <em>Settings &rarr; Finder integration</em>, Doc Sanitizer writes a small Automator workflow into <code>~/Library/Services/</code> so that right-clicking a Word, Excel or PowerPoint document in Finder offers <em>Sanitize with Doc Sanitizer</em>. Turning the toggle off again removes the workflow. The workflow itself contains no personal data &mdash; it&rsquo;s a fixed script that runs <code>open -a &ldquo;Doc Sanitizer&rdquo; &lt;file&gt;</code>.</li>
+      </ul>
+
+      <h2 id="crash">6. Crash reports and diagnostics</h2>
+      <p>Doc Sanitizer does not collect or transmit crash reports, performance metrics, or diagnostic data. macOS itself may collect crash logs at the operating-system level and offer to share them with developers; that behaviour is controlled by your macOS privacy settings (<em>System Settings &rarr; Privacy &amp; Security &rarr; Analytics &amp; Improvements</em>), not by Doc Sanitizer.</p>
+
+      <h2 id="deletion">7. Deletion</h2>
+      <ul>
+        <li><strong>Opening a different file</strong> &mdash; drops the in-memory state for the previous one.</li>
+        <li><strong>Quitting the app</strong> &mdash; drops all in-memory state.</li>
+        <li><strong>Uninstalling Doc Sanitizer</strong> &mdash; remove the <em>Doc Sanitizer.app</em> bundle from Applications. The app does not install components elsewhere on the system. Move the app to the Trash and empty it, and everything Doc Sanitizer touched is gone.</li>
+      </ul>
+      <p>The documents you opened, and the sanitised outputs you saved, are unaffected by uninstalling the app &mdash; they live where you put them. If you previously turned on the Finder Quick Action, remove <code>~/Library/Services/Sanitize&nbsp;with&nbsp;Doc&nbsp;Sanitizer.workflow</code> by hand, or turn the toggle off in Settings first.</p>
+
+      <h2 id="children">8. Children</h2>
+      <p>Doc Sanitizer is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+
+      <h2 id="rights">9. Your rights</h2>
+      <p>If you are in the UK or the EU, you have rights under the UK GDPR and the EU GDPR &mdash; including the rights of access, rectification, erasure, restriction, objection, and the right to lodge a complaint. Because Doc Sanitizer does not transmit your data to us, these rights are effectively under your direct control through the app and the file system on your device. If you have a question about your data in Doc Sanitizer, email us at the address below.</p>
+      <p>You can complain to the UK Information Commissioner&rsquo;s Office at <a href="https://ico.org.uk">ico.org.uk</a>.</p>
+
+      <h2 id="changes">10. Changes to this policy</h2>
+      <p>If we change this policy, we will update the &ldquo;Last updated&rdquo; date at the top. Material changes will be summarised at the top of the policy for a reasonable period.</p>
+
+      <h2 id="contact">11. Contact</h2>
+      <p>For privacy questions about Doc Sanitizer:</p>
+      <p>Whiteforge Technologies Ltd<br>
+      <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a></p>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__block">
+        <strong>WHITEFORGE TECHNOLOGIES LTD</strong>
+        Registered in England and Wales<br>
+        Company No. 17224707
+      </div>
+      <div class="footer__block">
+        <strong>Contact</strong>
+        <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>
+      </div>
+      <div class="footer__block footer__links">
+        <strong>Doc Sanitizer</strong>
+        <a href="/docsanitizer/">Overview</a>
+        <a href="/docsanitizer/privacy/">Privacy policy</a>
+        <a href="/docsanitizer/terms/">Terms of service</a>
+        <a href="/docsanitizer/support/">Support</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
