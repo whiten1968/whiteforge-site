@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TG Timer privacy policy &mdash; Whiteforge Technologies</title>
+  <meta name="description" content="Privacy policy for the TG Timer iOS app. All audio processing happens on device — no data is transmitted to Whiteforge or any third party.">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
+</head>
+<body>
+  <div class="page">
+
+    <header class="site-header">
+      <a href="/" class="site-logo">
+        <img class="site-logo__mark" src="/assets/whiteforge-mark.png" width="274" height="274" alt="">
+        <span class="site-logo__text">Whiteforge Technologies</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/#products">Products</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </header>
+
+    <main class="prose">
+
+      <header class="page-title">
+        <img class="app-icon app-icon--small"
+             src="/assets/tgtimer-icon.png" width="1024" height="1024"
+             alt="TG Timer app icon">
+        <h1>TG Timer privacy policy</h1>
+      </header>
+      <p class="doc-meta">For the TG Timer iOS app &middot; Last updated 10 June 2026</p>
+
+      <div class="callout">
+        <p><strong>Summary.</strong> TG Timer processes audio entirely on your device. No audio, no measurements, and no personal data are transmitted to Whiteforge or any third party. The app contains no analytics, no telemetry, and no advertising SDKs.</p>
+      </div>
+
+      <nav class="doc-toc" aria-label="Table of contents">
+        <strong>Contents</strong>
+        <ol>
+          <li><a href="#intro">Introduction</a></li>
+          <li><a href="#data">Data Whiteforge receives</a></li>
+          <li><a href="#microphone">Microphone access</a></li>
+          <li><a href="#storage">What is stored on your device</a></li>
+          <li><a href="#network">Network activity</a></li>
+          <li><a href="#third-parties">Third parties</a></li>
+          <li><a href="#children">Children</a></li>
+          <li><a href="#rights">Your rights</a></li>
+          <li><a href="#changes">Changes to this policy</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="intro">1. Introduction</h2>
+      <p>This policy explains how TG Timer handles your data. TG Timer is an iOS application published by Whiteforge Technologies Ltd (&ldquo;Whiteforge&rdquo;, &ldquo;we&rdquo;), a company registered in England and Wales (company number 17224707). It receives audio from a piezo contact microphone and processes it on-device to measure the rate, beat error, and amplitude of a mechanical watch movement.</p>
+      <p>This policy is for the TG Timer app. The <a href="/">whiteforgetech.co.uk</a> website has its own <a href="/privacy/">privacy policy</a>.</p>
+
+      <h2 id="data">2. Data Whiteforge receives</h2>
+      <p>None. TG Timer does not transmit audio, measurements, or any other data to Whiteforge. There are no Whiteforge servers in the data path. The app contains no analytics SDKs, no crash-reporting SDKs, no advertising SDKs, and no third-party tracking libraries of any kind.</p>
+
+      <h2 id="microphone">3. Microphone access</h2>
+      <p>TG Timer requests microphone access to receive audio from a piezo contact microphone connected to your iPhone via a USB-C audio adapter. iOS will prompt you to grant or deny this permission the first time you tap Play.</p>
+      <p>Audio is captured only while a measurement is actively running. It is processed in real time using autocorrelation to extract the tick period, and then discarded &mdash; it is never written to disk, uploaded, or transmitted anywhere. Stopping the measurement stops audio capture immediately.</p>
+      <p>You can revoke microphone access at any time in iOS Settings &rarr; Privacy &amp; Security &rarr; Microphone.</p>
+
+      <h2 id="storage">4. What is stored on your device</h2>
+      <p>TG Timer stores the following in iOS UserDefaults (local to your device only):</p>
+      <ul>
+        <li>Your selected BPH and lift angle settings.</li>
+        <li>Your calibration offset.</li>
+        <li>Whether you have seen the first-launch onboarding screens.</li>
+      </ul>
+      <p>No audio is ever written to disk. No measurement results are persisted between sessions. Generated PDF reports are created in memory and handed to the iOS share sheet &mdash; where they go from there is your choice.</p>
+
+      <h2 id="network">5. Network activity</h2>
+      <p>TG Timer makes no network connections of any kind. It has no server to contact. There are no update checks, no licence checks, and no telemetry pings.</p>
+
+      <h2 id="third-parties">6. Third parties</h2>
+      <p>TG Timer uses no third-party SDKs, no advertising networks, and no analytics services. The only frameworks used are Apple&rsquo;s own system frameworks (AVFoundation, Accelerate, SwiftUI).</p>
+
+      <h2 id="children">7. Children</h2>
+      <p>TG Timer is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+
+      <h2 id="rights">8. Your rights</h2>
+      <p>If you are in the UK or the EU, you have rights under the UK GDPR and the EU GDPR &mdash; including the rights of access, rectification, erasure, restriction, objection, and the right to lodge a complaint. Because TG Timer does not transmit any data to Whiteforge, these rights are effectively exercised by controlling the app and your device directly. You can complain to the UK Information Commissioner&rsquo;s Office at <a href="https://ico.org.uk">ico.org.uk</a>.</p>
+
+      <h2 id="changes">9. Changes to this policy</h2>
+      <p>If we change this policy we will update the &ldquo;Last updated&rdquo; date at the top. Material changes will be summarised at the top of the policy for a reasonable period.</p>
+
+      <h2 id="contact">10. Contact</h2>
+      <p>For privacy questions about TG Timer:</p>
+      <p>Whiteforge Technologies Ltd<br>
+      <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a></p>
+
+      <p><a href="/tgtimer/">Back to TG Timer overview &rarr;</a></p>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__block">
+        <strong>WHITEFORGE TECHNOLOGIES LTD</strong>
+        Registered in England and Wales<br>
+        Company No. 17224707
+      </div>
+      <div class="footer__block">
+        <strong>Contact</strong>
+        <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>
+      </div>
+      <div class="footer__block footer__links">
+        <strong>TG Timer</strong>
+        <a href="/tgtimer/">Overview</a>
+        <a href="/tgtimer/privacy/">Privacy policy</a>
+        <a href="/tgtimer/support/">Support</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
