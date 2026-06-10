@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TG Timer support &mdash; Whiteforge Technologies</title>
+  <meta name="description" content="Support and FAQ for the TG Timer iOS app.">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
+</head>
+<body>
+  <div class="page">
+
+    <header class="site-header">
+      <a href="/" class="site-logo">
+        <img class="site-logo__mark" src="/assets/whiteforge-mark.png" width="274" height="274" alt="">
+        <span class="site-logo__text">Whiteforge Technologies</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/#products">Products</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </header>
+
+    <main class="prose">
+
+      <header class="page-title">
+        <img class="app-icon app-icon--small"
+             src="/assets/tgtimer-icon.png" width="1024" height="1024"
+             alt="TG Timer app icon">
+        <h1>TG Timer support</h1>
+      </header>
+      <p class="doc-meta">Help and frequently asked questions &middot; Last updated 10 June 2026</p>
+
+      <nav class="doc-toc" aria-label="Table of contents">
+        <strong>Contents</strong>
+        <ol>
+          <li><a href="#what-is">What is TG Timer?</a></li>
+          <li><a href="#hardware">What hardware do I need?</a></li>
+          <li><a href="#connect-mic">How do I connect the contact microphone?</a></li>
+          <li><a href="#select-movement">How do I select my movement?</a></li>
+          <li><a href="#how-long">Why does it take 30 seconds before showing readings?</a></li>
+          <li><a href="#rate">What does rate mean?</a></li>
+          <li><a href="#beat-error">What is beat error?</a></li>
+          <li><a href="#amplitude">What is amplitude?</a></li>
+          <li><a href="#amplitude-dash">Why does amplitude show &ldquo;&mdash;&rdquo;?</a></li>
+          <li><a href="#bph">What is BPH?</a></li>
+          <li><a href="#lift-angle">What is lift angle and why does it matter?</a></li>
+          <li><a href="#confidence">What do the coloured dots mean?</a></li>
+          <li><a href="#pdf">How do I generate a PDF report?</a></li>
+          <li><a href="#stop-restart">Can I stop and restart a measurement?</a></li>
+          <li><a href="#accuracy">How accurate is TG Timer?</a></li>
+          <li><a href="#bug">How do I report a bug?</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="what-is">What is TG Timer?</h2>
+      <p>TG Timer is an iOS app that measures the rate, beat error, and amplitude of a mechanical watch movement &mdash; the same readings produced by a bench timegrapher. It analyses audio from a piezo contact microphone attached to the watch case or movement, using autocorrelation to extract the tick period with high precision. No Wi-Fi or server connection is required; all processing happens on the device.</p>
+
+      <h2 id="hardware">What hardware do I need?</h2>
+      <p>TG Timer requires a piezo contact microphone connected to your iPhone via a USB-C audio adapter. The microphone clips or presses against the watch case or movement and picks up the mechanical tick signal directly through contact &mdash; it does not use the iPhone&rsquo;s built-in microphone.</p>
+      <p>We use and recommend the TGBC sensor with a powered USB hub (the sensor requires 6&nbsp;V, which it draws from the hub rather than the phone directly). The approximate cost is &pound;9 for a suitable USB hub and &pound;15 for the sensor.</p>
+
+      <h2 id="connect-mic">How do I connect the contact microphone?</h2>
+      <ol>
+        <li>Connect the USB hub to your iPhone&rsquo;s USB-C port.</li>
+        <li>Connect the TGBC sensor to the hub.</li>
+        <li>Clip or press the sensor firmly against the watch case or movement. A solid mechanical contact gives the clearest signal; the signal bar at the bottom of the Measure screen confirms the level.</li>
+        <li>Tap the Play button. TG Timer will request microphone permission the first time.</li>
+      </ol>
+      <p>If you unplug the hub during a measurement (for example to take a phone call), TG Timer will stop automatically and you can tap Play again when you reconnect.</p>
+
+      <h2 id="select-movement">How do I select my movement?</h2>
+      <p>Open the <strong>Setup</strong> tab and search or scroll the movement list. Selecting a preset fills in the correct BPH and lift angle automatically. If your movement is not in the list, select the closest match and adjust the lift angle manually, or leave BPH on Auto-detect and enter the lift angle directly. TG Timer includes over 3,700 movement presets.</p>
+
+      <h2 id="how-long">Why does it take 30 seconds before showing readings?</h2>
+      <p>TG Timer waits 30 seconds before the first analysis so the autocorrelation has enough beat cycles to average over. Shorter windows can chase noise rather than the true period. After the first reading, the analysis updates every 10 seconds using a growing window (capped at 60 seconds), so readings become progressively more stable. The full measurement of 30 analyses completes in around 5 minutes.</p>
+
+      <h2 id="rate">What does rate mean?</h2>
+      <p>Rate is how many seconds per day the movement gains or loses relative to perfect time. A reading of <strong>&minus;11.6 s/d</strong> means the watch loses 11.6 seconds every 24 hours. The COSC standard for certified chronometers is &minus;4 to +6 s/d; a typical service target is &plusmn;10 s/d.</p>
+
+      <h2 id="beat-error">What is beat error?</h2>
+      <p>Beat error measures how evenly the escapement divides each second into its two half-beats (tick and tock). A perfect movement has 0.0&nbsp;ms beat error. Values below 1.0&nbsp;ms are generally considered acceptable; above 1.5&nbsp;ms the uneven beat becomes audible and starts to affect rate.</p>
+
+      <h2 id="amplitude">What is amplitude?</h2>
+      <p>Amplitude is the angular swing of the balance wheel, measured in degrees. A healthy watch typically shows 250&ndash;310&deg; dial up. Low amplitude (below 220&deg;) can indicate a worn mainspring, heavy lubricants, or a movement in need of service. Very high amplitude (above 320&deg;) is unusual and may indicate an over-wound or freshly serviced movement.</p>
+
+      <h2 id="amplitude-dash">Why does amplitude show &ldquo;&mdash;&rdquo;?</h2>
+      <p>Amplitude requires a lift angle to be set &mdash; it is the conversion factor between the audio waveform shape and degrees of arc. If you have not selected a movement preset or entered a lift angle manually on the Setup tab, amplitude cannot be calculated and shows a dash. Select your movement from the list and the reading will appear.</p>
+      <p>Amplitude may also briefly show a dash during the first analysis cycle or if the signal is momentarily weak. The last valid amplitude reading is held between cycles to minimise gaps.</p>
+
+      <h2 id="bph">What is BPH?</h2>
+      <p>BPH (beats per hour) is the frequency of the movement&rsquo;s escapement. Common values are 18000, 21600, 28800, and 36000. TG Timer auto-detects BPH from the audio signal; selecting your movement on the Setup tab sets it explicitly, which is more reliable on noisy signals.</p>
+
+      <h2 id="lift-angle">What is lift angle and why does it matter?</h2>
+      <p>The lift angle is a property of the escapement geometry &mdash; the angle through which the pallet fork lifts during each beat. It varies by movement (common values are 48&ndash;53&deg;). TG Timer uses it to convert the ratio of tick and silence in the audio waveform into degrees of balance-wheel swing (amplitude). An incorrect lift angle will produce an incorrect amplitude reading; rate and beat error are unaffected.</p>
+      <p>Selecting a movement preset from the list sets the lift angle automatically. If your movement is not listed, the correct lift angle is usually found in the movement&rsquo;s technical sheet or the Ranfft database.</p>
+
+      <h2 id="confidence">What do the coloured dots mean?</h2>
+      <ul>
+        <li><strong>Green</strong> &mdash; signal locked, analysis ready. Readings are stable.</li>
+        <li><strong>Yellow</strong> &mdash; signal present but not yet stable, or a brief dropout occurred. The last valid reading is held.</li>
+        <li><strong>Grey</strong> &mdash; warming up (first 30 seconds) or stopped.</li>
+      </ul>
+
+      <h2 id="pdf">How do I generate a PDF report?</h2>
+      <p>Tap the share icon (top-right of the Measure screen) at any point during or after a measurement. Fill in the watchmaker name, customer name, brand, movement, serial number, and position, then tap <strong>Generate PDF</strong>. The PDF includes the rate, beat error, amplitude, frequency, the number of analyses completed, and the full rate history chart. Use the iOS share sheet to save it to Files, Mail, or any other app.</p>
+
+      <h2 id="stop-restart">Can I stop and restart a measurement?</h2>
+      <p>Yes. Tap the Stop button (square icon, top-right) at any time. The display resets and you can tap Play to begin a fresh measurement. This is useful if you need to re-position the sensor, take a phone call, or disconnect and reconnect the USB hub. The previous result is cleared when you start again.</p>
+
+      <h2 id="accuracy">How accurate is TG Timer?</h2>
+      <p>Rate accuracy is primarily limited by the reference clock of the iPhone&rsquo;s audio hardware. In practice, measurements from TG Timer agree with a calibrated bench timegrapher to within 1&ndash;2 s/d on most movements. If you have a reference movement of known rate, you can use the Calibration field on the Setup tab to compensate for any systematic offset.</p>
+      <p>Beat error accuracy is typically &plusmn;0.1&nbsp;ms. Amplitude accuracy depends on the lift angle being set correctly; with the correct preset it typically agrees with a bench timegrapher to within &plusmn;5&deg;.</p>
+
+      <h2 id="bug">How do I report a bug?</h2>
+      <p>Email <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a> with a description of what you were doing, what you expected, and what actually happened. Including the movement you were measuring and your iPhone model is helpful. We aim to respond within two business days.</p>
+
+      <h2 id="contact">Contact</h2>
+      <p>Whiteforge Technologies Ltd<br>
+      <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a></p>
+
+      <p><a href="/tgtimer/">Back to TG Timer overview &rarr;</a></p>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__block">
+        <strong>WHITEFORGE TECHNOLOGIES LTD</strong>
+        Registered in England and Wales<br>
+        Company No. 17224707
+      </div>
+      <div class="footer__block">
+        <strong>Contact</strong>
+        <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>
+      </div>
+      <div class="footer__block footer__links">
+        <strong>TG Timer</strong>
+        <a href="/tgtimer/">Overview</a>
+        <a href="/tgtimer/support/">Support</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
