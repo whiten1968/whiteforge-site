@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TG Timer &mdash; Whiteforge Technologies</title>
+  <meta name="description" content="TG Timer for iPhone: measure the rate, beat error, and amplitude of a mechanical watch using a piezo contact microphone. The same readings as a bench timegrapher, in your pocket.">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
+</head>
+<body>
+  <div class="page">
+
+    <header class="site-header">
+      <a href="/" class="site-logo">
+        <img class="site-logo__mark" src="/assets/whiteforge-mark.png" width="274" height="274" alt="">
+        <span class="site-logo__text">Whiteforge Technologies</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/#products">Products</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </header>
+
+    <main>
+
+      <section class="hero hero--product">
+        <img class="app-icon app-icon--large"
+             src="/assets/tgtimer-icon.png" width="1024" height="1024"
+             alt="TG Timer app icon">
+        <p class="section__eyebrow">iOS</p>
+        <h1>TG Timer</h1>
+        <p class="lede">A precision timing instrument for mechanical watches. Measure rate, beat error, and amplitude &mdash; the same readings as a bench timegrapher &mdash; using a piezo contact microphone connected to your iPhone. All processing happens on device; no server, no subscription, no cloud.</p>
+        <p class="cta-row">
+          <a class="appstore-button" href="https://apps.apple.com/app/tg-timer/id6748774339" aria-label="Download TG Timer on the App Store">
+            <span class="appstore-button__small">Download on the</span>
+            <span class="appstore-button__large">App Store</span>
+          </a>
+          <span class="appstore-button__note">
+            &pound;9.99 &middot; iPhone &middot; iOS 16 or later
+          </span>
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Why this exists</h2>
+        <p>A bench timegrapher costs hundreds of pounds and sits in a workshop. TG Timer turns an iPhone and a &pound;25 contact microphone into the same instrument. Watchmakers can take it to a customer, use it on the road, or simply avoid the bench setup for a quick check. Enthusiasts can measure their own watches at home without specialist equipment.</p>
+        <p>The contact microphone clips or presses against the watch case and picks up the mechanical tick directly through the material. The audio is analysed on-device using autocorrelation &mdash; the same technique used by professional timegraphers &mdash; to extract rate, beat error, and amplitude with high precision.</p>
+      </section>
+
+      <section class="section">
+        <h2>How it works</h2>
+        <ul class="feature-list">
+          <li>
+            <h3>Connect and place the microphone</h3>
+            <p>Plug the USB hub into your iPhone&rsquo;s USB-C port, connect the TGBC sensor to the hub, and press the sensor firmly against the watch case or movement. The signal level bar at the bottom of the screen confirms contact quality instantly.</p>
+          </li>
+          <li>
+            <h3>Select your movement</h3>
+            <p>Open the Setup tab and pick your movement from over 3,700 presets. This sets the correct BPH and lift angle automatically, giving you accurate amplitude readings without any manual configuration. BPH can also be left on Auto-detect if the movement is unknown.</p>
+          </li>
+          <li>
+            <h3>Tap Play and wait</h3>
+            <p>TG Timer accumulates 30 seconds of audio before the first analysis, then updates every 10 seconds using a growing window capped at 60 seconds. Readings stabilise progressively over 30 analyses (&asymp;5 minutes). The rate history chart shows how the reading has evolved across each cycle.</p>
+          </li>
+          <li>
+            <h3>Rate, beat error, and amplitude</h3>
+            <p>Rate shows how many seconds per day the movement gains or loses. Beat error measures how evenly the escapement divides each second between its two half-beats. Amplitude shows the angular swing of the balance wheel in degrees &mdash; a reliable indicator of mainspring condition and lubrication.</p>
+          </li>
+          <li>
+            <h3>Export a PDF report</h3>
+            <p>Tap the share icon to open the report form. Enter the watchmaker name, customer name, brand, movement, serial number, and position, then tap Generate PDF. The report includes all readings, the rate history chart, and the analysis count. Share it directly from the iOS share sheet.</p>
+          </li>
+          <li>
+            <h3>On-device only</h3>
+            <p>No account, no Wi-Fi, no server. Audio is processed entirely on the iPhone. Nothing is transmitted anywhere. Settings are stored in iOS UserDefaults; no data leaves the device.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>What you need</h2>
+        <ul class="feature-list">
+          <li>
+            <h3>Contact microphone</h3>
+            <p>TG Timer uses a piezo contact microphone, not the iPhone&rsquo;s built-in microphone. We use and recommend the TGBC sensor (&asymp;&pound;15), connected via a powered USB hub (&asymp;&pound;9) which supplies the 6&nbsp;V the sensor requires.</p>
+          </li>
+          <li>
+            <h3>iPhone with USB-C</h3>
+            <p>iPhone 15 or later (USB-C port required). iOS 16 or later.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Accuracy</h2>
+        <p>Rate measurements from TG Timer agree with a calibrated bench timegrapher to within 1&ndash;2&nbsp;s/d on most movements. Beat error is typically accurate to &plusmn;0.1&nbsp;ms. Amplitude accuracy depends on the lift angle being set correctly; with the correct movement preset, readings typically agree with a bench instrument to within &plusmn;5&deg;.</p>
+        <p>A Calibration field on the Setup tab lets you compensate for any systematic offset against a known-rate reference movement.</p>
+      </section>
+
+      <section class="section">
+        <h2>Privacy</h2>
+        <p>TG Timer does not transmit audio or any measurement data. All processing is local. The app has no analytics, telemetry, or crash reporting. Microphone access is used only while a measurement is running. See the <a href="/tgtimer/privacy/">privacy policy</a> for full detail.</p>
+      </section>
+
+      <section class="section">
+        <h2>Support</h2>
+        <p>For help getting started, FAQ, and bug reports, see the <a href="/tgtimer/support/">support page</a>. For anything else, email <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>.</p>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__block">
+        <strong>WHITEFORGE TECHNOLOGIES LTD</strong>
+        Registered in England and Wales<br>
+        Company No. 17224707
+      </div>
+      <div class="footer__block">
+        <strong>Contact</strong>
+        <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>
+      </div>
+      <div class="footer__block footer__links">
+        <strong>TG Timer</strong>
+        <a href="/tgtimer/">Overview</a>
+        <a href="/tgtimer/support/">Support</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
