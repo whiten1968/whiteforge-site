@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cleared privacy policy &mdash; Whiteforge Technologies</title>
+  <meta name="description" content="Privacy policy for the Cleared quit-smoking app. Your quit date and settings are stored locally on your device and are never transmitted to Whiteforge.">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
+</head>
+<body>
+  <div class="page">
+
+    <header class="site-header">
+      <a href="/" class="site-logo">
+        <img class="site-logo__mark" src="/assets/whiteforge-mark.png" width="274" height="274" alt="">
+        <span class="site-logo__text">Whiteforge Technologies</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/#products">Products</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </header>
+
+    <main class="prose">
+
+      <header class="page-title">
+        <img class="app-icon app-icon--small"
+             src="/assets/cleared-icon.png" width="1024" height="1024"
+             alt="Cleared app icon">
+        <h1>Cleared privacy policy</h1>
+      </header>
+      <p class="doc-meta">For the Cleared iOS and watchOS app &middot; Last updated 16 June 2026</p>
+
+      <div class="callout">
+        <p><strong>Summary.</strong> Cleared stores your quit date and smoking profile locally on your device. None of this information is transmitted to Whiteforge. The app contains no analytics, no telemetry, and no advertising SDKs. The only external connection is to RevenueCat and Apple for purchase validation when you unlock the app.</p>
+      </div>
+
+      <nav class="doc-toc" aria-label="Table of contents">
+        <strong>Contents</strong>
+        <ol>
+          <li><a href="#intro">Introduction</a></li>
+          <li><a href="#data">Data Whiteforge receives</a></li>
+          <li><a href="#storage">What is stored on your device</a></li>
+          <li><a href="#notifications">Notifications</a></li>
+          <li><a href="#purchase">Purchase validation</a></li>
+          <li><a href="#network">Network activity</a></li>
+          <li><a href="#third-parties">Third parties</a></li>
+          <li><a href="#children">Children</a></li>
+          <li><a href="#rights">Your rights</a></li>
+          <li><a href="#changes">Changes to this policy</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="intro">1. Introduction</h2>
+      <p>This policy explains how Cleared handles your data. Cleared is an iOS and watchOS application published by Whiteforge Technologies Ltd (&ldquo;Whiteforge&rdquo;, &ldquo;we&rdquo;), a company registered in England and Wales (company number 17224707). It helps you track your smoke-free time, money saved, and health milestones after quitting smoking.</p>
+      <p>This policy is for the Cleared app. The <a href="/">whiteforgetech.co.uk</a> website has its own <a href="/privacy/">privacy policy</a>.</p>
+
+      <h2 id="data">2. Data Whiteforge receives</h2>
+      <p>None. Cleared does not transmit your quit date, your smoking profile, your craving log, or any other personal data to Whiteforge. There are no Whiteforge servers in the data path. The app contains no analytics SDKs, no crash-reporting SDKs, no advertising SDKs, and no third-party tracking libraries of any kind.</p>
+
+      <h2 id="storage">3. What is stored on your device</h2>
+      <p>Cleared stores the following locally on your device:</p>
+      <ul>
+        <li><strong>Quit profile</strong> &mdash; your quit date, your name (optional), cigarettes per day, pack size, pack cost, and currency code. Stored in SwiftData (an on-device SQLite database managed by iOS).</li>
+        <li><strong>Craving log</strong> &mdash; a timestamp for each time you used the craving toolkit. Used to show your craving history. Stored in SwiftData.</li>
+        <li><strong>Widget and Watch data</strong> &mdash; a copy of your quit date and smoking profile is written to a shared App Group container (iOS UserDefaults) so the Home Screen widget, Lock Screen widget, and Apple Watch app can read it without launching the main app.</li>
+        <li><strong>Notification preferences</strong> &mdash; whether you have enabled milestone notifications. Stored in iOS UserDefaults.</li>
+      </ul>
+      <p>None of this data leaves your device except through iCloud backup if you have iCloud Backup enabled on your iPhone. That backup is under your control and subject to Apple&rsquo;s privacy policy, not ours.</p>
+
+      <h2 id="notifications">4. Notifications</h2>
+      <p>Cleared can send local push notifications when you reach a health milestone &mdash; for example, 20 minutes, 8 hours, 24 hours, or 10 years smoke-free. These notifications are scheduled entirely on-device using Apple&rsquo;s <em>UNUserNotificationCenter</em> API. No notification passes through Whiteforge servers; the delivery is handled directly by iOS based on your quit date.</p>
+      <p>You can enable or disable milestone notifications in the Settings tab. You can also revoke notification permission at any time in iOS Settings &rarr; Notifications &rarr; Cleared.</p>
+
+      <h2 id="purchase">5. Purchase validation</h2>
+      <p>Cleared is free to download. Full access requires a one-time in-app purchase (&ldquo;Cleared Pro&rdquo;). When you make or restore a purchase, the transaction is processed by Apple through the App Store. Whiteforge uses RevenueCat to validate purchase receipts. This involves:</p>
+      <ul>
+        <li>RevenueCat receiving an anonymised purchase receipt from Apple to confirm your entitlement.</li>
+        <li>RevenueCat generating an anonymous identifier for the transaction.</li>
+      </ul>
+      <p>RevenueCat does not receive your name, email address, or any information from your smoking profile. See <a href="https://www.revenuecat.com/privacy">RevenueCat&rsquo;s privacy policy</a> for their full data practices. Apple&rsquo;s handling of your payment is governed by <a href="https://www.apple.com/legal/privacy/">Apple&rsquo;s privacy policy</a>.</p>
+
+      <h2 id="network">6. Network activity</h2>
+      <p>Cleared makes no network connections except during the purchase flow, when RevenueCat validates your receipt with Apple. Outside of purchase events, the app is fully offline. All timers and calculations run on-device.</p>
+
+      <h2 id="third-parties">7. Third parties</h2>
+      <p>The only third-party SDK in Cleared is RevenueCat (purchase management). RevenueCat is used solely for purchase receipt validation. It does not receive any health or personal data. All other frameworks used are Apple&rsquo;s own system frameworks (SwiftUI, SwiftData, WidgetKit, WatchKit, UserNotifications).</p>
+
+      <h2 id="children">8. Children</h2>
+      <p>Cleared is intended for adults who are quitting smoking. It is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+
+      <h2 id="rights">9. Your rights</h2>
+      <p>If you are in the UK or the EU, you have rights under the UK GDPR and the EU GDPR &mdash; including the rights of access, rectification, erasure, restriction, objection, and the right to lodge a complaint. Because Cleared does not transmit personal data to Whiteforge, these rights are effectively exercised by controlling the app and your device directly. You can delete all your data by deleting the app from your iPhone. You can complain to the UK Information Commissioner&rsquo;s Office at <a href="https://ico.org.uk">ico.org.uk</a>.</p>
+
+      <h2 id="changes">10. Changes to this policy</h2>
+      <p>If we change this policy we will update the &ldquo;Last updated&rdquo; date at the top. Material changes will be summarised at the top of the policy for a reasonable period.</p>
+
+      <h2 id="contact">11. Contact</h2>
+      <p>For privacy questions about Cleared:</p>
+      <p>Whiteforge Technologies Ltd<br>
+      <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a></p>
+
+      <p><a href="/cleared/">Back to Cleared overview &rarr;</a></p>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__block">
+        <strong>WHITEFORGE TECHNOLOGIES LTD</strong>
+        Registered in England and Wales<br>
+        Company No. 17224707
+      </div>
+      <div class="footer__block">
+        <strong>Contact</strong>
+        <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>
+      </div>
+      <div class="footer__block footer__links">
+        <strong>Cleared</strong>
+        <a href="/cleared/">Overview</a>
+        <a href="/cleared/privacy/">Privacy policy</a>
+        <a href="/cleared/support/">Support</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
