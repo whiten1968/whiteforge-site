@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TG &mdash; Whiteforge Technologies</title>
+  <meta name="description" content="TG for Mac: a precision timegrapher for mechanical watches. Real-time rate, beat error, and amplitude measurement with a multi-stage analysis pipeline and paper-tape display.">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
+</head>
+<body>
+  <div class="page">
+
+    <header class="site-header">
+      <a href="/" class="site-logo">
+        <img class="site-logo__mark" src="/assets/whiteforge-mark.png" width="274" height="274" alt="">
+        <span class="site-logo__text">Whiteforge Technologies</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/#products">Products</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </header>
+
+    <main>
+
+      <section class="hero hero--product">
+        <img class="app-icon app-icon--large"
+             src="/assets/tgtimer-icon.png" width="1024" height="1024"
+             alt="TG app icon">
+        <p class="section__eyebrow">macOS &middot; Beta</p>
+        <h1>TG</h1>
+        <p class="lede">A full-featured timegrapher for Mac. Connect a piezo contact microphone and measure the rate, beat error, and amplitude of any mechanical watch in real time. Built on a multi-stage analysis pipeline for fast signal lock and maximum accuracy &mdash; the closest thing to a bench instrument on a desktop.</p>
+        <p class="cta-row">
+          <span class="appstore-button__note">
+            Coming soon &middot; macOS &middot; £19.99
+          </span>
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Why TG is different</h2>
+        <p>Most software timegraphers take a single long sample and report one result. TG runs four analysis stages simultaneously, each processing progressively longer buffers (3 to 24 seconds). The shortest stage locks to the signal almost immediately; the longer stages refine the result as more data accumulates. You see a stable reading in seconds rather than waiting half a minute.</p>
+        <p>TG is based on the open-source vacaboja/tg project, extended with a native macOS interface, improved signal processing, and direct download distribution.</p>
+      </section>
+
+      <section class="section">
+        <h2>Features</h2>
+        <ul class="feature-list">
+          <li>
+            <h3>Real-time rate, beat error, and amplitude</h3>
+            <p>The same three measurements as a bench timegrapher: seconds per day gain or loss, escapement symmetry to &plusmn;0.1&nbsp;ms, and balance wheel swing in degrees. All updated continuously as the signal improves.</p>
+          </li>
+          <li>
+            <h3>Multi-stage pipeline</h3>
+            <p>Four processing stages run in parallel with different buffer lengths. The shortest gives an early lock; the longest gives the highest precision. Readings stabilise progressively rather than all at once.</p>
+          </li>
+          <li>
+            <h3>Paper-tape display</h3>
+            <p>A scrolling paper-tape view shows the tick pattern over time, exactly as a mechanical timegrapher would. Visual irregularities in the pattern reveal beat error, rate drift, and mainspring issues at a glance.</p>
+          </li>
+          <li>
+            <h3>Oscilloscope view</h3>
+            <p>See the raw waveform captured from the microphone alongside the filtered signal. Useful for diagnosing poor microphone placement or a noisy signal.</p>
+          </li>
+          <li>
+            <h3>Calibration mode</h3>
+            <p>Place a known-rate reference watch on the sensor and run calibration to compensate for any systematic offset in the audio path. Calibration data is saved per audio device.</p>
+          </li>
+          <li>
+            <h3>WAV recording and replay</h3>
+            <p>Record a session to WAV and replay it later for re-analysis. Useful for comparing a movement before and after a service, or sharing audio with another watchmaker.</p>
+          </li>
+          <li>
+            <h3>Test signal generator</h3>
+            <p>Generate a synthetic tick signal at any BPH to verify the analysis pipeline is reading correctly before placing a watch on the sensor.</p>
+          </li>
+          <li>
+            <h3>On-device only</h3>
+            <p>No account, no internet connection, no telemetry. Audio processing is entirely local. Nothing leaves your Mac.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>What you need</h2>
+        <ul class="feature-list">
+          <li>
+            <h3>Contact microphone</h3>
+            <p>TG uses a piezo contact microphone. We use and recommend the TGBC sensor (&asymp;&pound;15), connected via a powered USB hub which supplies the 6&nbsp;V the sensor requires. Any piezo contact mic with a standard audio jack will also work.</p>
+          </li>
+          <li>
+            <h3>Mac</h3>
+            <p>macOS 13 Ventura or later. Apple Silicon and Intel both supported.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Privacy</h2>
+        <p>TG does not transmit audio or measurement data. All processing is local. The app has no analytics, telemetry, or crash reporting. Microphone access is used only while a measurement session is running. For full details, email <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>.</p>
+      </section>
+
+      <section class="section">
+        <h2>Support</h2>
+        <p>For help, bug reports, or feature requests, email <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>.</p>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__block">
+        <strong>WHITEFORGE TECHNOLOGIES LTD</strong>
+        Registered in England and Wales<br>
+        Company No. 17224707
+      </div>
+      <div class="footer__block">
+        <strong>Contact</strong>
+        <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>
+      </div>
+      <div class="footer__block footer__links">
+        <strong>TG</strong>
+        <a href="/tg/">Overview</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
