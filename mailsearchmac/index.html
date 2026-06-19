@@ -7,6 +7,7 @@
   <meta name="description" content="MailSearch for Mac: search every email you've ever received. Local-only full-text index across Gmail, Outlook, iCloud and IMAP — including text inside PDF and document attachments. Tokens stay in your Keychain; no Whiteforge servers in the data path.">
   <link rel="stylesheet" href="/css/base.css">
   <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
+  <script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
 </head>
 <body>
   <div class="page">
@@ -33,16 +34,11 @@
         <h1>MailSearch</h1>
         <p class="lede">Search every email you&rsquo;ve ever received. MailSearch connects to Gmail, Outlook, iCloud, or any IMAP mailbox and builds a full-text index on your Mac &mdash; subjects, senders, recipients, body text, and the text inside PDF and document attachments. Tokens stay in your Keychain. Mail flows directly from your provider to MailSearch &mdash; no Whiteforge servers in the path.</p>
         <p class="cta-row">
-          <a class="appstore-button" href="https://github.com/whiten1968/MailSearchMac-downloads/releases/latest/download/MailSearchMac-aarch64.dmg" aria-label="Download MailSearch for Apple Silicon Macs">
-            <span class="appstore-button__small">Download for</span>
-            <span class="appstore-button__large">macOS</span>
+          <a href="https://whiteforge.lemonsqueezy.com/checkout/buy/5e575673-75ba-4c6a-a26c-68e88f0acfa0"
+             class="appstore-button lemonsqueezy-button">
+            <span class="appstore-button__small">One-time purchase &middot; macOS 11+</span>
+            <span class="appstore-button__large">Buy MailSearch &mdash; £24.99</span>
           </a>
-          <span class="appstore-button__note">
-            Free public beta &middot;
-            <a href="https://github.com/whiten1968/MailSearchMac-downloads/releases/latest/download/MailSearchMac-aarch64.dmg">Apple Silicon</a> or
-            <a href="https://github.com/whiten1968/MailSearchMac-downloads/releases/latest/download/MailSearchMac-x86_64.dmg">Intel</a>
-            &middot; macOS 11 or later
-          </span>
         </p>
       </section>
 
@@ -115,13 +111,13 @@
 
       <section class="section">
         <h2>Privacy</h2>
-        <p>MailSearch makes outbound network connections <em>by design</em> &mdash; it has to, to fetch your mail. Those connections go to your mail provider, not to Whiteforge. There are no Whiteforge servers in the data path. There are no analytics, telemetry, or crash reporting in the app.</p>
+        <p>MailSearch makes outbound network connections <em>by design</em> &mdash; it has to, to fetch your mail and to validate your licence key on first activation. Mail connections go to your provider, not to Whiteforge; the licence check goes to LemonSqueezy (our payment processor) once and is not repeated. There are no Whiteforge servers in the data path. There are no analytics, telemetry, or crash reporting in the app.</p>
         <p>Tokens (Gmail / Outlook) and app-specific passwords (iCloud / IMAP) live in your macOS Keychain. The full-text index and any cached message bodies live in a SQLite database under <code>~/Library/Application&nbsp;Support/</code>. See the <a href="/mailsearchmac/privacy/">privacy policy</a> for the full detail.</p>
       </section>
 
       <section class="section">
         <h2>Requirements</h2>
-        <p>macOS 11 (Big Sur) or later. Apple Silicon and Intel both supported &mdash; separate disk images for each. Distributed as a Developer ID signed and Apple-notarized disk image &mdash; not via the Mac App Store.</p>
+        <p>macOS 11 (Big Sur) or later. Apple Silicon (M-series) Macs. Distributed as a Developer ID signed and Apple-notarized disk image &mdash; not via the Mac App Store.</p>
       </section>
 
       <section class="section">
