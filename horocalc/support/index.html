@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HoroCalc support &mdash; Whiteforge Technologies</title>
+  <meta name="description" content="Support and FAQ for HoroCalc: formulas used, how to use each calculator, and contact details.">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
+</head>
+<body>
+  <div class="page">
+
+    <header class="site-header">
+      <a href="/" class="site-logo">
+        <img class="site-logo__mark" src="/assets/whiteforge-mark.png" width="274" height="274" alt="">
+        <span class="site-logo__text">Whiteforge Technologies</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/#products">Products</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </header>
+
+    <main class="prose">
+
+      <header class="page-title">
+        <img class="app-icon app-icon--small"
+             src="/assets/horocalc-icon.png" width="1024" height="1024"
+             alt="HoroCalc app icon">
+        <h1>HoroCalc support</h1>
+      </header>
+      <p class="doc-meta">Help, formulas, and frequently asked questions &middot; Last updated 19 June 2026</p>
+
+      <nav class="doc-toc" aria-label="Table of contents">
+        <strong>Contents</strong>
+        <ol>
+          <li><a href="#mainspring">Mainspring Sizer</a></li>
+          <li><a href="#beatrate">Beat Rate</a></li>
+          <li><a href="#pendulum">Pendulum</a></li>
+          <li><a href="#geartrain">Gear Train</a></li>
+          <li><a href="#powerreserve">Power Reserve</a></li>
+          <li><a href="#units">Units and conventions</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="mainspring">Mainspring Sizer</h2>
+
+      <h3>What it does</h3>
+      <p>Calculates the target length, width, and thickness of a replacement mainspring from the barrel dimensions, using the industry-standard &#x2153; barrel-fill rule.</p>
+
+      <h3>Inputs</h3>
+      <ul>
+        <li><strong>Barrel bore &mdash; D</strong>: the internal diameter of the barrel, measured in mm.</li>
+        <li><strong>Arbor diameter &mdash; d</strong>: the diameter of the mainspring arbor (the central post the spring is coiled around), in mm.</li>
+        <li><strong>Barrel height &mdash; h</strong>: the internal height of the barrel (the space the spring actually occupies), in mm.</li>
+        <li><strong>Spring thickness &mdash; t</strong> (optional): if you know the spring thickness from the original or from catalogue data, enter it for an exact calculation. If left blank, the app estimates it from the arbor-to-barrel ratio, targeting approximately 38 turns.</li>
+      </ul>
+
+      <h3>Formulas</h3>
+      <p>The &#x2153; fill rule states that the wound spring should occupy one-third of the annular space between the arbor and barrel wall:</p>
+      <pre>L = &pi;(D&sup2; &minus; d&sup2;) / (12 &times; t)</pre>
+      <p>Width is calculated as 85% of the barrel height, allowing clearance:</p>
+      <pre>Width = h &times; 0.85</pre>
+      <p>Turns in the barrel:</p>
+      <pre>Turns = (D &minus; d) / (2 &times; t)</pre>
+      <p>If thickness is not provided, it is estimated as:</p>
+      <pre>t = (D &minus; d) / 75</pre>
+      <p>This targets approximately 38 turns, which is typical for most watch barrels.</p>
+
+      <h3>Notes</h3>
+      <p>These results are estimates. Actual spring selection depends on the material (blue steel, stainless), end-piece and bridle design, and the torque curve the watchmaker wants to achieve. The calculated length gives a good starting point; consult the movement&rsquo;s technical sheet or established spring catalogues (e.g. Cousins, Ranfft) to cross-reference.</p>
+
+      <h2 id="beatrate">Beat Rate</h2>
+
+      <h3>What it does</h3>
+      <p>Converts between BPH (beats per hour), Hz (oscillations per second), beat interval (ms), and beat period (seconds). Also calculates a rate deviation in ppm from a measured daily error.</p>
+
+      <h3>Inputs</h3>
+      <ul>
+        <li><strong>BPH</strong>: beats per hour. Select a common frequency from the chip buttons or type any value.</li>
+        <li><strong>Daily rate error</strong> (optional): a positive value means the watch is gaining time; negative means losing. Entered in seconds per day.</li>
+      </ul>
+
+      <h3>Formulas</h3>
+      <pre>Hz = BPH / 7200
+Beat interval (ms) = 3,600,000 / BPH
+Beat period (s) = 7200 / BPH
+Rate (ppm) = (error s/day) / 86,400 &times; 1,000,000</pre>
+      <p><strong>Why 7200?</strong> One beat is a single tick of the escapement &mdash; one tooth advance. A balance oscillation (one full swing and return) produces <em>two</em> beats. So BPH = Hz &times; 2 &times; 3600 = Hz &times; 7200.</p>
+
+      <h3>Rate indicator</h3>
+      <p>The ppm deviation is colour-coded: green (within &plusmn;50 ppm), orange (&plusmn;50&ndash;150 ppm), red (over &plusmn;150 ppm). This follows typical COSC chronometer limits as a rough benchmark; the actual tolerance for any given movement will differ.</p>
+
+      <h2 id="pendulum">Pendulum</h2>
+
+      <h3>What it does</h3>
+      <p>Converts between pendulum length and beat rate in both directions, and calculates the bob adjustment needed to correct a measured rate error.</p>
+
+      <h3>Inputs</h3>
+      <ul>
+        <li><strong>Pendulum length</strong>: measured in mm from the pivot to the centre of the bob.</li>
+        <li><strong>Target BPH</strong>: the intended beat rate of the clock.</li>
+        <li><strong>Daily rate error</strong>: positive = gaining (clock runs fast); negative = losing (clock runs slow).</li>
+      </ul>
+
+      <h3>Formulas</h3>
+      <p>The standard pendulum formula (simple pendulum approximation using g = 9.80665 m/s&sup2;):</p>
+      <pre>T = 2&pi;&radic;(L / g)     [T in seconds, L in metres]
+BPH = 7200 / T
+
+L = g &times; (7200 / BPH)&sup2; / (4&pi;&sup2;)   [result in metres &times; 1000 for mm]</pre>
+      <p>Bob adjustment for a rate error of <em>e</em> seconds/day with current pendulum length <em>L</em> mm:</p>
+      <pre>&Delta;L = 2 &times; L &times; |e| / 86,400</pre>
+      <ul>
+        <li>If the clock is <strong>gaining</strong> (e &gt; 0): <strong>lower</strong> the bob by &Delta;L mm.</li>
+        <li>If the clock is <strong>losing</strong> (e &lt; 0): <strong>raise</strong> the bob by &Delta;L mm.</li>
+      </ul>
+      <p>The app tells you the direction explicitly &mdash; no need to remember which way.</p>
+
+      <h3>Notes</h3>
+      <p>The simple pendulum formula assumes a massless rod and point bob. For accurate clock servicing, use it as a starting point and trim to rate. Temperature compensation (e.g. gridiron pendulums) is not modelled.</p>
+
+      <h2 id="geartrain">Gear Train</h2>
+
+      <h3>What it does</h3>
+      <p>Calculates the beat rate and key intermediate wheel speeds from the tooth counts of a watch or clock gear train.</p>
+
+      <h3>Inputs</h3>
+      <ul>
+        <li><strong>Centre wheel teeth (C)</strong>: the main driving wheel, assumed to rotate once per hour.</li>
+        <li><strong>Third pinion leaves (tp) and Third wheel teeth (tw)</strong></li>
+        <li><strong>Fourth pinion leaves (fp) and Fourth wheel teeth (fw)</strong></li>
+        <li><strong>Escape pinion leaves (ep) and Escape wheel teeth (ew)</strong></li>
+        <li><strong>Layout</strong>: selects how the fourth wheel RPM result is interpreted:
+          <ul>
+            <li><em>Watch &mdash; centre seconds</em>: fourth wheel should rotate at 1.000 RPM; reading turns green when within 5%.</li>
+            <li><em>Watch &mdash; sub-seconds</em>: same check applies.</li>
+            <li><em>Clock</em>: fourth wheel check is not shown.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>Formulas</h3>
+      <p>All derived from the centre wheel making exactly one revolution per hour (1/60 RPM):</p>
+      <pre>BPH = 2 &times; C &times; tw &times; fw &times; ew / (tp &times; fp &times; ep)
+
+Fourth wheel RPM = C &times; tw / (tp &times; fp) / 60
+
+Escape wheel RPH = C &times; tw &times; fw / (tp &times; fp &times; ep)</pre>
+
+      <h3>Notes</h3>
+      <p>Enter only the teeth that mesh in series: centre &rarr; third &rarr; fourth &rarr; escape. A cannon pinion or motion work (which drives the dial train) sits in parallel and does not affect the beat rate calculation. Some movements (e.g. certain pocket watch calibres) have more or fewer wheel stages &mdash; this calculator models the standard four-wheel train.</p>
+
+      <h2 id="powerreserve">Power Reserve</h2>
+
+      <h3>What it does</h3>
+      <p>Estimates the power reserve in hours from the barrel and spring dimensions and a barrel rate figure.</p>
+
+      <h3>Inputs</h3>
+      <ul>
+        <li><strong>Barrel bore &mdash; D</strong>: internal barrel diameter, in mm.</li>
+        <li><strong>Arbor diameter &mdash; d</strong>: arbor diameter, in mm.</li>
+        <li><strong>Spring thickness &mdash; t</strong>: mainspring thickness, in mm.</li>
+        <li><strong>Hours per barrel revolution</strong>: how long one full rotation of the barrel takes. For most wristwatches this is approximately 1.0 hour. An 8-day clock barrel turning once in 8 hours &rarr; enter 8.</li>
+        <li><strong>Efficiency (%)</strong>: the fraction of total turns that deliver usable driving torque. Typical values are 75&ndash;85%. Turns at the very end of the run-down (where torque falls below the movement&rsquo;s threshold) do not count.</li>
+      </ul>
+
+      <h3>Formulas</h3>
+      <pre>Max turns = (D &minus; d) / (2 &times; t)
+Useful turns = Max turns &times; (efficiency / 100)
+Power reserve (h) = Useful turns &times; hours per barrel revolution</pre>
+
+      <h3>Notes</h3>
+      <p>This is a geometric estimate. Real-world power reserve depends on spring material, heat treatment, the bridle, gear train friction, and how the escapement is set up. Use it to sanity-check a spring selection or compare barrel configurations; measure the actual reserve on the timegrapher for a definitive figure.</p>
+
+      <h2 id="units">Units and conventions</h2>
+      <ul>
+        <li>All lengths are in <strong>millimetres</strong>.</li>
+        <li>Beat rates are in <strong>beats per hour (BPH)</strong>. One beat = one tooth advance of the escapement.</li>
+        <li>Gravity is taken as <strong>9.80665 m/s&sup2;</strong> (standard gravity).</li>
+        <li>The pendulum formula is the simple pendulum (massless rod, point bob).</li>
+        <li>The mainspring formula uses the &#x2153; barrel-fill rule, which is the standard industry starting point.</li>
+      </ul>
+
+      <h2 id="contact">Contact</h2>
+      <p>For bug reports, feature requests, or questions not answered here:</p>
+      <p>Whiteforge Technologies Ltd<br>
+      <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a></p>
+
+      <p><a href="/horocalc/">Back to HoroCalc overview &rarr;</a></p>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__block">
+        <strong>WHITEFORGE TECHNOLOGIES LTD</strong>
+        Registered in England and Wales<br>
+        Company No. 17224707
+      </div>
+      <div class="footer__block">
+        <strong>Contact</strong>
+        <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>
+      </div>
+      <div class="footer__block footer__links">
+        <strong>HoroCalc</strong>
+        <a href="/horocalc/">Overview</a>
+        <a href="/horocalc/privacy/">Privacy policy</a>
+        <a href="/horocalc/support/">Support</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
