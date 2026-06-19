@@ -7,6 +7,7 @@
   <meta name="description" content="PDF Redaction: local-first PDF redaction for macOS. Text and images are surgically removed from the underlying file and verified before save &mdash; not just covered by black rectangles.">
   <link rel="stylesheet" href="/css/base.css">
   <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
+  <script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
 </head>
 <body>
   <div class="page">
@@ -33,16 +34,11 @@
         <h1>PDF Redaction</h1>
         <p class="lede">Properly redact PDFs on your Mac. Text and images marked for redaction are surgically removed from the underlying file and the result is verified before save &mdash; not just covered by black rectangles.</p>
         <p class="cta-row">
-          <a class="appstore-button" href="https://github.com/whiten1968/PDFRedaction-downloads/releases/latest/download/PDFRedaction-aarch64.dmg" aria-label="Download PDF Redaction for Apple Silicon Macs">
-            <span class="appstore-button__small">Download for</span>
-            <span class="appstore-button__large">macOS</span>
+          <a href="https://whiteforge.lemonsqueezy.com/checkout/buy/13e83c1a-5114-48e0-8ed2-6899ccd434da"
+             class="appstore-button lemonsqueezy-button">
+            <span class="appstore-button__small">One-time purchase &middot; macOS 11+</span>
+            <span class="appstore-button__large">Buy PDF Redaction &mdash; £14.99</span>
           </a>
-          <span class="appstore-button__note">
-            Free public beta &middot;
-            <a href="https://github.com/whiten1968/PDFRedaction-downloads/releases/latest/download/PDFRedaction-aarch64.dmg">Apple Silicon</a> or
-            <a href="https://github.com/whiten1968/PDFRedaction-downloads/releases/latest/download/PDFRedaction-x86_64.dmg">Intel</a>
-            &middot; macOS 11 or later
-          </span>
         </p>
       </section>
 
@@ -102,14 +98,13 @@
 
       <section class="section">
         <h2>Privacy</h2>
-        <p>PDF Redaction makes no network connections by default. PDFs are processed entirely in memory and on the local disk. There are no analytics, no telemetry, no servers.</p>
-        <p>An optional auto-update check can be enabled in Settings &rarr; Updates, which makes one HTTPS request per launch to GitHub to look for a new version. No PDF content, no telemetry, no user data is sent &mdash; see the <a href="/pdfredaction/privacy/">privacy policy</a> for the full detail.</p>
-        <p>When you close a document or quit the app, the in-memory state is dropped; nothing is persisted to disk without your explicit "Save" action.</p>
+        <p>PDF Redaction makes one network connection on first launch to activate your licence key against the Whiteforge licence server. After that, it makes no further network connections. PDFs are processed entirely in memory and on the local disk. There are no analytics, no telemetry, no servers in the data path.</p>
+        <p>When you close a document or quit the app, the in-memory state is dropped; nothing is persisted to disk without your explicit "Save" action. See the <a href="/pdfredaction/privacy/">privacy policy</a> for full details.</p>
       </section>
 
       <section class="section">
         <h2>Requirements</h2>
-        <p>macOS 11 (Big Sur) or later. Apple Silicon and Intel both supported &mdash; separate disk images for each. Distributed as a Developer ID signed and Apple-notarized disk image &mdash; not via the Mac App Store.</p>
+        <p>macOS 11 (Big Sur) or later. Apple Silicon (M-series) Macs. Distributed as a Developer ID signed and Apple-notarized disk image &mdash; not via the Mac App Store.</p>
       </section>
 
       <section class="section">
