@@ -34,7 +34,7 @@
       <p class="doc-meta">For the A New Dawn iOS and watchOS app &middot; Last updated 16 June 2026</p>
 
       <div class="callout">
-        <p><strong>Summary.</strong> A New Dawn stores your quit date and smoking profile locally on your device. None of this information is transmitted to Whiteforge. The app contains no analytics, no telemetry, and no advertising SDKs. The only external connection is to RevenueCat and Apple for purchase validation when you unlock the app.</p>
+        <p><strong>Summary.</strong> A New Dawn stores your quit date and smoking profile locally on your device. None of this information is transmitted to Whiteforge. The app contains no analytics, no telemetry, and no advertising SDKs. The only external connection is to Apple&rsquo;s App Store for purchase validation when you unlock the app.</p>
       </div>
 
       <nav class="doc-toc" aria-label="Table of contents">
@@ -76,18 +76,13 @@
       <p>You can enable or disable milestone notifications in the Settings tab. You can also revoke notification permission at any time in iOS Settings &rarr; Notifications &rarr; A New Dawn.</p>
 
       <h2 id="purchase">5. Purchase validation</h2>
-      <p>A New Dawn is free to download. Full access requires a one-time in-app purchase (&ldquo;A New Dawn Unlock&rdquo;). When you make or restore a purchase, the transaction is processed by Apple through the App Store. Whiteforge uses RevenueCat to validate purchase receipts. This involves:</p>
-      <ul>
-        <li>RevenueCat receiving an anonymised purchase receipt from Apple to confirm your entitlement.</li>
-        <li>RevenueCat generating an anonymous identifier for the transaction.</li>
-      </ul>
-      <p>RevenueCat does not receive your name, email address, or any information from your smoking profile. See <a href="https://www.revenuecat.com/privacy">RevenueCat&rsquo;s privacy policy</a> for their full data practices. Apple&rsquo;s handling of your payment is governed by <a href="https://www.apple.com/legal/privacy/">Apple&rsquo;s privacy policy</a>.</p>
+      <p>A New Dawn is free to download. Full access requires a one-time in-app purchase (&ldquo;A New Dawn Unlock&rdquo;). When you make or restore a purchase, the transaction is processed entirely by Apple through the App Store using Apple&rsquo;s StoreKit framework. Your entitlement is verified on-device against Apple&rsquo;s signed transaction record &mdash; no purchase data is sent to Whiteforge or any third-party service. Apple&rsquo;s handling of your payment is governed by <a href="https://www.apple.com/legal/privacy/">Apple&rsquo;s privacy policy</a>.</p>
 
       <h2 id="network">6. Network activity</h2>
-      <p>A New Dawn makes no network connections except during the purchase flow, when RevenueCat validates your receipt with Apple. Outside of purchase events, the app is fully offline. All timers and calculations run on-device.</p>
+      <p>A New Dawn makes no network connections except during the purchase flow, when StoreKit communicates with the App Store to complete or restore your purchase. Outside of purchase events, the app is fully offline. All timers and calculations run on-device.</p>
 
       <h2 id="third-parties">7. Third parties</h2>
-      <p>The only third-party SDK in A New Dawn is RevenueCat (purchase management). RevenueCat is used solely for purchase receipt validation. It does not receive any health or personal data. All other frameworks used are Apple&rsquo;s own system frameworks (SwiftUI, SwiftData, WidgetKit, WatchKit, UserNotifications).</p>
+      <p>A New Dawn contains no third-party SDKs. Purchases are handled by Apple&rsquo;s own StoreKit framework, and all other functionality uses Apple&rsquo;s system frameworks (SwiftUI, SwiftData, WidgetKit, WatchKit, UserNotifications). No analytics, advertising, or purchase-management services are embedded.</p>
 
       <h2 id="children">8. Children</h2>
       <p>A New Dawn is intended for adults who are quitting smoking. It is not directed at children under 13. We do not knowingly collect personal information from children.</p>
