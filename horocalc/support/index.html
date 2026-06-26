@@ -31,16 +31,30 @@
              alt="HoroCalc app icon">
         <h1>HoroCalc support</h1>
       </header>
-      <p class="doc-meta">Help, formulas, and frequently asked questions &middot; Last updated 19 June 2026</p>
+      <p class="doc-meta">Help, formulas, and frequently asked questions &middot; Last updated 26 June 2026</p>
 
       <nav class="doc-toc" aria-label="Table of contents">
         <strong>Contents</strong>
+        <p><em>Calculators</em></p>
         <ol>
           <li><a href="#mainspring">Mainspring Sizer</a></li>
           <li><a href="#beatrate">Beat Rate</a></li>
+          <li><a href="#hairspring">Hairspring</a></li>
+          <li><a href="#depthing">Gear Depthing</a></li>
           <li><a href="#pendulum">Pendulum</a></li>
           <li><a href="#geartrain">Gear Train</a></li>
           <li><a href="#powerreserve">Power Reserve</a></li>
+        </ol>
+        <p><em>Workshop</em></p>
+        <ol>
+          <li><a href="#regulation">Regulation worksheet</a></li>
+          <li><a href="#movements">Saved Movements</a></li>
+          <li><a href="#converters">Converters</a></li>
+          <li><a href="#service">Service &amp; Lubrication</a></li>
+          <li><a href="#reference">Reference library</a></li>
+        </ol>
+        <p><em>General</em></p>
+        <ol>
           <li><a href="#units">Units and conventions</a></li>
           <li><a href="#contact">Contact</a></li>
         </ol>
@@ -93,6 +107,44 @@ Rate (ppm) = (error s/day) / 86,400 &times; 1,000,000</pre>
 
       <h3>Rate indicator</h3>
       <p>The ppm deviation is colour-coded: green (within &plusmn;50 ppm), orange (&plusmn;50&ndash;150 ppm), red (over &plusmn;150 ppm). This follows typical COSC chronometer limits as a rough benchmark; the actual tolerance for any given movement will differ.</p>
+
+      <h2 id="hairspring">Hairspring</h2>
+
+      <h3>What it does</h3>
+      <p>Works out how the active (vibrating) length of a hairspring relates to rate, so you can calculate how much to lengthen or shorten it to correct a measured daily error &mdash; and see how sensitive the regulator is at the current length.</p>
+
+      <h3>Inputs</h3>
+      <ul>
+        <li><strong>Active spring length</strong>: the free vibrating length, from the stud to the regulator pins (or to the collet if free-sprung), in mm.</li>
+        <li><strong>Nominal beat rate</strong>: tap a common frequency or enter the target BPH.</li>
+        <li><strong>Measured daily error</strong>: positive if the watch gains, negative if it loses, in seconds per day.</li>
+      </ul>
+
+      <h3>Formulas</h3>
+      <p>Balance frequency scales with the inverse square root of active length, so the required length for a corrected rate is:</p>
+      <pre>L_required = L &times; (1 + error / 86,400)&sup2;</pre>
+      <p>Because a fast watch needs a <em>longer</em> active spring and a slow watch a <em>shorter</em> one, the app reports the required length and the change (lengthen or shorten) explicitly. Regulator sensitivity &mdash; the rate change for a 0.1&nbsp;mm change in length &mdash; is:</p>
+      <pre>&Delta;rate &asymp; 86,400 / 2 &times; (0.1 / L)   [s/day per 0.1 mm]</pre>
+
+      <h3>Notes</h3>
+      <p>This models the active length only; it does not account for spring material, terminal-curve geometry, or temperature effects. Use it to estimate a regulator move or a stud-to-pin adjustment, then confirm on the timegrapher.</p>
+
+      <h2 id="depthing">Gear Depthing</h2>
+
+      <h3>What it does</h3>
+      <p>Relates the module, tooth counts, and centre distance of a meshing wheel and pinion &mdash; in both directions. Use it to find the correct centre distance for a known module, or to recover an unknown module from a measured centre distance.</p>
+
+      <h3>Inputs</h3>
+      <ul>
+        <li><strong>Module &rarr; geometry</strong>: enter the module (m), wheel teeth (z&#8321;), and pinion leaves (z&#8322;).</li>
+        <li><strong>Centre distance &rarr; module</strong>: enter the measured distance between the two arbors and the tooth counts.</li>
+      </ul>
+
+      <h3>Formulas</h3>
+      <pre>Pitch diameter = m &times; z
+Centre distance = m &times; (z&#8321; + z&#8322;) / 2
+Module = 2 &times; centre distance / (z&#8321; + z&#8322;)</pre>
+      <p>Two meshing gears must share the same module. Recovering the module from a measured centre distance helps identify or cut a replacement wheel.</p>
 
       <h2 id="pendulum">Pendulum</h2>
 
@@ -175,6 +227,80 @@ Power reserve (h) = Useful turns &times; hours per barrel revolution</pre>
 
       <h3>Notes</h3>
       <p>This is a geometric estimate. Real-world power reserve depends on spring material, heat treatment, the bridle, gear train friction, and how the escapement is set up. Use it to sanity-check a spring selection or compare barrel configurations; measure the actual reserve on the timegrapher for a definitive figure.</p>
+
+      <h2 id="regulation">Regulation worksheet</h2>
+
+      <h3>What it does</h3>
+      <p>Takes the rate measured in up to six positions and reports the overall quality of regulation: the mean rate, the positional spread, and the flat-versus-vertical delta, with a grade against COSC-style limits.</p>
+
+      <h3>Inputs</h3>
+      <ul>
+        <li><strong>Flat positions</strong>: dial up (DU) and dial down (DD), in s/day.</li>
+        <li><strong>Vertical positions</strong>: crown up (PU), crown down (PD), crown left (PL), crown right (PR), in s/day.</li>
+        <li><strong>Amplitude &mdash; flat and vertical, and beat error</strong> (optional): adds an amplitude-drop figure and records beat error.</li>
+      </ul>
+
+      <h3>How the grade works</h3>
+      <p>The worksheet computes the mean of all entered positions, the spread (best minus worst), and the difference between the mean flat and mean vertical rates, then grades:</p>
+      <ul>
+        <li><strong>Chronometer grade</strong> &mdash; spread &le; 8 s/day, small mean, flat&minus;vertical within &minus;6 to +8.</li>
+        <li><strong>Well regulated</strong> &mdash; spread &le; 15 s/day.</li>
+        <li><strong>Serviceable</strong> &mdash; spread &le; 30 s/day.</li>
+        <li><strong>Needs regulation</strong> &mdash; spread over 30 s/day.</li>
+      </ul>
+      <p>These thresholds are a practical guide based on COSC-style limits, not the certification test itself. A healthy watch typically loses no more than about 50&deg; of amplitude from flat to vertical, and beat error under 0.5&nbsp;ms is excellent.</p>
+
+      <h2 id="movements">Saved Movements</h2>
+
+      <h3>What it does</h3>
+      <p>Stores a movement&rsquo;s specification so you can return to it, and keeps a timing log over time. Everything is saved locally on your device.</p>
+
+      <h3>Saving a movement</h3>
+      <p>Give it a name (e.g. &ldquo;ETA 2824-2&rdquo;) and, optionally, a maker, caliber, beat rate, barrel and mainspring dimensions, power-reserve figures, and notes. From these HoroCalc derives the frequency, beat interval, mainspring length, and estimated power reserve automatically, using the same formulas as the individual calculators.</p>
+
+      <h3>Logging timing</h3>
+      <p>Add rate readings with a date, position, rate (s/day), amplitude, and beat error. The detail screen plots the rate trend on a chart and shows the positional spread, colour-coded green (&lt; 15 s/day), orange (&lt; 30), or red. Tap a reading to remove it, or swipe to delete.</p>
+
+      <h3>Exporting</h3>
+      <p>The share menu produces a plain-text spec sheet &mdash; identity, derived specification, notes, and the full timing log &mdash; that you can send anywhere via the system share sheet. The export is created only when you tap Share.</p>
+
+      <h2 id="converters">Converters</h2>
+
+      <h3>What it does</h3>
+      <p>Converts between the everyday units of movement and case work: lignes, millimetres, and inches.</p>
+
+      <h3>Conventions</h3>
+      <pre>1 ligne (&#x2034;) = 2.2558 mm
+1 inch = 25.4 mm</pre>
+      <p>The ligne is the traditional Swiss unit for movement diameter &mdash; an 11&frac12;&#x2034; movement is about 25.6&nbsp;mm across.</p>
+
+      <h2 id="service">Service &amp; Lubrication</h2>
+
+      <h3>What it does</h3>
+      <p>A set of bench-reference tables for service work. These are read-only guides, not calculators.</p>
+
+      <h3>What&rsquo;s included</h3>
+      <ul>
+        <li><strong>Lubrication points</strong> &mdash; each part of the movement mapped to a recommended oil or grease.</li>
+        <li><strong>Lubricant guide</strong> &mdash; common Moebius and Kluber products and what each is for.</li>
+        <li><strong>Service intervals</strong> &mdash; rough guidance by watch type.</li>
+        <li><strong>Torque conversions</strong> &mdash; gram-millimetres to micro-newton-metres for mainspring torque.</li>
+        <li><strong>Swiss / NIHS screw threads</strong> &mdash; common diameters and pitches.</li>
+      </ul>
+      <p>These are general guides. Always follow the manufacturer&rsquo;s technical sheet for a given caliber.</p>
+
+      <h2 id="reference">Reference library</h2>
+
+      <h3>What it does</h3>
+      <p>Built-in articles explaining the theory behind the tools, so you can check the reasoning as well as the number.</p>
+
+      <h3>What&rsquo;s included</h3>
+      <ul>
+        <li><strong>Formulas</strong> &mdash; beat rate, mainspring sizing, power reserve, gear-train ratios, and pendulum length, each with the equation and an explanation.</li>
+        <li><strong>Concepts</strong> &mdash; lift angle and amplitude, beat error, the six positions, and lever-escapement geometry (lock, draw, lift, drop).</li>
+        <li><strong>Standards &amp; tables</strong> &mdash; the full COSC chronometer limits, common balance frequencies, and ligne-size tables.</li>
+        <li><strong>Glossary</strong> &mdash; concise definitions of the everyday watchmaking terms.</li>
+      </ul>
 
       <h2 id="units">Units and conventions</h2>
       <ul>

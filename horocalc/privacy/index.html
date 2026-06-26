@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>HoroCalc privacy policy &mdash; Whiteforge Technologies</title>
-  <meta name="description" content="Privacy policy for HoroCalc. The app is a stateless calculator: no data is stored, no data is transmitted, and no accounts are required.">
+  <meta name="description" content="Privacy policy for HoroCalc. The movements and timing logs you save are stored only on your own device; nothing is transmitted to Whiteforge, and no accounts are required.">
   <link rel="stylesheet" href="/css/base.css">
   <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
 </head>
@@ -31,10 +31,10 @@
              alt="HoroCalc app icon">
         <h1>HoroCalc privacy policy</h1>
       </header>
-      <p class="doc-meta">For the HoroCalc iOS app &middot; Last updated 19 June 2026</p>
+      <p class="doc-meta">For the HoroCalc iOS &amp; iPadOS app &middot; Last updated 26 June 2026</p>
 
       <div class="callout">
-        <p><strong>Summary.</strong> HoroCalc is a stateless calculator. It does not store any data on your device, does not transmit any data to Whiteforge, and makes no network connections. There are no accounts, no analytics, no advertising, and no third-party SDKs of any kind. Enter a number, get an answer.</p>
+        <p><strong>Summary.</strong> Any movements and timing logs you choose to save are stored only on your own device. HoroCalc transmits nothing to Whiteforge and makes no network connections. There are no accounts, no cloud sync, no analytics, no advertising, and no third-party SDKs of any kind.</p>
       </div>
 
       <nav class="doc-toc" aria-label="Table of contents">
@@ -61,7 +61,8 @@
       <p>None. HoroCalc does not transmit any data to Whiteforge. There are no Whiteforge servers in the data path. The app contains no analytics SDKs, no crash-reporting SDKs, no advertising SDKs, and no third-party tracking libraries of any kind.</p>
 
       <h2 id="storage">3. What is stored on your device</h2>
-      <p>Nothing. HoroCalc is a stateless calculator. The values you type into the input fields are held in memory while the app is open and are not persisted to disk. Closing the app clears them. There is no history, no saved calculations, and no user profile.</p>
+      <p>The values you type into a calculator are held in memory only while the app is open and are not written to disk &mdash; closing the app clears them.</p>
+      <p>The one exception is the <strong>Saved Movements</strong> feature. When you choose to save a movement, the details you enter &mdash; its name, maker, caliber, barrel and beat specifications, your notes, and any timing readings you log &mdash; are stored locally on your device using Apple&rsquo;s on-device database (SwiftData). This data never leaves your device: it is not transmitted to Whiteforge, not synced to any cloud, and not shared with anyone. You can delete a movement or a reading at any time from within the app, and removing the app removes all of it. The spec sheets you export are created only when you tap Share, and go wherever you send them.</p>
 
       <h2 id="network">4. Network activity</h2>
       <p>HoroCalc makes no network connections. All calculations run locally on your device using standard arithmetic. The app functions fully offline and requires no internet connection at any time.</p>
@@ -70,7 +71,7 @@
       <p>HoroCalc is a paid app purchased directly through the App Store. Apple processes the payment. Whiteforge does not receive your payment details or any information about the transaction. Apple&rsquo;s handling of your payment is governed by <a href="https://www.apple.com/legal/privacy/">Apple&rsquo;s privacy policy</a>.</p>
 
       <h2 id="third-parties">6. Third parties</h2>
-      <p>HoroCalc contains no third-party SDKs. All frameworks used are Apple&rsquo;s own system frameworks (SwiftUI).</p>
+      <p>HoroCalc contains no third-party SDKs. All frameworks used are Apple&rsquo;s own system frameworks (SwiftUI, SwiftData, and Swift Charts).</p>
 
       <h2 id="children">7. Children</h2>
       <p>HoroCalc is a specialist tool intended for watch and clock enthusiasts and professionals. It is not directed at children. We do not knowingly collect personal information from children under 13.</p>

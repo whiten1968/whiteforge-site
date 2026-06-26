@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>HoroCalc &mdash; Whiteforge Technologies</title>
-  <meta name="description" content="HoroCalc for iPhone: five precision calculators for mechanical watch and clock work. Mainspring sizing, beat rate, pendulum length, gear train analysis, and power reserve estimation.">
+  <meta name="description" content="HoroCalc for iPhone and iPad: a watchmaker's workshop in your pocket. Twelve precision tools — mainspring, beat rate, hairspring, gear train, depthing, pendulum and power-reserve calculators, a six-position regulation worksheet, saved movements with timing logs, unit converters, lubrication tables and a full reference library.">
   <link rel="stylesheet" href="/css/base.css">
   <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
 </head>
@@ -29,51 +29,89 @@
         <img class="app-icon app-icon--large"
              src="/assets/horocalc-icon.png" width="1024" height="1024"
              alt="HoroCalc app icon">
-        <p class="section__eyebrow">iOS</p>
+        <p class="section__eyebrow">iPhone &amp; iPad</p>
         <h1>HoroCalc</h1>
-        <p class="lede">Five precision calculators for mechanical watch and clock work. Whether you&rsquo;re sourcing a replacement mainspring, verifying a gear train, or adjusting a pendulum, HoroCalc gives you the number you need &mdash; instantly and on your phone, not buried in a spreadsheet.</p>
+        <p class="lede">A watchmaker&rsquo;s workshop in your pocket. Twelve precision tools for mechanical watch and clock work &mdash; from sizing a mainspring or verifying a gear train to grading a six-position regulation set, logging a movement&rsquo;s rate over time, and looking up the right lubricant. The number you need, instantly, on the bench &mdash; not buried in a spreadsheet.</p>
         <p class="cta-row">
+          <a class="appstore-button" href="https://apps.apple.com/gb/app/horocalc/id6782066808" aria-label="Download HoroCalc on the App Store">
+            <span class="appstore-button__small">Download on the</span>
+            <span class="appstore-button__large">App Store</span>
+          </a>
           <span class="appstore-button__note">
-            &pound;4.99 &middot; iPhone &middot; iOS 17 or later &middot; Coming soon to the App Store
+            &pound;4.99 &middot; iPhone &middot; iPad &middot; iOS 17 or later
           </span>
         </p>
       </section>
 
       <section class="section">
-        <h2>Five calculators for the workbench</h2>
+        <h2>Seven calculators for the workbench</h2>
         <ul class="feature-list">
           <li>
             <h3>Mainspring Sizer</h3>
-            <p>Enter the barrel bore, arbor diameter, and barrel height and HoroCalc calculates the correct spring length, width, and thickness using the standard &#x2153; barrel-fill rule. If you already know the spring thickness, enter it and the calculation becomes exact. Useful for sourcing a replacement when the original spring is missing or damaged.</p>
+            <p>Enter the barrel bore, arbor diameter, and barrel height and HoroCalc calculates the spring length, width, turns in the barrel, and thickness using the standard &#x2153; barrel-fill rule. Know the thickness already? Enter it and the calculation becomes exact. Ideal for sourcing a replacement when the original spring is missing or damaged.</p>
           </li>
           <li>
             <h3>Beat Rate</h3>
-            <p>Select from the six most common frequencies &mdash; 18,000, 21,600, 25,200, 28,800, 36,000, or 72,000 BPH &mdash; or enter any value. Instantly shows the balance frequency in Hz, the beat interval in milliseconds, and the exact period. Enter a daily rate error to see the deviation in parts per million and whether the watch is running fast or slow.</p>
+            <p>Tap one of the common frequencies &mdash; 18,000, 21,600, 25,200, 28,800, 36,000, or 72,000 BPH &mdash; or enter any value. Instantly shows the balance frequency in Hz, the beat interval in milliseconds, and the exact period. Add a measured daily rate error to see the deviation in parts per million, colour-coded against COSC limits, and whether the watch is running fast or slow.</p>
+          </li>
+          <li>
+            <h3>Hairspring</h3>
+            <p>Because rate scales with one over the square root of the active length, a fast watch needs a longer spring and a slow one a shorter spring. Enter the current vibrating length and a measured daily error and HoroCalc gives the required active length and exactly how much to lengthen or shorten it &mdash; plus the regulator sensitivity in seconds per day per 0.1&nbsp;mm.</p>
+          </li>
+          <li>
+            <h3>Gear Depthing</h3>
+            <p>Works both ways. Give it a module and the wheel and pinion tooth counts and it returns the two pitch diameters and the exact centre distance. Or measure the distance between two arbors, enter the tooth counts, and recover the module &mdash; to identify or cut a replacement wheel.</p>
           </li>
           <li>
             <h3>Pendulum</h3>
-            <p>Works in both directions: give it a pendulum length and it calculates the beat rate; give it a target beat rate and it gives you the length to cut the rod. The bob adjustment section takes a measured daily rate error and tells you exactly how many millimetres to raise or lower the bob to correct it.</p>
+            <p>Give it a pendulum length and it calculates the beat rate; give it a target beat rate and it returns the length to cut the rod. The bob-adjustment section takes a measured daily rate error and tells you exactly how many millimetres to raise or lower the bob &mdash; and which direction &mdash; to correct it.</p>
           </li>
           <li>
             <h3>Gear Train</h3>
-            <p>Enter the tooth counts for the centre, third, fourth, and escape wheels and their pinions. HoroCalc calculates the resulting beat rate, balance frequency, beat interval, escape wheel speed, and fourth wheel RPM. The fourth wheel reading turns green when it hits 1.000 RPM &mdash; the correct rate for a watch with a seconds hand on the fourth wheel. A layout picker handles watch with centre seconds, watch with sub-seconds dial, and clock configurations.</p>
+            <p>Enter the tooth counts for the centre, third, fourth, and escape wheels and their pinions on an interactive, tap-to-edit gear chain. HoroCalc calculates the beat rate, balance frequency, beat interval, escape-wheel speed, and fourth-wheel RPM. The fourth-wheel reading turns green when it hits 1.000 RPM &mdash; correct for a seconds hand on the fourth wheel. A layout picker handles centre-seconds, sub-seconds, and clock configurations.</p>
           </li>
           <li>
             <h3>Power Reserve</h3>
-            <p>Enter the barrel bore, arbor diameter, spring thickness, barrel rate, and a drive efficiency figure (typically 75&ndash;85%). HoroCalc calculates the maximum number of turns, the useful turns at that efficiency, and the resulting power reserve in hours &mdash; with a days figure for longer reserves.</p>
+            <p>Enter the barrel bore, arbor diameter, spring thickness, barrel rate, and a drive-efficiency figure (typically 75&ndash;85%). HoroCalc calculates the maximum turns, the useful turns at that efficiency, and the resulting power reserve in hours &mdash; with a days figure for longer reserves.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>A workshop, not just a calculator</h2>
+        <ul class="feature-list">
+          <li>
+            <h3>Regulation worksheet</h3>
+            <p>Record the rate in all six positions &mdash; dial up and down, crown up, down, left and right &mdash; and HoroCalc reports the mean rate, the positional spread, and the flat-versus-vertical delta. It grades the result against COSC-style limits, from <em>chronometer grade</em> down to <em>needs regulation</em>, and folds in amplitude drop and beat error when you add them.</p>
+          </li>
+          <li>
+            <h3>Saved Movements</h3>
+            <p>Save a movement&rsquo;s barrel, beat rate, and mainspring details once and HoroCalc derives its full specification &mdash; frequency, beat interval, mainspring length, power reserve. Then log timing readings over time, watch the rate trend on a chart, see the positional spread flagged green-to-red, and export a complete spec sheet to share. Everything is stored on your device.</p>
+          </li>
+          <li>
+            <h3>Converters</h3>
+            <p>Move freely between lignes, millimetres, and inches &mdash; the everyday units of movement diameter and case work. 11&frac12;&#x2034; in, millimetres out, and back again.</p>
+          </li>
+          <li>
+            <h3>Service &amp; Lubrication</h3>
+            <p>A bench reference for the things you look up mid-service: a lubrication-point chart mapping each part to the right oil or grease, a lubricant guide (Moebius 9010, HP-1300, 9415, 8200, Kluber P125 and more), recommended service intervals, mainspring torque conversions, and Swiss/NIHS screw-thread sizes.</p>
+          </li>
+          <li>
+            <h3>Reference library</h3>
+            <p>Plain-English articles on the formulas behind every calculator, plus the concepts that matter at the bench &mdash; amplitude and lift angle, beat error, the six positions, and lever-escapement geometry &mdash; alongside the COSC chronometer limits, common balance frequencies, ligne-size tables, and a watchmaking glossary.</p>
           </li>
         </ul>
       </section>
 
       <section class="section">
         <h2>Built for the bench</h2>
-        <p>Every calculator opens with pre-populated example values so you can see a live result immediately. Inputs are numerical with decimal pads &mdash; no fumbling with the keyboard when your hands are covered in oil. Results are displayed in large, legible text that&rsquo;s easy to read across the workbench.</p>
+        <p>HoroCalc is a true universal app, designed for both iPhone and iPad with a sidebar layout that puts every tool one tap away. Each calculator opens with pre-populated example values so you see a live result immediately. Inputs use numeric pads &mdash; no fumbling with the keyboard when your hands are covered in oil &mdash; and results are shown in large, legible text you can read across the workbench.</p>
         <p>HoroCalc works entirely offline. There are no accounts, no cloud sync, no advertising, and no analytics. Enter a number, get an answer.</p>
       </section>
 
       <section class="section">
         <h2>Privacy</h2>
-        <p>HoroCalc does not store or transmit any data. The calculators are stateless: inputs are entered, results are shown, nothing is logged. There are no Whiteforge servers in the picture. See the <a href="/horocalc/privacy/">full privacy policy</a> for detail.</p>
+        <p>HoroCalc makes no network connections and sends nothing to Whiteforge &mdash; there are no servers in the picture, and no analytics, advertising, or third-party SDKs of any kind. The movements and timing logs you choose to save are stored only on your own device. See the <a href="/horocalc/privacy/">full privacy policy</a> for detail.</p>
       </section>
 
       <section class="section">
