@@ -268,6 +268,11 @@ img, svg { max-width: 100%; height: auto; }
   color: var(--text-muted);
 }
 
+.badge--new {
+  background: var(--accent);
+  color: #ffffff;
+}
+
 /* ---------- Bundle card (homepage) ---------- */
 
 .bundle-card {
