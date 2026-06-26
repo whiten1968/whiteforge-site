@@ -471,6 +471,13 @@ img, svg { max-width: 100%; height: auto; }
 
 .appstore-button:hover { background: #000; text-decoration: none; }
 
+.appstore-button--disabled {
+  background: var(--text-dim);
+  cursor: default;
+}
+
+.appstore-button--disabled:hover { background: var(--text-dim); }
+
 .appstore-button__small {
   font-size: 11px;
   opacity: 0.75;
