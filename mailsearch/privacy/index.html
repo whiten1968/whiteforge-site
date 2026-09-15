@@ -31,7 +31,7 @@
              alt="MailSearch app icon">
         <h1>MailSearch privacy policy</h1>
       </header>
-      <p class="doc-meta">For the MailSearch iOS / iPadOS app &middot; Last updated 18 May 2026</p>
+      <p class="doc-meta">For the MailSearch iOS / iPadOS app &middot; Last updated 15 September 2026</p>
 
       <div class="callout">
         <p><strong>Summary.</strong> MailSearch indexes and searches your mail entirely on your device. Whiteforge Technologies has no servers that receive your email content, attachments, addresses, contacts, OAuth tokens, IMAP credentials, search queries, or telemetry. The rest of this policy describes that arrangement in detail.</p>
@@ -63,7 +63,7 @@
       <p>To index and search your mail, MailSearch needs access to the mail in the accounts you connect. On your device, it accesses:</p>
       <ul>
         <li><strong>Email messages</strong> &mdash; subject, body, sender, recipients, and date for the accounts you connect. Used to build a full-text search index on your device.</li>
-        <li><strong>Attachment metadata</strong> &mdash; filename, size, and MIME type. Attachment bodies are not indexed.</li>
+        <li><strong>Attachment content and metadata</strong> &mdash; supported PDF, RTF, plain-text, and HTML attachment content may be downloaded to the device for local text extraction and indexing, alongside filenames, sizes, and MIME types. Processing is subject to format and size limits. Attachment content is not sent to Whiteforge.</li>
         <li><strong>OAuth tokens</strong> &mdash; for Gmail and Microsoft accounts, MailSearch holds the access and refresh tokens issued to it by the provider. Tokens are stored in the iOS Keychain.</li>
         <li><strong>IMAP credentials</strong> &mdash; for iCloud and other IMAP accounts, MailSearch stores the password (or app-specific password) you supply. It is stored in the iOS Keychain.</li>
       </ul>
@@ -127,7 +127,7 @@
       <h2 id="deletion">8. Deletion</h2>
       <ul>
         <li><strong>Disconnecting an account</strong> &mdash; removes the OAuth token (and revokes it with Google or Microsoft, where applicable) or IMAP credentials, and deletes the local index for that account.</li>
-        <li><strong>Uninstalling MailSearch</strong> &mdash; removes the app&rsquo;s container and Keychain entries. Everything held by the app goes with it.</li>
+        <li><strong>Uninstalling MailSearch</strong> &mdash; removes the app&rsquo;s local container. iOS Keychain credentials may remain after uninstalling; MailSearch clears its known credential entries on the first launch of a fresh installation. To remove credentials immediately, disconnect the accounts before uninstalling.</li>
       </ul>
       <p>You can do either at any time, without contacting us.</p>
 
