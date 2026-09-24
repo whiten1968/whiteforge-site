@@ -31,16 +31,16 @@
              alt="TG Timer app icon">
         <h1>TG Timer support</h1>
       </header>
-      <p class="doc-meta">Help and frequently asked questions &middot; Last updated 10 June 2026</p>
+      <p class="doc-meta">Help and frequently asked questions &middot; Last updated 24 September 2026</p>
 
       <nav class="doc-toc" aria-label="Table of contents">
         <strong>Contents</strong>
         <ol>
           <li><a href="#what-is">What is TG Timer?</a></li>
           <li><a href="#hardware">What hardware do I need?</a></li>
-          <li><a href="#connect-mic">How do I connect the contact microphone?</a></li>
+          <li><a href="#connect-mic">How do I set up the microphone?</a></li>
           <li><a href="#select-movement">How do I select my movement?</a></li>
-          <li><a href="#how-long">Why does it take 30 seconds before showing readings?</a></li>
+          <li><a href="#how-long">How long does a reading take?</a></li>
           <li><a href="#rate">What does rate mean?</a></li>
           <li><a href="#beat-error">What is beat error?</a></li>
           <li><a href="#amplitude">What is amplitude?</a></li>
@@ -57,26 +57,26 @@
       </nav>
 
       <h2 id="what-is">What is TG Timer?</h2>
-      <p>TG Timer is an iOS app that measures the rate, beat error, and amplitude of a mechanical watch movement &mdash; the same readings produced by a bench timegrapher. It analyses audio from a piezo contact microphone attached to the watch case or movement, using autocorrelation to extract the tick period with high precision. No Wi-Fi or server connection is required; all processing happens on the device.</p>
+      <p>TG Timer is an iOS app that measures the rate, beat error, and amplitude of a mechanical watch movement &mdash; the same readings produced by a bench timegrapher. It analyses audio from the iPhone&rsquo;s built-in microphone (or an optional piezo contact mic), using autocorrelation to extract the tick period with high precision. No Wi-Fi or server connection is required; all processing happens on the device.</p>
 
       <h2 id="hardware">What hardware do I need?</h2>
-      <p>TG Timer requires a piezo contact microphone connected to your iPhone via a USB-C audio adapter. The microphone clips or presses against the watch case or movement and picks up the mechanical tick signal directly through contact &mdash; it does not use the iPhone&rsquo;s built-in microphone.</p>
-      <p>We use and recommend the TGBC sensor with a powered USB hub (the sensor requires 6&nbsp;V, which it draws from the hub rather than the phone directly). The approximate cost is &pound;9 for a suitable USB hub and &pound;15 for the sensor.</p>
+      <p>Just your iPhone. TG Timer works with the built-in microphone &mdash; no accessory, cable, or hub is required. You rest the phone on the watch and measure.</p>
+      <p>For the strongest signal &mdash; especially in a noisy workshop, or for the most precise beat error &mdash; you can optionally add a piezo contact microphone connected via a USB-C audio adapter. TG Timer detects it automatically. Total cost is typically under &pound;30, but it is entirely optional.</p>
 
-      <h2 id="connect-mic">How do I connect the contact microphone?</h2>
+      <h2 id="connect-mic">How do I set up the microphone?</h2>
+      <p><strong>Using the built-in mic (no accessory):</strong></p>
       <ol>
-        <li>Connect the USB hub to your iPhone&rsquo;s USB-C port.</li>
-        <li>Connect the TGBC sensor to the hub.</li>
-        <li>Clip or press the sensor firmly against the watch case or movement. A solid mechanical contact gives the clearest signal; the signal bar at the bottom of the Measure screen confirms the level.</li>
-        <li>Tap the Play button. TG Timer will request microphone permission the first time.</li>
+        <li>Stand the iPhone upright with its bottom edge (where the main mic is) resting gently on the watch crystal, dial up.</li>
+        <li>Choose a quiet spot and hold the phone steady &mdash; brace your hand.</li>
+        <li>Tap Play, then &ldquo;Start measuring.&rdquo; TG Timer requests microphone permission the first time. The signal bar and live trace confirm it&rsquo;s picking up the tick.</li>
       </ol>
-      <p>If you unplug the hub during a measurement (for example to take a phone call), TG Timer will stop automatically and you can tap Play again when you reconnect.</p>
+      <p><strong>Using an optional contact mic:</strong> connect a piezo sensor via a USB-C audio adapter, clip or press it firmly against the watch case or movement, and TG Timer uses it automatically. If you unplug it during a measurement, the app stops cleanly and you can tap Play again once reconnected.</p>
 
       <h2 id="select-movement">How do I select my movement?</h2>
       <p>Open the <strong>Setup</strong> tab and search or scroll the movement list. Selecting a preset fills in the correct BPH and lift angle automatically. If your movement is not in the list, select the closest match and adjust the lift angle manually, or leave BPH on Auto-detect and enter the lift angle directly. TG Timer includes over 3,700 movement presets.</p>
 
-      <h2 id="how-long">Why does it take 30 seconds before showing readings?</h2>
-      <p>TG Timer waits 30 seconds before the first analysis so the autocorrelation has enough beat cycles to average over. Shorter windows can chase noise rather than the true period. After the first reading, the analysis updates every 10 seconds using a growing window (capped at 60 seconds), so readings become progressively more stable. The full measurement of 30 analyses completes in around 5 minutes.</p>
+      <h2 id="how-long">How long does a reading take?</h2>
+      <p>A reading builds on screen within a few seconds of starting and keeps refining live as it listens. The number needs a few beats to settle &mdash; an accurate acoustic rate can&rsquo;t be instant &mdash; and firms up to &lsquo;stable&rsquo; once successive analyses agree. A live signal trace shows the individual readings converging onto the answer. There is no time limit: leave it running as long as you like to be certain the reading is rock-steady. A stronger signal (pressing the phone firmly to the crystal, or using a contact mic) settles faster.</p>
 
       <h2 id="rate">What does rate mean?</h2>
       <p>Rate is how many seconds per day the movement gains or loses relative to perfect time. A reading of <strong>&minus;11.6 s/d</strong> means the watch loses 11.6 seconds every 24 hours. The COSC standard for certified chronometers is &minus;4 to +6 s/d; a typical service target is &plusmn;10 s/d.</p>
@@ -102,14 +102,14 @@
       <ul>
         <li><strong>Green</strong> &mdash; signal locked, analysis ready. Readings are stable.</li>
         <li><strong>Yellow</strong> &mdash; signal present but not yet stable, or a brief dropout occurred. The last valid reading is held.</li>
-        <li><strong>Grey</strong> &mdash; warming up (first 30 seconds) or stopped.</li>
+        <li><strong>Grey</strong> &mdash; warming up (the first few seconds) or stopped.</li>
       </ul>
 
       <h2 id="pdf">How do I generate a PDF report?</h2>
       <p>Tap the share icon (top-right of the Measure screen) at any point during or after a measurement. Fill in the watchmaker name, customer name, brand, movement, serial number, and position, then tap <strong>Generate PDF</strong>. The PDF includes the rate, beat error, amplitude, frequency, the number of analyses completed, and the full rate history chart. Use the iOS share sheet to save it to Files, Mail, or any other app.</p>
 
       <h2 id="stop-restart">Can I stop and restart a measurement?</h2>
-      <p>Yes. Tap the Stop button (square icon, top-right) at any time. The display resets and you can tap Play to begin a fresh measurement. This is useful if you need to re-position the sensor, take a phone call, or disconnect and reconnect the USB hub. The previous result is cleared when you start again.</p>
+      <p>Yes. Tap the Stop button (square icon, top-right) at any time, then the Clear (&times;) button to reset the screen. Tap Play to begin a fresh measurement. This is useful if you need to re-position the phone or contact mic, or take a phone call.</p>
 
       <h2 id="accuracy">How accurate is TG Timer?</h2>
       <p>Rate accuracy is primarily limited by the reference clock of the iPhone&rsquo;s audio hardware. In practice, measurements from TG Timer agree with a calibrated bench timegrapher to within 1&ndash;2 s/d on most movements. If you have a reference movement of known rate, you can use the Calibration field on the Setup tab to compensate for any systematic offset.</p>
