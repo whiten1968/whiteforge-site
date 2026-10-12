@@ -27,10 +27,16 @@
   <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
 
   <!--
-    App Store link is region-neutral (auto-redirects per store front).
-    For campaign attribution, append App Store Connect Campaign Link tokens, e.g.
-    ?pt=<PROVIDER_ID>&ct=<youtube-shorts|tiktok|reels>&mt=8
-    No tokens are added yet — see deployment notes. No on-site tracking is used.
+    App Store Connect campaign attribution (provider pt=128841045).
+    Store links default to ct=website. The inline script at the end of <body>
+    forwards an inbound ?ct= param onto the store links, so one page serves every
+    channel: link social posts to /tgtimer/?ct=youtube-short | tiktok | instagram
+    Known campaign links (provider 128841045):
+      youtube-short:   .../app/apple-store/id6778817339?pt=128841045&ct=youtube-short&mt=8
+      tiktok:          .../app/apple-store/id6778817339?pt=128841045&ct=tiktok&mt=8
+      instagram:       .../app/apple-store/id6778817339?pt=128841045&ct=instagram&mt=8
+    No cookies, no storage, no third-party scripts — attribution is handled by
+    App Store Connect from the link only.
   -->
   <script type="application/ld+json">
   {
@@ -87,7 +93,7 @@
         <p class="lede">Measure how accurately your mechanical watch runs using your iPhone&rsquo;s built-in microphone. See live rate, beat error and amplitude readings. No additional equipment required.</p>
 
         <div class="tg-cta">
-          <a class="appstore-button" href="https://apps.apple.com/app/id6778817339" aria-label="Try TG Timer free on the App Store">
+          <a class="appstore-button" href="https://apps.apple.com/app/apple-store/id6778817339?pt=128841045&amp;ct=website&amp;mt=8" aria-label="Try TG Timer free on the App Store">
             <span class="appstore-button__small">Free on the App&nbsp;Store</span>
             <span class="appstore-button__large">Try TG Timer Free</span>
           </a>
@@ -117,7 +123,7 @@
             &nbsp;&middot;&nbsp; <a href="https://youtube.com/shorts/gs_qPe-c_1o">Watch on YouTube</a>
           </p>
           <div class="tg-cta" style="align-items:center">
-            <a class="appstore-button" href="https://apps.apple.com/app/id6778817339" aria-label="Try TG Timer free on the App Store">
+            <a class="appstore-button" href="https://apps.apple.com/app/apple-store/id6778817339?pt=128841045&amp;ct=website&amp;mt=8" aria-label="Try TG Timer free on the App Store">
               <span class="appstore-button__small">Free on the App&nbsp;Store</span>
               <span class="appstore-button__large">Try TG Timer Free</span>
             </a>
@@ -257,7 +263,7 @@
           <h2>Find Out How Accurately Your Watch Runs.</h2>
           <p>Try TG Timer using your iPhone&rsquo;s built-in microphone. No specialist equipment required.</p>
           <div class="tg-cta">
-            <a class="appstore-button" href="https://apps.apple.com/app/id6778817339" aria-label="Try TG Timer free on the App Store">
+            <a class="appstore-button" href="https://apps.apple.com/app/apple-store/id6778817339?pt=128841045&amp;ct=website&amp;mt=8" aria-label="Try TG Timer free on the App Store">
               <span class="appstore-button__small">Free on the App&nbsp;Store</span>
               <span class="appstore-button__large">Try TG Timer Free</span>
             </a>
@@ -287,5 +293,25 @@
     </footer>
 
   </div>
+
+  <!--
+    Campaign attribution: forward an inbound ?ct= onto the App Store links.
+    No cookies, no storage, no network — just rewrites the outbound link so
+    App Store Connect can attribute the install to the channel.
+  -->
+  <script>
+    (function () {
+      var ct = new URLSearchParams(location.search).get('ct');
+      if (!ct || !/^[a-z0-9][a-z0-9-]{0,31}$/.test(ct)) return;
+      var links = document.querySelectorAll('a.appstore-button');
+      for (var i = 0; i < links.length; i++) {
+        try {
+          var u = new URL(links[i].href);
+          u.searchParams.set('ct', ct);
+          links[i].href = u.toString();
+        } catch (e) { /* leave default link */ }
+      }
+    })();
+  </script>
 </body>
 </html>
