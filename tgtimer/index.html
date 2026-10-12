@@ -3,10 +3,65 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TG Timer &mdash; Whiteforge Technologies</title>
-  <meta name="description" content="TG Timer for iPhone: measure the rate, beat error, and amplitude of a mechanical watch using the iPhone's built-in mic &mdash; no accessory needed. The same readings as a bench timegrapher, in your pocket.">
+
+  <title>TG Timer &mdash; iPhone Mechanical Watch Timegrapher</title>
+  <meta name="description" content="Measure your mechanical watch's rate, beat error and amplitude using your iPhone. No extra hardware required. Try TG Timer free.">
+  <link rel="canonical" href="https://whiteforgetech.co.uk/tgtimer/">
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Whiteforge Technologies">
+  <meta property="og:title" content="TG Timer — iPhone Mechanical Watch Timegrapher">
+  <meta property="og:description" content="Measure your mechanical watch's rate, beat error and amplitude using your iPhone. No extra hardware required. Try TG Timer free.">
+  <meta property="og:url" content="https://whiteforgetech.co.uk/tgtimer/">
+  <meta property="og:image" content="https://whiteforgetech.co.uk/assets/tgtimer-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TG Timer — iPhone Mechanical Watch Timegrapher">
+  <meta name="twitter:description" content="Measure rate, beat error and amplitude on a mechanical watch using your iPhone. No extra hardware. Try free.">
+  <meta name="twitter:image" content="https://whiteforgetech.co.uk/assets/tgtimer-og.jpg">
+
   <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/tgtimer.css">
   <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
+
+  <!--
+    App Store Connect campaign attribution (provider pt=128841045).
+    Store links default to ct=website. The inline script at the end of <body>
+    forwards an inbound ?ct= param onto the store links, so one page serves every
+    channel: link social posts to /tgtimer/?ct=youtube-short | tiktok | instagram
+    Known campaign links (provider 128841045):
+      youtube-short:   .../app/apple-store/id6778817339?pt=128841045&ct=youtube-short&mt=8
+      tiktok:          .../app/apple-store/id6778817339?pt=128841045&ct=tiktok&mt=8
+      instagram:       .../app/apple-store/id6778817339?pt=128841045&ct=instagram&mt=8
+    No cookies, no storage, no third-party scripts — attribution is handled by
+    App Store Connect from the link only.
+  -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "TG Timer",
+    "operatingSystem": "iOS 16.0 or later",
+    "applicationCategory": "UtilitiesApplication",
+    "description": "iPhone timegrapher for mechanical watches. Measures rate, beat error and amplitude using the iPhone's built-in microphone — no accessory required. On-device processing, over 3,700 movement presets, PDF reports.",
+    "url": "https://whiteforgetech.co.uk/tgtimer/",
+    "image": "https://whiteforgetech.co.uk/assets/tgtimer-og.jpg",
+    "downloadUrl": "https://apps.apple.com/app/id6778817339",
+    "offers": {
+      "@type": "Offer",
+      "price": "9.99",
+      "priceCurrency": "GBP",
+      "description": "One-time Pro unlock after a 7-day free trial. No subscription."
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Whiteforge Technologies Ltd",
+      "url": "https://whiteforgetech.co.uk/"
+    }
+  }
+  </script>
 </head>
 <body>
   <div class="page">
@@ -25,92 +80,196 @@
 
     <main>
 
+      <!-- ============ A — Hero ============ -->
       <section class="hero hero--product">
-        <img class="app-icon app-icon--large"
-             src="/assets/tgtimer-icon.png" width="1024" height="1024"
-             alt="TG Timer app icon">
-        <p class="section__eyebrow">iOS</p>
-        <h1>TG Timer</h1>
-        <p class="lede">A precision timing instrument for mechanical watches. Measure rate, beat error, and amplitude &mdash; the same readings as a bench timegrapher &mdash; using the iPhone&rsquo;s built-in microphone, no accessory required. Just rest the phone on the watch. All processing happens on device; no server, no subscription, no cloud.</p>
-        <p class="cta-row">
-          <a class="appstore-button" href="https://apps.apple.com/us/app/tgtimer/id6778817339" aria-label="Download TG Timer on the App Store">
-            <span class="appstore-button__small">Download on the</span>
-            <span class="appstore-button__large">App Store</span>
+        <picture>
+          <source srcset="/assets/tgtimer-icon-512.webp" type="image/webp">
+          <img class="app-icon app-icon--large"
+               src="/assets/tgtimer-icon.png" width="176" height="176"
+               alt="TG Timer app icon" fetchpriority="high">
+        </picture>
+        <p class="section__eyebrow">iPhone &middot; iOS</p>
+        <h1>Turn your iPhone into a mechanical watch timegrapher.</h1>
+        <p class="lede">Measure how accurately your mechanical watch runs using your iPhone&rsquo;s built-in microphone. See live rate, beat error and amplitude readings. No additional equipment required.</p>
+
+        <div class="tg-cta">
+          <a class="appstore-button" href="https://apps.apple.com/app/apple-store/id6778817339?pt=128841045&amp;ct=website&amp;mt=8" aria-label="Try TG Timer free on the App Store">
+            <span class="appstore-button__small">Free on the App&nbsp;Store</span>
+            <span class="appstore-button__large">Try TG Timer Free</span>
           </a>
-          <span class="appstore-button__note">
-            &pound;9.99 &middot; iPhone &middot; iOS 16 or later
-          </span>
-        </p>
+          <p class="tg-terms">7-day free trial &middot; <strong>&pound;9.99</strong> one-time unlock &middot; No subscription</p>
+          <a class="tg-demo-link" href="#demo">Watch the demo &darr;</a>
+        </div>
+
+        <p class="tg-hero-benefit">No cables. No special equipment. Just your iPhone and a mechanical watch.</p>
       </section>
 
-      <section class="section">
-        <h2>Why this exists</h2>
-        <p>A bench timegrapher costs hundreds of pounds and sits in a workshop. TG Timer turns an iPhone into the same instrument &mdash; no accessory needed. Watchmakers can take it to a customer, use it on the road, or simply avoid the bench setup for a quick check. Enthusiasts can measure their own watches at home without specialist equipment.</p>
-        <p>Rest the phone upright with its bottom edge on the watch crystal and it picks up the balance&rsquo;s tick through the case. (An optional piezo contact microphone gives the strongest signal in noisy conditions.) The audio is analysed on-device using autocorrelation &mdash; the same technique used by professional timegraphers &mdash; to extract rate, beat error, and amplitude with high precision.</p>
+      <!-- ============ B — Demo video ============ -->
+      <section class="section" id="demo">
+        <h2>See TG Timer in Action</h2>
+        <div class="tg-video">
+          <div class="tg-video__frame">
+            <video
+              controls preload="none" playsinline
+              width="1080" height="1920"
+              poster="/assets/tgtimer-demo-poster.jpg">
+              <source src="/assets/tgtimer-demo.mp4" type="video/mp4">
+              Your browser doesn&rsquo;t support embedded video.
+              <a href="https://youtube.com/shorts/gs_qPe-c_1o">Watch the demo on YouTube</a>.
+            </video>
+          </div>
+          <p class="tg-video__caption">
+            Watch TG Timer analyse a real mechanical watch using an iPhone. The readings shown are real application measurements, not simulated.
+            &nbsp;&middot;&nbsp; <a href="https://youtube.com/shorts/gs_qPe-c_1o">Watch on YouTube</a>
+          </p>
+          <div class="tg-cta" style="align-items:center">
+            <a class="appstore-button" href="https://apps.apple.com/app/apple-store/id6778817339?pt=128841045&amp;ct=website&amp;mt=8" aria-label="Try TG Timer free on the App Store">
+              <span class="appstore-button__small">Free on the App&nbsp;Store</span>
+              <span class="appstore-button__large">Try TG Timer Free</span>
+            </a>
+          </div>
+        </div>
       </section>
 
+      <!-- ============ C — Core benefits ============ -->
       <section class="section">
-        <h2>How it works</h2>
-        <ul class="feature-list">
-          <li>
-            <h3>Rest the phone on the watch</h3>
-            <p>Stand the iPhone upright with its bottom edge resting gently on the watch crystal, dial up, in a quiet spot. The signal level bar confirms it&rsquo;s picking up the tick. (Prefer a contact mic? Connect a piezo sensor via a USB-C audio adapter and TG Timer uses it automatically.)</p>
+        <h2>Everything You Need to Understand Your Watch&rsquo;s Performance</h2>
+        <div class="tg-grid-3">
+          <div class="tg-benefit">
+            <picture>
+              <source srcset="/assets/tgtimer-measure.webp" type="image/webp">
+              <img class="tg-shot tg-shot--img" src="/assets/tgtimer-measure.png"
+                   width="1125" height="2436" loading="lazy" decoding="async"
+                   alt="TG Timer measure screen: +11.7 seconds per day, 0.3 ms beat error, 300° amplitude, 28800 BPH">
+            </picture>
+            <h3>Measure Your Watch</h3>
+            <p>See how many seconds per day your mechanical watch gains or loses.</p>
+          </div>
+          <div class="tg-benefit">
+            <picture>
+              <source srcset="/assets/tgtimer-setup.webp" type="image/webp">
+              <img class="tg-shot tg-shot--img" src="/assets/tgtimer-setup.png"
+                   width="1125" height="2436" loading="lazy" decoding="async"
+                   alt="TG Timer Setup screen: searchable movement presets with BPH auto-detect and lift-angle settings">
+            </picture>
+            <h3>Understand the Movement</h3>
+            <p>Measure beat error and amplitude alongside rate for a deeper view of movement performance.</p>
+          </div>
+          <div class="tg-benefit">
+            <picture>
+              <source srcset="/assets/tgtimer-report.webp" type="image/webp">
+              <img class="tg-shot tg-shot--img" src="/assets/tgtimer-report.png"
+                   width="1125" height="1560" loading="lazy" decoding="async"
+                   alt="TG Timer PDF report: watch details, results (rate, beat error, amplitude, frequency) and a rate-history chart">
+            </picture>
+            <h3>Track and Share Results</h3>
+            <p>Review live measurement history and generate PDF reports for your records.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ D — How it works ============ -->
+      <section class="section">
+        <h2>Three Steps to Your First Measurement</h2>
+        <ol class="tg-steps">
+          <li class="tg-step">
+            <div class="tg-step__num" aria-hidden="true">1</div>
+            <h3>Position Your iPhone</h3>
+            <p>Stand the iPhone upright with its bottom edge resting gently on the watch crystal, in a quiet spot. The signal bar confirms it&rsquo;s hearing the tick.</p>
           </li>
-          <li>
-            <h3>Select your movement</h3>
-            <p>Open the Setup tab and pick your movement from over 3,700 presets. This sets the correct BPH and lift angle automatically, giving you accurate amplitude readings without any manual configuration. BPH can also be left on Auto-detect if the movement is unknown.</p>
+          <li class="tg-step">
+            <div class="tg-step__num" aria-hidden="true">2</div>
+            <h3>Select Your Movement</h3>
+            <p>Choose from over 3,700 movement presets, or leave BPH on Auto-detect. The preset sets the correct lift angle for accurate amplitude.</p>
           </li>
-          <li>
-            <h3>Tap Play and watch it settle</h3>
+          <li class="tg-step">
+            <div class="tg-step__num" aria-hidden="true">3</div>
+            <h3>Start Measuring</h3>
+            <p>Tap Play and watch the live readings develop and settle. A signal trace shows them converging, then firming up to &lsquo;stable&rsquo;.</p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ============ F — No specialist hardware ============ -->
+      <section class="section">
+        <h2>Start With the iPhone You Already Own</h2>
+        <p>TG Timer uses your iPhone&rsquo;s built-in microphone to listen to the ticking of a mechanical watch &mdash; no cable, hub or accessory required. Rest the phone on the watch and measure.</p>
+        <p>For workshop environments or challenging measurements, an optional piezo contact microphone is also supported via a USB-C audio adapter &mdash; TG Timer detects it automatically. It&rsquo;s an enhancement, not a requirement.</p>
+      </section>
+
+      <!-- ============ E — Feature details (accordion) ============ -->
+      <section class="section">
+        <h2>Built for Watch Enthusiasts and Watchmakers</h2>
+
+        <details class="tg-feature" open>
+          <summary>Rate, beat error &amp; amplitude</summary>
+          <div class="tg-feature__body">
+            <p>Rate shows how many seconds per day the movement gains or loses. Beat error measures how evenly the escapement divides each second between its two half-beats, in milliseconds. Amplitude shows the angular swing of the balance wheel in degrees &mdash; a reliable indicator of mainspring condition and lubrication.</p>
+          </div>
+        </details>
+
+        <details class="tg-feature">
+          <summary>Live signal trace &amp; stable readings</summary>
+          <div class="tg-feature__body">
             <p>A reading builds on screen within a few seconds and keeps refining live as it listens. A live signal trace shows the individual readings settling onto the answer, and it firms up to &lsquo;stable&rsquo; once they agree. It never times out &mdash; leave it running as long as you like to be certain the reading is rock-steady.</p>
-          </li>
-          <li>
-            <h3>Rate, beat error, and amplitude</h3>
-            <p>Rate shows how many seconds per day the movement gains or loses. Beat error measures how evenly the escapement divides each second between its two half-beats. Amplitude shows the angular swing of the balance wheel in degrees &mdash; a reliable indicator of mainspring condition and lubrication.</p>
-          </li>
-          <li>
-            <h3>Export a PDF report</h3>
-            <p>Tap the share icon to open the report form. Enter the watchmaker name, customer name, brand, movement, serial number, and position, then tap Generate PDF. The report includes all readings, the rate history chart, and the analysis count. Share it directly from the iOS share sheet.</p>
-          </li>
-          <li>
-            <h3>On-device only</h3>
-            <p>No account, no Wi-Fi, no server. Audio is processed entirely on the iPhone. Nothing is transmitted anywhere. Settings are stored in iOS UserDefaults; no data leaves the device.</p>
-          </li>
-        </ul>
+          </div>
+        </details>
+
+        <details class="tg-feature">
+          <summary>BPH detection, lift angle &amp; 3,700+ presets</summary>
+          <div class="tg-feature__body">
+            <p>Pick your movement from over 3,700 presets and the correct BPH and lift angle are set automatically, giving accurate amplitude without manual configuration. BPH can also be left on Auto-detect when the movement is unknown.</p>
+          </div>
+        </details>
+
+        <details class="tg-feature">
+          <summary>Calibration</summary>
+          <div class="tg-feature__body">
+            <p>A Calibration field on the Setup tab lets you compensate for any systematic offset against a known-rate reference movement.</p>
+          </div>
+        </details>
+
+        <details class="tg-feature">
+          <summary>PDF reports</summary>
+          <div class="tg-feature__body">
+            <p>Tap the share icon to open the report form. Enter the watchmaker name, customer name, brand, movement, serial number and position, then generate a PDF including all readings, the rate-history chart and the analysis count. Share it from the iOS share sheet.</p>
+          </div>
+        </details>
+
+        <details class="tg-feature">
+          <summary>Optional contact microphone</summary>
+          <div class="tg-feature__body">
+            <p>For the strongest signal &mdash; especially in a noisy workshop &mdash; add a piezo contact microphone via a USB-C audio adapter. TG Timer detects it automatically. Typically under &pound;30, and entirely optional.</p>
+          </div>
+        </details>
       </section>
 
+      <!-- ============ G — Accuracy ============ -->
       <section class="section">
-        <h2>What you need</h2>
-        <ul class="feature-list">
-          <li>
-            <h3>Just your iPhone</h3>
-            <p>TG Timer works with the iPhone&rsquo;s built-in microphone &mdash; no accessory, cable, or hub required. Rest the phone on the watch and measure.</p>
-          </li>
-          <li>
-            <h3>Optional contact microphone</h3>
-            <p>For the strongest signal &mdash; especially in a noisy workshop &mdash; you can add a piezo contact microphone via a USB-C audio adapter. TG Timer detects it automatically. Typically under &pound;30, but entirely optional.</p>
-          </li>
-          <li>
-            <h3>iPhone &amp; iOS</h3>
-            <p>Any recent iPhone running iOS 16 or later.</p>
-          </li>
-        </ul>
+        <h2>Precision Measurements, Explained</h2>
+        <p>On most movements, TG Timer&rsquo;s rate readings agree with a calibrated bench timegrapher to within 1&ndash;2&nbsp;s/d, beat error to around &plusmn;0.1&nbsp;ms, and amplitude &mdash; with the correct movement preset and lift angle &mdash; to within roughly &plusmn;5&deg;. A Calibration field lets you compensate for any systematic offset against a known-rate reference.</p>
+        <p class="tg-note">Acoustic measurement depends on a good signal: a quiet room and firm contact between phone and watch. Results vary with movement, condition and environment, and an iPhone will not match a professional bench instrument under all conditions. A side-by-side comparison against a calibrated bench timegrapher is planned.</p>
       </section>
 
+      <!-- ============ H — Privacy ============ -->
       <section class="section">
-        <h2>Accuracy</h2>
-        <p>Rate measurements from TG Timer agree with a calibrated bench timegrapher to within 1&ndash;2&nbsp;s/d on most movements. Beat error is typically accurate to &plusmn;0.1&nbsp;ms. Amplitude accuracy depends on the lift angle being set correctly; with the correct movement preset, readings typically agree with a bench instrument to within &plusmn;5&deg;.</p>
-        <p>A Calibration field on the Setup tab lets you compensate for any systematic offset against a known-rate reference movement.</p>
+        <h2>Your Watch. Your iPhone. Your Data.</h2>
+        <p>Audio analysis and all measurements are processed locally on the iPhone. No account, no Wi-Fi and no server are involved, and nothing is transmitted anywhere. The app has no analytics or telemetry; microphone access is used only while a measurement is running. See the <a href="/tgtimer/privacy/">privacy policy</a> for full detail.</p>
       </section>
 
-      <section class="section">
-        <h2>Privacy</h2>
-        <p>TG Timer does not transmit audio or any measurement data. All processing is local. The app has no analytics, telemetry, or crash reporting. Microphone access is used only while a measurement is running. See the <a href="/tgtimer/privacy/">privacy policy</a> for full detail.</p>
-      </section>
-
-      <section class="section">
-        <h2>Support</h2>
-        <p>For help getting started, FAQ, and bug reports, see the <a href="/tgtimer/support/">support page</a>. For anything else, email <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>.</p>
+      <!-- ============ I — Final CTA ============ -->
+      <section class="section" style="border-top:0">
+        <div class="tg-final">
+          <h2>Find Out How Accurately Your Watch Runs.</h2>
+          <p>Try TG Timer using your iPhone&rsquo;s built-in microphone. No specialist equipment required.</p>
+          <div class="tg-cta">
+            <a class="appstore-button" href="https://apps.apple.com/app/apple-store/id6778817339?pt=128841045&amp;ct=website&amp;mt=8" aria-label="Try TG Timer free on the App Store">
+              <span class="appstore-button__small">Free on the App&nbsp;Store</span>
+              <span class="appstore-button__large">Try TG Timer Free</span>
+            </a>
+            <p class="tg-terms">7-day free trial &middot; <strong>&pound;9.99</strong> one-time unlock &middot; No subscription</p>
+          </div>
+        </div>
       </section>
 
     </main>
@@ -134,5 +293,25 @@
     </footer>
 
   </div>
+
+  <!--
+    Campaign attribution: forward an inbound ?ct= onto the App Store links.
+    No cookies, no storage, no network — just rewrites the outbound link so
+    App Store Connect can attribute the install to the channel.
+  -->
+  <script>
+    (function () {
+      var ct = new URLSearchParams(location.search).get('ct');
+      if (!ct || !/^[a-z0-9][a-z0-9-]{0,31}$/.test(ct)) return;
+      var links = document.querySelectorAll('a.appstore-button');
+      for (var i = 0; i < links.length; i++) {
+        try {
+          var u = new URL(links[i].href);
+          u.searchParams.set('ct', ct);
+          links[i].href = u.toString();
+        } catch (e) { /* leave default link */ }
+      }
+    })();
+  </script>
 </body>
 </html>
