@@ -242,6 +242,6 @@
   .tg-steps { grid-template-columns: 1fr; gap: 26px; }
   .tg-video__frame { max-width: 260px; }
   .tg-final { padding: 36px 22px; }
-  .tg-shot { aspect-ratio: 16 / 10; }
-  .tg-grid-3 .tg-shot { aspect-ratio: 9 / 16; }
+  .tg-shot:not(.tg-shot--img) { aspect-ratio: 16 / 10; }
+  .tg-grid-3 .tg-shot:not(.tg-shot--img) { aspect-ratio: 9 / 16; }
 }
