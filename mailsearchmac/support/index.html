@@ -31,7 +31,9 @@
              alt="MailSearch app icon">
         <h1>MailSearch support</h1>
       </header>
-      <p class="doc-meta">Help and frequently asked questions &middot; Last updated 22 May 2026</p>
+      <p class="doc-meta">Help and frequently asked questions &middot; Last updated 13 October 2026</p>
+
+      <p><strong>MailSearch for Mac is being rebuilt and will return on the App&nbsp;Store.</strong> It isn&rsquo;t available to download right now. The notes below describe how MailSearch works and how to connect each mail provider; to be told when the new version lands, email <a href="mailto:support@whiteforgetech.co.uk?subject=MailSearch%20for%20Mac%20updates">support@whiteforgetech.co.uk</a>.</p>
 
       <nav class="doc-toc" aria-label="Table of contents">
         <strong>Contents</strong>
@@ -47,9 +49,6 @@
           <li><a href="#attachments">Are attachments searchable?</a></li>
           <li><a href="#privacy">Where is my data stored?</a></li>
           <li><a href="#requirements">System requirements</a></li>
-          <li><a href="#download">How do I download the beta?</a></li>
-          <li><a href="#install">How do I install it?</a></li>
-          <li><a href="#first-launch">What happens on first launch?</a></li>
           <li><a href="#keychain-prompt">macOS keeps prompting me for my password</a></li>
           <li><a href="#bug">How do I report a bug?</a></li>
           <li><a href="#feature">How do I request a feature?</a></li>
@@ -118,25 +117,6 @@
         <li>Apple Silicon (M1+) or Intel.</li>
         <li>Around 200 MB of free disk space, plus space for the index (typically 5&ndash;50 MB per 500 messages depending on attachment sizes).</li>
       </ul>
-
-      <h2 id="download">How do I download the beta?</h2>
-      <p>Download the disk image matching your Mac&rsquo;s processor:</p>
-      <ul>
-        <li><a href="https://github.com/whiten1968/MailSearchMac-downloads/releases/latest/download/MailSearchMac-aarch64.dmg">MailSearchMac-aarch64.dmg</a> &mdash; Apple Silicon.</li>
-        <li><a href="https://github.com/whiten1968/MailSearchMac-downloads/releases/latest/download/MailSearchMac-x86_64.dmg">MailSearchMac-x86_64.dmg</a> &mdash; Intel Macs.</li>
-      </ul>
-      <p>Both disk images are signed with our Developer ID Application certificate and notarized by Apple.</p>
-
-      <h2 id="install">How do I install it?</h2>
-      <ol>
-        <li>Double-click the <code>.dmg</code> to open it.</li>
-        <li>Drag <em>MailSearch</em> into <em>Applications</em>.</li>
-        <li>Eject the disk image.</li>
-        <li>Launch MailSearch from <em>Applications</em>.</li>
-      </ol>
-
-      <h2 id="first-launch">What happens on first launch?</h2>
-      <p>macOS will show a confirmation dialog the first time you open it (&ldquo;MailSearch is an app downloaded from the internet. Apple checked it for malicious software and none was detected.&rdquo;). Click <em>Open</em>. The app shows a one-time welcome modal; close it, then click any of the <em>+ Add</em> buttons in the sidebar to connect a mailbox.</p>
 
       <h2 id="keychain-prompt">macOS keeps prompting me for my password</h2>
       <p>When MailSearch first reads a token / password from your Keychain after a fresh install or update, macOS asks you to confirm. Click <strong>Always Allow</strong> (not <em>Allow</em>) to make the trust persistent &mdash; <em>Allow</em> grants one-shot access only and you&rsquo;ll be re-prompted next sync.</p>

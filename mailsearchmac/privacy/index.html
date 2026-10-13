@@ -91,8 +91,8 @@
       <h3>4.2 OAuth consent (one-off per Gmail / Outlook account)</h3>
       <p>When you click <em>+ Add Gmail</em> or <em>+ Add Outlook</em>, MailSearch opens the provider&rsquo;s consent page in your default browser. That page is hosted by Google / Microsoft respectively. After you grant access, the browser redirects to a one-shot loopback HTTP listener on <code>127.0.0.1</code> / <code>localhost</code> running inside MailSearch on your Mac. The listener picks up the authorisation code, MailSearch swaps it for access + refresh tokens via the provider&rsquo;s token endpoint, and the loopback server shuts down. The whole exchange happens on your machine; Whiteforge is not involved.</p>
 
-      <h3>4.3 Optional auto-update check</h3>
-      <p>MailSearch can optionally check for newer versions on launch. This is <strong>off by default</strong>. If you enable it in Settings &rarr; Updates (or via the first-run modal), the app makes one HTTPS request per launch to <code>https://github.com/whiten1968/MailSearchMac-downloads/releases/latest/download/latest.json</code>. The request contains no mail content, no tokens, no telemetry. GitHub sees your IP address and the fact that something is requesting the manifest. You can revoke consent at any time.</p>
+      <h3>4.3 App updates</h3>
+      <p>The forthcoming version of MailSearch for Mac is distributed through the Apple App&nbsp;Store, so updates are delivered and managed by the App&nbsp;Store. MailSearch does not run its own update-check requests, and no mail content, tokens, or telemetry are involved.</p>
 
       <h2 id="tokens">5. How authentication tokens are stored</h2>
       <p>Credentials for each connected account live in the macOS Keychain &mdash; the OS-managed encrypted credential store, the same place Mail.app, Safari, and other native apps store passwords. Specifically:</p>
