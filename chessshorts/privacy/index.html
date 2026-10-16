@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chess Shorts privacy policy &mdash; Whiteforge Technologies</title>
+  <meta name="description" content="Privacy policy for the Chess Shorts app. Games are analysed and rendered on your iPhone. The only network requests are to Lichess or Chess.com to fetch a game you paste a link for, and to Apple for purchases.">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/whiteforge-icon-v2.svg">
+</head>
+<body>
+  <div class="page">
+
+    <header class="site-header">
+      <a href="/" class="site-logo">
+        <img class="site-logo__mark" src="/assets/whiteforge-mark.png" width="274" height="274" alt="">
+        <span class="site-logo__text">Whiteforge Technologies</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/#products">Products</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
+    </header>
+
+    <main class="prose">
+
+      <header class="page-title">
+        <img class="app-icon app-icon--small"
+             src="/assets/chessshorts-icon.png" width="1024" height="1024"
+             alt="Chess Shorts app icon">
+        <h1>Chess Shorts privacy policy</h1>
+      </header>
+      <p class="doc-meta">For the Chess Shorts iOS app &middot; Last updated 16 October 2026</p>
+
+      <div class="callout">
+        <p><strong>Summary.</strong> Chess Shorts analyses and renders your games entirely on your iPhone. None of your content is transmitted to Whiteforge &mdash; there are no Whiteforge servers in the data path. The app contains no analytics, no telemetry, and no advertising SDKs. The only outbound connections are: to Lichess or Chess.com to fetch the moves of a public game when you paste its link, and to Apple&rsquo;s App Store for purchases. Finished videos are saved to your Photos library at your request.</p>
+      </div>
+
+      <nav class="doc-toc" aria-label="Table of contents">
+        <strong>Contents</strong>
+        <ol>
+          <li><a href="#intro">Introduction</a></li>
+          <li><a href="#data">Data Whiteforge receives</a></li>
+          <li><a href="#storage">What is stored on your device</a></li>
+          <li><a href="#import">Importing games (Lichess &amp; Chess.com)</a></li>
+          <li><a href="#photos">Photos access</a></li>
+          <li><a href="#clipboard">Clipboard</a></li>
+          <li><a href="#purchase">Purchase validation</a></li>
+          <li><a href="#network">Network activity</a></li>
+          <li><a href="#third-parties">Third parties</a></li>
+          <li><a href="#children">Children</a></li>
+          <li><a href="#rights">Your rights</a></li>
+          <li><a href="#changes">Changes to this policy</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="intro">1. Introduction</h2>
+      <p>This policy explains how Chess Shorts handles your data. Chess Shorts is an iOS application published by Whiteforge Technologies Ltd (&ldquo;Whiteforge&rdquo;, &ldquo;we&rdquo;), a company registered in England and Wales (company number 17224707). It turns a chess game &mdash; supplied as a PGN or a Lichess/Chess.com link &mdash; into a vertical video.</p>
+      <p>This policy is for the Chess Shorts app. The <a href="/">whiteforgetech.co.uk</a> website has its own <a href="/privacy/">privacy policy</a>.</p>
+
+      <h2 id="data">2. Data Whiteforge receives</h2>
+      <p>None. Chess Shorts does not transmit your games, your videos, your settings, or any other personal data to Whiteforge. There are no Whiteforge servers in the data path. The app contains no analytics SDKs, no crash-reporting SDKs, no advertising SDKs, and no third-party tracking libraries of any kind.</p>
+
+      <h2 id="storage">3. What is stored on your device</h2>
+      <p>Chess Shorts stores the following locally on your device:</p>
+      <ul>
+        <li><strong>The game you are working on</strong> &mdash; the PGN and the engine evaluations, held in memory while you preview and export. This is not written to a persistent database.</li>
+        <li><strong>App settings</strong> &mdash; your selected board theme, whether Chess Shorts Pro is unlocked, and a count of how many free videos you have made. Stored in iOS UserDefaults.</li>
+        <li><strong>Rendered videos</strong> &mdash; when you choose &ldquo;Save to Photos&rdquo;, the finished video is written to your Photos library. A temporary copy is created during rendering and removed afterwards.</li>
+      </ul>
+      <p>None of this data leaves your device except through iCloud backup if you have it enabled, which is under your control and subject to Apple&rsquo;s privacy policy, not ours.</p>
+
+      <h2 id="import">4. Importing games (Lichess &amp; Chess.com)</h2>
+      <p>If you paste a <strong>Lichess</strong> game link, Chess Shorts requests that game&rsquo;s PGN from Lichess&rsquo;s public export endpoint (<code>lichess.org</code>). If you paste a <strong>Chess.com</strong> game link, Chess Shorts requests that game&rsquo;s public information from Chess.com (<code>chess.com</code> and <code>api.chess.com</code>) in order to retrieve its PGN. In both cases the only information sent is contained in the public game link you provided (for example the game identifier, and &mdash; for Chess.com &mdash; the public usernames and date needed to locate the game). No account credentials are involved, and Chess Shorts does not sign you in to either service. These requests are governed by the privacy policies of <a href="https://lichess.org/privacy">Lichess</a> and <a href="https://www.chess.com/legal/privacy">Chess.com</a> respectively. If you paste a PGN directly instead of a link, no such request is made.</p>
+
+      <h2 id="photos">5. Photos access</h2>
+      <p>Chess Shorts requests <em>add-only</em> access to your Photos library, used solely to save the videos you create. It does not read, browse, or access any existing photos or videos in your library. You can review or revoke this permission at any time in iOS Settings &rarr; Privacy &amp; Security &rarr; Photos &rarr; Chess Shorts.</p>
+
+      <h2 id="clipboard">6. Clipboard</h2>
+      <p>Chess Shorts reads your clipboard only when you tap &ldquo;Paste from clipboard&rdquo; on the import screen, so it can place the copied link or PGN into the text field. It does not read your clipboard at any other time.</p>
+
+      <h2 id="purchase">7. Purchase validation</h2>
+      <p>Chess Shorts is free to download, with a limited number of free videos. Removing the watermark, lifting the video limit, and unlocking all themes requires a one-time in-app purchase (&ldquo;Chess Shorts Pro&rdquo;). When you make or restore a purchase, the transaction is processed entirely by Apple through the App Store using Apple&rsquo;s StoreKit framework. Your entitlement is verified on-device against Apple&rsquo;s signed transaction record &mdash; no purchase data is sent to Whiteforge or any third-party service. Apple&rsquo;s handling of your payment is governed by <a href="https://www.apple.com/legal/privacy/">Apple&rsquo;s privacy policy</a>.</p>
+
+      <h2 id="network">8. Network activity</h2>
+      <p>Outside of the two cases above &mdash; fetching a game you import by link, and completing or restoring a purchase &mdash; Chess Shorts makes no network connections. Engine analysis and video rendering run entirely on-device.</p>
+
+      <h2 id="third-parties">9. Third parties</h2>
+      <p>Chess Shorts contains no third-party analytics, advertising, or tracking SDKs. It bundles the Arasan chess engine (MIT licence) and the ChessKit library (MIT licence), both of which run locally on your device and make no network connections. Chess piece artwork by Colin M.L. Burnett is used under the BSD licence. Purchases are handled by Apple&rsquo;s StoreKit; all other functionality uses Apple&rsquo;s system frameworks.</p>
+
+      <h2 id="children">10. Children</h2>
+      <p>Chess Shorts is a general-audience creative tool and is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+
+      <h2 id="rights">11. Your rights</h2>
+      <p>If you are in the UK or the EU, you have rights under the UK GDPR and the EU GDPR &mdash; including the rights of access, rectification, erasure, restriction, objection, and the right to lodge a complaint. Because Chess Shorts does not transmit personal data to Whiteforge, these rights are effectively exercised by controlling the app and your device directly. You can delete all app data by deleting the app from your iPhone. You can complain to the UK Information Commissioner&rsquo;s Office at <a href="https://ico.org.uk">ico.org.uk</a>.</p>
+
+      <h2 id="changes">12. Changes to this policy</h2>
+      <p>If we change this policy we will update the &ldquo;Last updated&rdquo; date at the top. Material changes will be summarised at the top of the policy for a reasonable period.</p>
+
+      <h2 id="contact">13. Contact</h2>
+      <p>For privacy questions about Chess Shorts:</p>
+      <p>Whiteforge Technologies Ltd<br>
+      <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a></p>
+
+      <p><a href="/chessshorts/">Back to Chess Shorts overview &rarr;</a></p>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__block">
+        <strong>WHITEFORGE TECHNOLOGIES LTD</strong>
+        Registered in England and Wales<br>
+        Company No. 17224707
+      </div>
+      <div class="footer__block">
+        <strong>Contact</strong>
+        <a href="mailto:support@whiteforgetech.co.uk">support@whiteforgetech.co.uk</a>
+      </div>
+      <div class="footer__block footer__links">
+        <strong>Chess Shorts</strong>
+        <a href="/chessshorts/">Overview</a>
+        <a href="/chessshorts/privacy/">Privacy policy</a>
+        <a href="/chessshorts/support/">Support</a>
+        <a href="/chessshorts/terms/">Terms</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
