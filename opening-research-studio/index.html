@@ -63,26 +63,17 @@
         <p>Opening Research Studio is almost ready. Leave your email and I&rsquo;ll let you know the moment it lands on the App Store &mdash; plus the occasional note when something big ships. No spam, I&rsquo;ll never share your address, and it&rsquo;s one click to unsubscribe.</p>
 
         <!--
-          MAILING LIST — posts to the EmailOctopus hosted form for the "Basic" inline
-          form (id 867be5b4-e9ae-11f1-a0dd-edf389dd376c) on the Opening Research Studio
-          list. Email field is field_0; honeypot name is EmailOctopus's fixed hp field.
-          Double opt-in is ON and whiteforgetech.co.uk is verified as the sending domain.
-          To regenerate: Grow > Forms > Basic > Embed; the <script> src ends /form/<id>.js
-          and the POST action is https://eocampaign1.com/form/<id> (no .js).
+          MAILING LIST — EmailOctopus official inline embed for the "Basic" form
+          (id 867be5b4-e9ae-11f1-a0dd-edf389dd376c) on the Opening Research Studio list.
+          We use the embed rather than a hand-coded form because the hosted form has
+          Google reCAPTCHA enabled: a raw POST is rejected with INVALID_PARAMETERS
+          because only EmailOctopus's script can generate the reCAPTCHA token. The look
+          (button colour, font, consent checkbox, success message) is set in the builder
+          at Grow > Forms > Basic. Double opt-in is ON; whiteforgetech.co.uk is verified
+          as the sending domain. Privacy: /opening-research-studio/privacy/.
         -->
         <div class="signup">
-          <form action="https://eocampaign1.com/form/867be5b4-e9ae-11f1-a0dd-edf389dd376c" method="post">
-            <div class="signup__hp" aria-hidden="true">
-              <input type="text" name="hpc4b27b6e-eb38-11e9-be00-06b4694bee2a" tabindex="-1" autocomplete="off">
-            </div>
-            <label for="su-email" style="position:absolute;left:-5000px;">Email address</label>
-            <input id="su-email" type="email" name="field_0" placeholder="you@example.com" autocomplete="email" required>
-            <button type="submit">Keep me posted</button>
-            <label class="signup__consent">
-              <input type="checkbox" name="consent" required>
-              <span>Yes, email me about Opening Research Studio. I can unsubscribe at any time. See how your data is handled in our <a href="/privacy/">privacy policy</a>.</span>
-            </label>
-          </form>
+          <script async src="https://eocampaign1.com/form/867be5b4-e9ae-11f1-a0dd-edf389dd376c.js" data-form="867be5b4-e9ae-11f1-a0dd-edf389dd376c"></script>
         </div>
       </section>
 
